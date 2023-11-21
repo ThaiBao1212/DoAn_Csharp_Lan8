@@ -33,8 +33,49 @@ namespace DoAn_CSharp.Forms
             }
 
         }
+        private void Setnull()
+        {
+            txtMaDanhMuc.Text = "";
+            txtTenDanhMuc.Text = "";
 
-    
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Setnull();
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtgvDanhSachDanhMuc_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+               DataGridViewRow selectedRow = dtgvDanhSachDanhMuc.Rows[e.RowIndex];
+                txtMaDanhMuc.Text = selectedRow.Cells["MaDanhMuc"].Value.ToString();
+                txtTenDanhMuc.Text = selectedRow.Cells["TenDM"].Value.ToString();
+
+            }
+
+        }
     }
     
 
