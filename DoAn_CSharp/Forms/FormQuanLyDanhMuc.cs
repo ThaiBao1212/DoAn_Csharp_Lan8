@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DoAn_CSharp.Forms
 {
-   
+
     public partial class FormQuanLyDanhMuc : Form
     {
         private Databsase.Database db;

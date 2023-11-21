@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DoAn_CSharp.DAO
 {
-    internal class QuanLyDanhMuc_DAO
+    public class QuanLyDanhMuc_DAO
     {
         private Database db;
         public QuanLyDanhMuc_DAO()
