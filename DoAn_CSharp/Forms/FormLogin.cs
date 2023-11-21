@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoAn_CSharp.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,7 @@ namespace DoAn_CSharp.Forms
         {
             InitializeComponent();
         }
+
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -53,8 +55,25 @@ namespace DoAn_CSharp.Forms
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            FormMainMenu formMain = new FormMainMenu();
-            formMain.ShowDialog();
+
+            string userName = txtUserName.Text;
+            string passWord = txtPassword.Text;
+            if (Login(userName, passWord))
+            {
+                FormMainMenu f = new FormMainMenu();
+                this.Hide();
+                f.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Sai tên tài khoản hoặc mật khẩu !");
+            }
+
         }
+        bool Login(string userName, string passWord)
+        {
+            return Account_DAO.Instance.Login(userName, passWord);
+        }
+
     }
 }

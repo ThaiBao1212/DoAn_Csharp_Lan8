@@ -71,6 +71,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\Account_DAO.cs" />
     <Compile Include="DAO\QuanLyHoaDon_DAO.cs" />
     <Compile Include="DAO\QuanLyDanhMuc_DAO.cs" />
     <Compile Include="DAO\QuanLyKhachHang_DAO.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="DAO\QuanLyNhapHang_DAO.cs" />
     <Compile Include="DAO\QuanLySanPham_DAO.cs" />
     <Compile Include="Databsase\Database.cs" />
+    <Compile Include="Databsase\DataProvider.cs" />
     <Compile Include="Databsase\hihi.cs" />
     <Compile Include="DTO\QuanLyKhachHang_DTO.cs" />
     <Compile Include="DTO\QuanLyDanhMuc_DTO.cs" />
