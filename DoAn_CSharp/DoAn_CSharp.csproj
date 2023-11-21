@@ -78,6 +78,7 @@
     <Compile Include="DAO\QuanLyNhapHang_DAO.cs" />
     <Compile Include="DAO\QuanLySanPham_DAO.cs" />
     <Compile Include="Databsase\Database.cs" />
+    <Compile Include="Databsase\hihi.cs" />
     <Compile Include="DTO\QuanLyKhachHang_DTO.cs" />
     <Compile Include="DTO\QuanLyDanhMuc_DTO.cs" />
     <Compile Include="DTO\QuanLyNhaCungCap_DTO.cs" />
