@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoAn_CSharp.DAO
 {
-    internal class QuanLyKhachHang_DAO
+    public class QuanLyKhachHang_DAO
     {
     }
 }
