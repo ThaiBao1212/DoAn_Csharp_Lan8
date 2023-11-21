@@ -50,5 +50,11 @@ namespace DoAn_CSharp.Forms
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        private void btnDangNhap_Click(object sender, EventArgs e)
+        {
+            FormMainMenu formMain = new FormMainMenu();
+            formMain.ShowDialog();
+        }
     }
 }
