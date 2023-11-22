@@ -80,6 +80,7 @@
     <Compile Include="DAO\QuanLySanPham_DAO.cs" />
     <Compile Include="Databsase\Database.cs" />
     <Compile Include="Databsase\DataProvider.cs" />
+    <Compile Include="Databsase\DataProvider1.cs" />
     <Compile Include="Databsase\hihi.cs" />
     <Compile Include="DTO\QuanLyKhachHang_DTO.cs" />
     <Compile Include="DTO\QuanLyDanhMuc_DTO.cs" />

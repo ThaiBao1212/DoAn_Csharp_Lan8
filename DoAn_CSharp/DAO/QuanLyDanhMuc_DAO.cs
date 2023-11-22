@@ -14,7 +14,6 @@ namespace DoAn_CSharp.DAO
         public QuanLyDanhMuc_DAO()
         {
             db = new Database();
-
         }
         public DataTable LayDanhSachDanhMuc()
         {

@@ -24,7 +24,6 @@ namespace DoAn_CSharp.Forms
         }
         private void HienThiDanhMuc()
         {
-
             DataTable dt = ql_danhmuc_DAO.LayDanhSachDanhMuc();
             dtgvDanhSachDanhMuc.Rows.Clear();
             foreach (DataRow row in dt.Rows)

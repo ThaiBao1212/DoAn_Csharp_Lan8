@@ -64,7 +64,9 @@
             this.btnThem = new FontAwesome.Sharp.IconButton();
             this.btnXuatExcel = new FontAwesome.Sharp.IconButton();
             this.btnChonAnh = new FontAwesome.Sharp.IconButton();
+            this.pictureBoxAnhNhanVien = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvQuanLyNhanVien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnhNhanVien)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -100,6 +102,7 @@
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.Size = new System.Drawing.Size(319, 20);
             this.txtHoTen.TabIndex = 3;
+            this.txtHoTen.TextChanged += new System.EventHandler(this.txtHoTen_TextChanged);
             // 
             // label3
             // 
@@ -197,6 +200,7 @@
             this.txtTenTaiKhoan.Name = "txtTenTaiKhoan";
             this.txtTenTaiKhoan.Size = new System.Drawing.Size(319, 20);
             this.txtTenTaiKhoan.TabIndex = 13;
+            this.txtTenTaiKhoan.TextChanged += new System.EventHandler(this.txtTenTaiKhoan_TextChanged);
             // 
             // txtMatKhau
             // 
@@ -204,6 +208,7 @@
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.Size = new System.Drawing.Size(319, 20);
             this.txtMatKhau.TabIndex = 14;
+            this.txtMatKhau.TextChanged += new System.EventHandler(this.txtMatKhau_TextChanged);
             // 
             // txtDiaChi
             // 
@@ -211,6 +216,7 @@
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(319, 20);
             this.txtDiaChi.TabIndex = 15;
+            this.txtDiaChi.TextChanged += new System.EventHandler(this.txtDiaChi_TextChanged);
             // 
             // txtSDT
             // 
@@ -218,6 +224,7 @@
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(319, 20);
             this.txtSDT.TabIndex = 16;
+            this.txtSDT.TextChanged += new System.EventHandler(this.txtSDT_TextChanged);
             // 
             // txtCCCD
             // 
@@ -225,6 +232,7 @@
             this.txtCCCD.Name = "txtCCCD";
             this.txtCCCD.Size = new System.Drawing.Size(319, 20);
             this.txtCCCD.TabIndex = 17;
+            this.txtCCCD.TextChanged += new System.EventHandler(this.txtCCCD_TextChanged);
             // 
             // cbMaChucVu
             // 
@@ -233,6 +241,7 @@
             this.cbMaChucVu.Name = "cbMaChucVu";
             this.cbMaChucVu.Size = new System.Drawing.Size(121, 22);
             this.cbMaChucVu.TabIndex = 18;
+            this.cbMaChucVu.SelectedIndexChanged += new System.EventHandler(this.cbMaChucVu_SelectedIndexChanged);
             // 
             // txtMaChucVu
             // 
@@ -240,6 +249,7 @@
             this.txtMaChucVu.Name = "txtMaChucVu";
             this.txtMaChucVu.Size = new System.Drawing.Size(183, 20);
             this.txtMaChucVu.TabIndex = 19;
+            this.txtMaChucVu.TextChanged += new System.EventHandler(this.txtMaChucVu_TextChanged);
             // 
             // cbGioiTinh
             // 
@@ -248,6 +258,7 @@
             this.cbGioiTinh.Name = "cbGioiTinh";
             this.cbGioiTinh.Size = new System.Drawing.Size(319, 22);
             this.cbGioiTinh.TabIndex = 20;
+            this.cbGioiTinh.SelectedIndexChanged += new System.EventHandler(this.cbGioiTinh_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -263,7 +274,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(654, 142);
+            this.label13.Location = new System.Drawing.Point(648, 256);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(120, 17);
             this.label13.TabIndex = 22;
@@ -276,6 +287,7 @@
             this.dtgvQuanLyNhanVien.Name = "dtgvQuanLyNhanVien";
             this.dtgvQuanLyNhanVien.Size = new System.Drawing.Size(966, 162);
             this.dtgvQuanLyNhanVien.TabIndex = 24;
+            this.dtgvQuanLyNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvQuanLyNhanVien_CellClick);
             // 
             // txtTimKiem
             // 
@@ -401,18 +413,29 @@
             this.btnChonAnh.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnChonAnh.IconColor = System.Drawing.Color.Black;
             this.btnChonAnh.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnChonAnh.Location = new System.Drawing.Point(866, 79);
+            this.btnChonAnh.Location = new System.Drawing.Point(866, 123);
             this.btnChonAnh.Name = "btnChonAnh";
             this.btnChonAnh.Size = new System.Drawing.Size(75, 23);
             this.btnChonAnh.TabIndex = 59;
             this.btnChonAnh.Text = "Chọn Ảnh ";
             this.btnChonAnh.UseVisualStyleBackColor = true;
+            this.btnChonAnh.Click += new System.EventHandler(this.btnChonAnh_Click);
+            // 
+            // pictureBoxAnhNhanVien
+            // 
+            this.pictureBoxAnhNhanVien.Location = new System.Drawing.Point(624, 56);
+            this.pictureBoxAnhNhanVien.Name = "pictureBoxAnhNhanVien";
+            this.pictureBoxAnhNhanVien.Size = new System.Drawing.Size(190, 184);
+            this.pictureBoxAnhNhanVien.TabIndex = 60;
+            this.pictureBoxAnhNhanVien.TabStop = false;
+            this.pictureBoxAnhNhanVien.Click += new System.EventHandler(this.pictureBoxAnhNhanVien_Click);
             // 
             // FormQuanLyNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 589);
+            this.Controls.Add(this.pictureBoxAnhNhanVien);
             this.Controls.Add(this.btnChonAnh);
             this.Controls.Add(this.btnXuatExcel);
             this.Controls.Add(this.btnClear);
@@ -453,6 +476,7 @@
             this.Name = "FormQuanLyNhanVien";
             this.Text = "QUẢN LÝ NHÂN VIÊN";
             ((System.ComponentModel.ISupportInitialize)(this.dtgvQuanLyNhanVien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnhNhanVien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -496,5 +520,6 @@
         private FontAwesome.Sharp.IconButton btnThem;
         private FontAwesome.Sharp.IconButton btnXuatExcel;
         private FontAwesome.Sharp.IconButton btnChonAnh;
+        private System.Windows.Forms.PictureBox pictureBoxAnhNhanVien;
     }
 }

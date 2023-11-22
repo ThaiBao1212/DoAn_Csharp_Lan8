@@ -12,8 +12,6 @@ namespace DoAn_CSharp.Databsase
     {
         private static DataProvider instance;
 
-
-
         public static DataProvider Instance  // Ctrl R E 
         {
             get { if (instance == null) instance = new DataProvider(); return DataProvider.instance; }
@@ -23,8 +21,11 @@ namespace DoAn_CSharp.Databsase
         private DataProvider() { }
 
 
-        private string connectionSTR = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
-
+        private string connectionSTR = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
+        public string GetConnectionString()
+        {
+            return connectionSTR;
+        }
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
