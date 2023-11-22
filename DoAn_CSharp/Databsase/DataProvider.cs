@@ -127,7 +127,7 @@ namespace DoAn_CSharp.Databsase
                         }
                     }
                 }
-
+    
                 data = command.ExecuteScalar();
 
                 connection.Close();
