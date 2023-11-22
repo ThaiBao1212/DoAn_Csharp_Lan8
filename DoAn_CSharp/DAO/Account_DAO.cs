@@ -21,7 +21,6 @@ namespace DoAn_CSharp.DAO
         private Account_DAO() { }
 
 
-
         public bool Login(string userName, string passWord)
         {
             string query = "USP_Login @username , @password";
@@ -29,15 +28,6 @@ namespace DoAn_CSharp.DAO
             DataTable result = DataProvider.Instance.ExecuteQuery(query , new object[] {userName , passWord} );
             return result.Rows.Count > 0;
         }
-
-
-
-
-
-
-
-
-
 
     }
 
