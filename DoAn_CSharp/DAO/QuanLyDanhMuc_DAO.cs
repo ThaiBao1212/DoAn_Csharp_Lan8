@@ -32,6 +32,12 @@ namespace DoAn_CSharp.DAO
                 return null;
             }
         }
+        public DataTable LayDanhSachSanPhamDanhMuc(QuanLyDanhMuc_DTO ql_danhmuc_DTO)
+        {
+            string strSQL = $"Select * from sanpham where MaDM=N'{ql_danhmuc_DTO.maDanhMuc}'";
+            DataTable dt = db.Execute(strSQL);
+            return dt;
+        }
 
 
         public void ThemDanhMuc(QuanLyDanhMuc_DTO ql_danhmuc_DTO)

@@ -16,7 +16,7 @@ namespace DoAn_CSharp.DAO
             db = new Database();
 
         }
-        public DataTable LayDanhSachDanhMuc()
+        public DataTable LayDanhSachSanPham()
         {
             string strSQL = "Select * from sanpham";
             DataTable dt = db.Execute(strSQL);

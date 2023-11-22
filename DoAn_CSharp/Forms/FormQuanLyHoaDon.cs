@@ -14,16 +14,17 @@ namespace DoAn_CSharp.Forms
 {
     public partial class FormQuanLyHoaDon : Form
     {
-        private Database db;
+ 
         private DAO.QuanLyHoaDon_DAO ql_hoadon_DAO = new DAO.QuanLyHoaDon_DAO();
         private DTO.QuanLyHoaDon_DTO ql_hoadon_DTO = new DTO.QuanLyHoaDon_DTO();
         private DTO.QuanLyChiTietHoaDon_DTO quanLyChiTietHoaDon_DTO = new DTO.QuanLyChiTietHoaDon_DTO();
-
+        private DAO.QuanLyChiTietHoaDon_DAO quanLyChiTietHoaDon_DAO = new DAO.QuanLyChiTietHoaDon_DAO();
         public FormQuanLyHoaDon()
         {
             InitializeComponent();
             HienThiHoaDon();
-            HienThiChiTietHD();
+            dtgvDanhSachHoaDon.SelectionChanged += dtgvDanhSachHoaDon_SelectionChanged;
+
         }
 
         private void FormQuanLyHoaDon_Load(object sender, EventArgs e)
@@ -40,15 +41,28 @@ namespace DoAn_CSharp.Forms
             }
 
         }
+        private void dtgvDanhSachHoaDon_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dtgvDanhSachHoaDon.SelectedRows.Count > 0)
+            {
+                int maHD = Convert.ToInt32(dtgvDanhSachHoaDon.SelectedRows[0].Cells["MaHD"].Value);
+                quanLyChiTietHoaDon_DTO.MaHD = maHD;
+                HienThiChiTietHD();
+            }
+        }
         private void HienThiChiTietHD()
         {
-            DataTable dt = ql_hoadon_DAO.LayDanhSachChiTietDH();
+            // Xóa tất cả dữ liệu hiện tại trong dtgvChiTietHD
             dtgvChiTietHD.Rows.Clear();
+
+            // Lấy danh sách chi tiết hóa đơn theo mã hóa đơn
+            DataTable dt = quanLyChiTietHoaDon_DAO.LayDanhSachChiTietDH(quanLyChiTietHoaDon_DTO);
+
+            // Thêm dữ liệu vào dtgvChiTietHD
             foreach (DataRow row in dt.Rows)
             {
                 dtgvChiTietHD.Rows.Add(row.ItemArray);
             }
-
         }
 
 

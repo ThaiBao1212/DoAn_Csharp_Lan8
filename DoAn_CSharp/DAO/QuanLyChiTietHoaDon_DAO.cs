@@ -9,28 +9,19 @@ using System.Threading.Tasks;
 
 namespace DoAn_CSharp.DAO
 {
-    internal class QuanLyHoaDon_DAO
+    internal class QuanLyChiTietHoaDon_DAO
     {
         private Database db;
-
-        // Constructor mặc định
-        public QuanLyHoaDon_DAO()
+        public QuanLyChiTietHoaDon_DAO()
         {
             db = new Database();
-        }
 
-        // Constructor nhận một đối tượng Database khác
-        public QuanLyHoaDon_DAO(Database otherDatabase)
-        {
-            db = otherDatabase;
         }
-
-        // Các phương thức khác của lớp DAO
-        public DataTable LayDanhSachHoaDon()
+        public DataTable LayDanhSachChiTietDH(QuanLyChiTietHoaDon_DTO quanLyChiTietHoaDon_DTO)
         {
             try
             {
-                string strSQL = "SELECT * FROM hoadon where TrangThaiHD=N'Mở'";
+                string strSQL = $"SELECT * FROM chitiethd where MaHD =N'{quanLyChiTietHoaDon_DTO.MaHD}' ";
                 DataTable dt = db.Execute(strSQL);
                 return dt;
             }
@@ -40,10 +31,6 @@ namespace DoAn_CSharp.DAO
                 return null;
             }
         }
-
-      
-
-
 
     }
 }

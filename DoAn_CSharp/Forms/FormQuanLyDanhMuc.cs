@@ -16,15 +16,21 @@ namespace DoAn_CSharp.Forms
    
     public partial class FormQuanLyDanhMuc : Form
     {
-        private Database db;
+
         private DAO.QuanLyDanhMuc_DAO ql_danhmuc_DAO = new DAO.QuanLyDanhMuc_DAO();
         private DTO.QuanLyDanhMuc_DTO ql_danhmuc_DTO = new DTO.QuanLyDanhMuc_DTO();
-
+        private DTO.QuanLySanPham_DTO quanLySanPham_DTO = new DTO.QuanLySanPham_DTO();
         public FormQuanLyDanhMuc()
         {
             InitializeComponent();
             HienThiDanhMuc();
+            dtgvDanhSachDanhMuc.SelectionChanged += DtgvDanhSachDanhMuc_SelectionChanged;
+            
+          
         }
+
+      
+
         private void HienThiDanhMuc()
         {
 
@@ -160,6 +166,15 @@ namespace DoAn_CSharp.Forms
         {
 
         }
+        private void DtgvDanhSachDanhMuc_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dtgvDanhSachDanhMuc.SelectedRows.Count > 0)
+            {
+                int maDanhMuc = Convert.ToInt32(dtgvDanhSachDanhMuc.SelectedRows[0].Cells["MaDanhMuc"].Value);
+                ql_danhmuc_DTO.maDanhMuc = maDanhMuc;
+                HienThiSanPhamDanhMuc();
+            }
+        }
 
         private void dtgvDanhSachDanhMuc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -172,8 +187,21 @@ namespace DoAn_CSharp.Forms
             }
 
         }
+        private void HienThiSanPhamDanhMuc()
+        {
+            dtgvSanPhamTrongDanhMuc.Rows.Clear();
 
-        
+            // Lấy danh sách chi tiết hóa đơn theo mã hóa đơn
+            DataTable dt = ql_danhmuc_DAO.LayDanhSachSanPhamDanhMuc(ql_danhmuc_DTO);
+
+            // Thêm dữ liệu vào dtgvChiTietHD
+            foreach (DataRow row in dt.Rows)
+            {
+                dtgvSanPhamTrongDanhMuc.Rows.Add(row.ItemArray);
+            }
+        }
+
+
     }
     
 
