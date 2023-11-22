@@ -1,4 +1,5 @@
 ﻿using DoAn_CSharp.DAO;
+using DoAn_CSharp.Databsase;
 using DoAn_CSharp.DTO;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace DoAn_CSharp.Forms
    
     public partial class FormQuanLyDanhMuc : Form
     {
-        private Databsase.Database db;
+        private Database db;
         private DAO.QuanLyDanhMuc_DAO ql_danhmuc_DAO = new DAO.QuanLyDanhMuc_DAO();
         private DTO.QuanLyDanhMuc_DTO ql_danhmuc_DTO = new DTO.QuanLyDanhMuc_DTO();
 
@@ -171,6 +172,8 @@ namespace DoAn_CSharp.Forms
             }
 
         }
+
+        
     }
     
 

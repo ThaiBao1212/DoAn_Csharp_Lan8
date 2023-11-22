@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\DoAn_CSharp",
-    "\\DoAn_CSharp\\DAO",
-    "\\DoAn_CSharp\\Databsase",
     "\\DoAn_CSharp\\Forms"
   ],
-  "SelectedNode": "\\DoAn_CSharp\\DAO\\QuanLyDanhMuc_DAO.cs",
+  "SelectedNode": "\\DoAn_CSharp\\Forms\\FormQuanLyHoaDon.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -37,9 +37,6 @@
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtgvDanhSachDanhMuc = new System.Windows.Forms.DataGridView();
-            this.MaDanhMuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenDM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrangThaiDM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtgvSanPhamTrongDanhMuc = new System.Windows.Forms.DataGridView();
             this.btnClear = new FontAwesome.Sharp.IconButton();
@@ -47,6 +44,9 @@
             this.btnCapNhat = new FontAwesome.Sharp.IconButton();
             this.btnThem = new FontAwesome.Sharp.IconButton();
             this.btnXuatExcel = new FontAwesome.Sharp.IconButton();
+            this.TrangThaiDM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenDM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaDanhMuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDanhSachDanhMuc)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -105,7 +105,7 @@
             // cbTimKiem
             // 
             this.cbTimKiem.FormattingEnabled = true;
-            this.cbTimKiem.Location = new System.Drawing.Point(773, 206);
+            this.cbTimKiem.Location = new System.Drawing.Point(772, 206);
             this.cbTimKiem.Margin = new System.Windows.Forms.Padding(4);
             this.cbTimKiem.Name = "cbTimKiem";
             this.cbTimKiem.Size = new System.Drawing.Size(199, 24);
@@ -146,27 +146,6 @@
             this.dtgvDanhSachDanhMuc.Size = new System.Drawing.Size(1288, 196);
             this.dtgvDanhSachDanhMuc.TabIndex = 43;
             this.dtgvDanhSachDanhMuc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvDanhSachDanhMuc_CellClick);
-            // 
-            // MaDanhMuc
-            // 
-            this.MaDanhMuc.HeaderText = "MaDanhMuc";
-            this.MaDanhMuc.MinimumWidth = 6;
-            this.MaDanhMuc.Name = "MaDanhMuc";
-            this.MaDanhMuc.Width = 125;
-            // 
-            // TenDM
-            // 
-            this.TenDM.HeaderText = "TenDM";
-            this.TenDM.MinimumWidth = 6;
-            this.TenDM.Name = "TenDM";
-            this.TenDM.Width = 125;
-            // 
-            // TrangThaiDM
-            // 
-            this.TrangThaiDM.HeaderText = "TrangThaiDM";
-            this.TrangThaiDM.MinimumWidth = 6;
-            this.TrangThaiDM.Name = "TrangThaiDM";
-            this.TrangThaiDM.Width = 125;
             // 
             // groupBox2
             // 
@@ -262,7 +241,7 @@
             this.btnXuatExcel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnXuatExcel.IconColor = System.Drawing.Color.Black;
             this.btnXuatExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXuatExcel.Location = new System.Drawing.Point(1032, 203);
+            this.btnXuatExcel.Location = new System.Drawing.Point(1126, 208);
             this.btnXuatExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnXuatExcel.Name = "btnXuatExcel";
             this.btnXuatExcel.Size = new System.Drawing.Size(117, 28);
@@ -270,6 +249,27 @@
             this.btnXuatExcel.Text = "Xuất Excel";
             this.btnXuatExcel.UseVisualStyleBackColor = true;
             this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
+            // 
+            // TrangThaiDM
+            // 
+            this.TrangThaiDM.HeaderText = "TrangThaiDM";
+            this.TrangThaiDM.MinimumWidth = 6;
+            this.TrangThaiDM.Name = "TrangThaiDM";
+            this.TrangThaiDM.Width = 135;
+            // 
+            // TenDM
+            // 
+            this.TenDM.HeaderText = "TenDM";
+            this.TenDM.MinimumWidth = 6;
+            this.TenDM.Name = "TenDM";
+            this.TenDM.Width = 125;
+            // 
+            // MaDanhMuc
+            // 
+            this.MaDanhMuc.HeaderText = "MaDanhMuc";
+            this.MaDanhMuc.MinimumWidth = 6;
+            this.MaDanhMuc.Name = "MaDanhMuc";
+            this.MaDanhMuc.Width = 125;
             // 
             // FormQuanLyDanhMuc
             // 

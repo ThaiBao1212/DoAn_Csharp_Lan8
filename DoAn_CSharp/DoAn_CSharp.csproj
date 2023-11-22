@@ -77,7 +77,9 @@
     <Compile Include="DAO\QuanLyNhanVien_DAO.cs" />
     <Compile Include="DAO\QuanLyNhapHang_DAO.cs" />
     <Compile Include="DAO\QuanLySanPham_DAO.cs" />
-    <Compile Include="Databsase\Database.cs" />
+    <Compile Include="Database\Database.cs" />
+    <Compile Include="DTO\QuanLyChiTietHoaDon_DTO.cs" />
+    <Compile Include="DTO\QuanLyHoaDon_DTO.cs" />
     <Compile Include="DTO\QuanLyKhachHang_DTO.cs" />
     <Compile Include="DTO\QuanLyDanhMuc_DTO.cs" />
     <Compile Include="DTO\QuanLyNhaCungCap_DTO.cs" />
@@ -210,7 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\5072616.jpg" />
-    <Content Include="Databsase\QuanLyBanGiay.sql" />
+    <Content Include="Database\QuanLyBanGiay.sql" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
