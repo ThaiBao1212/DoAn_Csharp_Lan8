@@ -25,6 +25,14 @@ namespace DoAn_CSharp.Forms
         private void FormQuanLyNhanVien_Load(object sender, EventArgs e)
         {
             LoadDataToDataGridView();
+            pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
+
+
+        }
+
+        private void pictureBoxAnhNhanVien_BackgroundImageLayoutChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void dtgvQuanLyNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -63,15 +71,13 @@ namespace DoAn_CSharp.Forms
                 txtSDT.Text = sdtNV;
                 txtCCCD.Text = cmnd;
                 pictureBoxAnhNhanVien.Image = Image.FromFile(anhNV);
-
-
             }
         }
 
 
         private void pictureBoxAnhNhanVien_Click(object sender, EventArgs e)
         {
-
+            pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private string anhNV;
@@ -147,9 +153,6 @@ namespace DoAn_CSharp.Forms
         {
 
         }
-
-
-
 
 
     }
