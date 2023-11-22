@@ -20,7 +20,7 @@ namespace DoAn_CSharp.Databsase
             sqlConn = new SqlConnection(strCnn);
         }
 
-        public DataTable Execute(string sqlStr)
+        public DataTable ExecuteQuery(string sqlStr)
         {
             SqlDataAdapter da = new SqlDataAdapter(sqlStr, sqlConn);
             DataSet ds = new DataSet();
