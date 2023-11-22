@@ -1,4 +1,5 @@
 ﻿using DoAn_CSharp.DAO;
+using DoAn_CSharp.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,18 +14,17 @@ namespace DoAn_CSharp.Forms
 {
     public partial class FormQuanLyNhanVien : Form
     {
-        private QuanLyNhanVien_DAO ql_NhanVien = new QuanLyNhanVien_DAO() ;
+
+        private QuanLyNhanVien_DAO nhanVien_DAO = new QuanLyNhanVien_DAO() ;
 
         public FormQuanLyNhanVien()
         {
             InitializeComponent();
         }
 
-
-        void LoadSachList()
+        private void FormQuanLyNhanVien_Load(object sender, EventArgs e)
         {
-            dtgvQuanLyNhanVien.DataSource = ql_NhanVien.GetNhanVien();
-
+            LoadDataToDataGridView();
         }
 
         private void dtgvQuanLyNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -36,24 +36,25 @@ namespace DoAn_CSharp.Forms
 
                 // Trích xuất thông tin từ dòng được chọn
                 string maNV = row.Cells["MaNV"].Value.ToString();
-                
+                string maCV = row.Cells["TenCV"].Value.ToString();
 
                 // Hiển thị thông tin lên các TextBox
                 txtMaNhanVien.Text = maNV;
+                txtTenChucVu.Text = maCV;
 
             }
 
+        }
+        private void LoadDataToDataGridView()
+        {
+            List<QuanLyNhanVien_DTO> listNhanVien = nhanVien_DAO.GetNhanVien();
+            dtgvQuanLyNhanVien.DataSource = listNhanVien;
         }
 
 
 
 
 
-
-
-
-
-        
 
         private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
         {

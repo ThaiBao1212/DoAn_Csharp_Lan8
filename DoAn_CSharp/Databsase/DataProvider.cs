@@ -21,7 +21,7 @@ namespace DoAn_CSharp.Databsase
         private DataProvider() { }
 
 
-        private string connectionSTR = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
+        private string connectionSTR = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
         public string GetConnectionString()
         {
             return connectionSTR;

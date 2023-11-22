@@ -47,7 +47,7 @@
             this.txtSDT = new System.Windows.Forms.TextBox();
             this.txtCCCD = new System.Windows.Forms.TextBox();
             this.cbMaChucVu = new System.Windows.Forms.ComboBox();
-            this.txtMaChucVu = new System.Windows.Forms.TextBox();
+            this.txtTenChucVu = new System.Windows.Forms.TextBox();
             this.cbGioiTinh = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -243,13 +243,13 @@
             this.cbMaChucVu.TabIndex = 18;
             this.cbMaChucVu.SelectedIndexChanged += new System.EventHandler(this.cbMaChucVu_SelectedIndexChanged);
             // 
-            // txtMaChucVu
+            // txtTenChucVu
             // 
-            this.txtMaChucVu.Location = new System.Drawing.Point(280, 49);
-            this.txtMaChucVu.Name = "txtMaChucVu";
-            this.txtMaChucVu.Size = new System.Drawing.Size(183, 20);
-            this.txtMaChucVu.TabIndex = 19;
-            this.txtMaChucVu.TextChanged += new System.EventHandler(this.txtMaChucVu_TextChanged);
+            this.txtTenChucVu.Location = new System.Drawing.Point(280, 49);
+            this.txtTenChucVu.Name = "txtTenChucVu";
+            this.txtTenChucVu.Size = new System.Drawing.Size(183, 20);
+            this.txtTenChucVu.TabIndex = 19;
+            this.txtTenChucVu.TextChanged += new System.EventHandler(this.txtMaChucVu_TextChanged);
             // 
             // cbGioiTinh
             // 
@@ -452,7 +452,7 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbGioiTinh);
-            this.Controls.Add(this.txtMaChucVu);
+            this.Controls.Add(this.txtTenChucVu);
             this.Controls.Add(this.cbMaChucVu);
             this.Controls.Add(this.txtCCCD);
             this.Controls.Add(this.txtSDT);
@@ -475,6 +475,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FormQuanLyNhanVien";
             this.Text = "QUẢN LÝ NHÂN VIÊN";
+            this.Load += new System.EventHandler(this.FormQuanLyNhanVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvQuanLyNhanVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnhNhanVien)).EndInit();
             this.ResumeLayout(false);
@@ -503,7 +504,7 @@
         private System.Windows.Forms.TextBox txtSDT;
         private System.Windows.Forms.TextBox txtCCCD;
         private System.Windows.Forms.ComboBox cbMaChucVu;
-        private System.Windows.Forms.TextBox txtMaChucVu;
+        private System.Windows.Forms.TextBox txtTenChucVu;
         private System.Windows.Forms.ComboBox cbGioiTinh;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
