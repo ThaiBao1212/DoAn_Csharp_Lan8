@@ -7,13 +7,15 @@ using System.Data;
 using DoAn_CSharp.Databsase;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using DoAn_CSharp.DTO;
+using System.Collections;
 
 namespace DoAn_CSharp.DAO
 {
     public class QuanLyNhanVien_DAO
     {
         private Database provider = new Database();
-        private DataProvider1 provider1 = new DataProvider1();
+
 
         public List<DTO.QuanLyNhanVien_DTO> GetNhanVien()
         {
@@ -38,7 +40,7 @@ namespace DoAn_CSharp.DAO
                     AnhNV = row["AnhNV"].ToString(),
                     SDTNV = row["SDTNV"].ToString(),
                     CMNDNV = row["CMNDNV"].ToString()
-                    
+
                 };
                 listNhanVien.Add(nhanVien);
             }
@@ -74,8 +76,34 @@ namespace DoAn_CSharp.DAO
                 return string.Empty;
             }
         }
-    }
 
+        public bool AddNhanVien(string maCV, string tenTaiKhoanNV, string matKhauNV, string hoTenNV,
+                             string gioiTinhNV, DateTime ngaySinhNV, string diaChiNV,
+                             string emailNV, string sdtNV, string cmndNV,string anhNV)
+        {
+            try
+            {
+                // Thực hiện câu truy vấn thêm nhân viên vào cơ sở dữ liệu
+                string query = $"INSERT INTO nhanvien (MaCV, TenTaiKhoanNV, MatKhauNV, HoTenNV, GioiTinhNV, NgaySinh, DiaChiNV, EmailNV, SDTNV, CMNDNV,AnhNV) " +
+                               $"VALUES ('{maCV}', '{tenTaiKhoanNV}', '{matKhauNV}', '{hoTenNV}', '{gioiTinhNV}', '{ngaySinhNV.ToString("yyyy-MM-dd")}', " +
+                               $"'{diaChiNV}', '{emailNV}', '{sdtNV}', '{cmndNV}','{anhNV}')";
+
+                // Gọi phương thức ExecuteNonQuery từ đối tượng Database để thực hiện câu truy vấn
+                provider.ExecuteNonQuery(query);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý exception nếu có
+                Console.WriteLine("Error adding employee: " + ex.Message);
+                return false;
+            }
+        }
+        // Trong lớp DAO (QuanLyNhanVien_DAO)
+
+
+    }
 }
 
 // hàm lấy tên chuc vu 2 

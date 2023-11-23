@@ -95,6 +95,7 @@
             // 
             // txtMaNhanVien
             // 
+            this.txtMaNhanVien.Enabled = false;
             this.txtMaNhanVien.Location = new System.Drawing.Point(144, 12);
             this.txtMaNhanVien.Name = "txtMaNhanVien";
             this.txtMaNhanVien.Size = new System.Drawing.Size(319, 20);
@@ -249,6 +250,7 @@
             // 
             // txtTenChucVu
             // 
+            this.txtTenChucVu.Enabled = false;
             this.txtTenChucVu.Location = new System.Drawing.Point(280, 40);
             this.txtTenChucVu.Name = "txtTenChucVu";
             this.txtTenChucVu.Size = new System.Drawing.Size(183, 20);
@@ -268,7 +270,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(680, 24);
+            this.label12.Location = new System.Drawing.Point(654, 26);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(114, 17);
             this.label12.TabIndex = 21;
@@ -280,9 +282,9 @@
             this.label13.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(654, 276);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(120, 17);
+            this.label13.Size = new System.Drawing.Size(115, 17);
             this.label13.TabIndex = 22;
-            this.label13.Text = "Hình Ảnh Ở Đây :";
+            this.label13.Text = "Hình Ảnh Ở Đây ";
             // 
             // dtgvQuanLyNhanVien
             // 
@@ -395,6 +397,7 @@
             this.btnThem.TabIndex = 54;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnXuatExcel
             // 
@@ -428,7 +431,7 @@
             // pictureBoxAnhNhanVien
             // 
             this.pictureBoxAnhNhanVien.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxAnhNhanVien.Location = new System.Drawing.Point(624, 56);
+            this.pictureBoxAnhNhanVien.Location = new System.Drawing.Point(614, 67);
             this.pictureBoxAnhNhanVien.Name = "pictureBoxAnhNhanVien";
             this.pictureBoxAnhNhanVien.Size = new System.Drawing.Size(200, 200);
             this.pictureBoxAnhNhanVien.TabIndex = 60;

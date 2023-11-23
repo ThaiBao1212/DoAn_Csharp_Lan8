@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ namespace DoAn_CSharp.Forms
     public partial class FormQuanLyNhanVien : Form
     {
 
+        private string anhNV;
         private QuanLyNhanVien_DAO nhanVien_DAO = new QuanLyNhanVien_DAO() ;
 
         public FormQuanLyNhanVien()
@@ -28,6 +31,12 @@ namespace DoAn_CSharp.Forms
             pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
             LoadDataToComboBoxMaChucVu();
             LoadDataToComBoBoxGioiTinh();
+
+            if (cbMaChucVu.Items.Count > 0)
+            {
+                cbMaChucVu.SelectedIndex = 0; // Chọn giá trị đầu tiên
+            }
+
         }
 
         private void pictureBoxAnhNhanVien_BackgroundImageLayoutChanged(object sender, EventArgs e)
@@ -80,7 +89,6 @@ namespace DoAn_CSharp.Forms
             pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
-        private string anhNV;
         private void btnChonAnh_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -96,6 +104,80 @@ namespace DoAn_CSharp.Forms
 
                 anhNV = selectedImagePath;
             }
+        }
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            // Lấy thông tin từ các controls trên form
+            string maCV = cbMaChucVu.SelectedItem.ToString();
+            string tenTaiKhoanNV = txtTenTaiKhoan.Text;
+            string matKhauNV = txtMatKhau.Text;
+            string hoTenNV = txtHoTen.Text;
+            string gioiTinhNV = cbGioiTinh.SelectedItem.ToString();
+            DateTime ngaySinhNV = dateTimePickerNgaySinh.Value;
+            string diaChiNV = txtDiaChi.Text;
+            string emailNV = txtEmail.Text;
+            string sdtNV = txtSDT.Text;
+            string cmndNV = txtCCCD.Text;
+
+
+            // Kiểm tra xem tất cả các trường thông tin đã được nhập đầy đủ chưa
+            if (string.IsNullOrWhiteSpace(maCV) || string.IsNullOrWhiteSpace(tenTaiKhoanNV) ||
+                string.IsNullOrWhiteSpace(matKhauNV) || string.IsNullOrWhiteSpace(hoTenNV) ||
+                string.IsNullOrWhiteSpace(gioiTinhNV) || string.IsNullOrWhiteSpace(diaChiNV) ||
+                string.IsNullOrWhiteSpace(emailNV) || string.IsNullOrWhiteSpace(sdtNV) ||
+                string.IsNullOrWhiteSpace(cmndNV))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra xem đã chọn ảnh nhân viên chưa
+            if (string.IsNullOrEmpty(anhNV))
+            {
+                MessageBox.Show("Vui lòng chọn ảnh nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Thực hiện thêm nhân viên vào cơ sở dữ liệu
+            bool isSuccess = nhanVien_DAO.AddNhanVien(maCV, tenTaiKhoanNV, matKhauNV, hoTenNV, gioiTinhNV, ngaySinhNV, diaChiNV, emailNV, sdtNV, cmndNV, anhNV);
+
+            // Kiểm tra kết quả thêm nhân viên
+            if (isSuccess)
+            {
+                MessageBox.Show("Thêm nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Sau khi thêm thành công, cập nhật lại DataGridView
+                LoadDataToDataGridView();
+            }
+            else
+            {
+                MessageBox.Show("Thêm nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            ClearInput();
+        }
+
+        private void ClearInput()
+        {
+            // Xóa nội dung của các TextBox
+            txtMaNhanVien.Text = string.Empty;
+            txtTenTaiKhoan.Text = string.Empty;
+            txtMatKhau.Text = string.Empty;
+            txtHoTen.Text = string.Empty;
+            txtDiaChi.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtSDT.Text = string.Empty;
+            txtCCCD.Text = string.Empty;
+
+            // Đặt giá trị mặc định cho ComboBox
+            cbMaChucVu.SelectedIndex = 0;
+            cbGioiTinh.SelectedIndex = 0;
+
+            // Đặt giá trị mặc định cho DateTimePicker
+            dateTimePickerNgaySinh.Value = DateTime.Now;
+
+            // Xóa hình ảnh trong PictureBox
+            pictureBoxAnhNhanVien.Image = null;
         }
 
         private void LoadDataToDataGridView()
@@ -129,6 +211,7 @@ namespace DoAn_CSharp.Forms
             // Hiển thị tên chức vụ tương ứng trong TextBox txtTenChucVu
             txtTenChucVu.Text = tenChucVu;
         }
+
 
         private void txtMaChucVu_TextChanged(object sender, EventArgs e)
         {
@@ -170,6 +253,7 @@ namespace DoAn_CSharp.Forms
 
         }
 
-
+        
+        
     }
 }
