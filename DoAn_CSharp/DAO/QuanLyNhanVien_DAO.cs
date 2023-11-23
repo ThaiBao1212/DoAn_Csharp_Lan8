@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using DoAn_CSharp.Databsase;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace DoAn_CSharp.DAO
 {
     public class QuanLyNhanVien_DAO
     {
         private Database provider = new Database();
-
+        private DataProvider1 provider1 = new DataProvider1();
 
         public List<DTO.QuanLyNhanVien_DTO> GetNhanVien()
         {
@@ -44,7 +46,77 @@ namespace DoAn_CSharp.DAO
             return listNhanVien;
         }
 
+        public List<string> GetMaChucVu()
+        {
+            List<string> listMaChucVu = new List<string>();
+            string query = "SELECT MaCV FROM chucvu";
+            DataTable data = provider.ExecuteQuery(query);
 
+            foreach (DataRow row in data.Rows)
+            {
+                listMaChucVu.Add(row["MaCV"].ToString());
+            }
+
+            return listMaChucVu;
+        }
+
+        public string GetTenChucVu(string maChucVu)
+        {
+            string query = $"SELECT TenCV FROM chucvu WHERE MaCV = '{maChucVu}'";
+            DataTable data = provider.ExecuteQuery(query);
+
+            if (data.Rows.Count > 0)
+            {
+                return data.Rows[0]["TenCV"].ToString();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
     }
 
 }
+
+// hàm lấy tên chuc vu 2 
+/*       public string GetTenChucVu(string maChucVu)
+       {
+           string query = "SELECT TenCV FROM chucvu WHERE MaCV = @MaCV";
+
+           using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog = QuanLyBanGiay; Integrated Security = True"))
+           {
+               connection.Open();
+
+               using (SqlCommand command = new SqlCommand(query, connection))
+               {
+                   command.Parameters.AddWithValue("@MaCV", maChucVu);
+
+                   using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                   {
+                       DataTable data = new DataTable();
+                       adapter.Fill(data);
+
+                       if (data.Rows.Count > 0)
+                       {
+                           return data.Rows[0]["TenCV"].ToString();
+                       }
+                   }
+               }
+           }
+
+           return string.Empty;
+       }*/
+// hàm lấy cbGioiTinh
+
+/*        public List<string> GetGioiTinh()
+        {
+            List<string> listGioiTinh = new List<string>();
+            string query = "SELECT GioiTinhNV  FROM nhanvien";
+            DataTable data = provider.ExecuteQuery(query);
+            foreach(DataRow row in data.Rows)
+            {
+                listGioiTinh.Add(row["GioiTinhNV"].ToString());
+            }
+            return listGioiTinh;
+        }*/
+

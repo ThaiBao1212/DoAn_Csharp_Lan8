@@ -26,8 +26,8 @@ namespace DoAn_CSharp.Forms
         {
             LoadDataToDataGridView();
             pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
-
-
+            LoadDataToComboBoxMaChucVu();
+            LoadDataToComBoBoxGioiTinh();
         }
 
         private void pictureBoxAnhNhanVien_BackgroundImageLayoutChanged(object sender, EventArgs e)
@@ -103,15 +103,31 @@ namespace DoAn_CSharp.Forms
             List<QuanLyNhanVien_DTO> listNhanVien = nhanVien_DAO.GetNhanVien();
             dtgvQuanLyNhanVien.DataSource = listNhanVien;
         }
+        private void LoadDataToComboBoxMaChucVu()
+        {
+            List<string> listMaChucVu = nhanVien_DAO.GetMaChucVu();
 
+            // Load dữ liệu vào ComboBox MaChucVu
+            cbMaChucVu.Items.AddRange(listMaChucVu.ToArray());
+        }
 
+        private void LoadDataToComBoBoxGioiTinh()
+        {
+            cbGioiTinh.Items.Add("Nam");
+            cbGioiTinh.Items.Add("Nữ");
+            cbGioiTinh.Items.Add("Khác");
 
-
-
+        }
 
         private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string selectedMaChucVu = cbMaChucVu.SelectedItem.ToString();
 
+            // Gọi phương thức từ DAO để lấy tên chức vụ tương ứng
+
+            string tenChucVu = nhanVien_DAO.GetTenChucVu(selectedMaChucVu); 
+            // Hiển thị tên chức vụ tương ứng trong TextBox txtTenChucVu
+            txtTenChucVu.Text = tenChucVu;
         }
 
         private void txtMaChucVu_TextChanged(object sender, EventArgs e)
