@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoAn_CSharp.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,29 +20,70 @@ namespace DoAn_CSharp.Forms
         {
             InitializeComponent();
             HienThiDanhSachSanPham();
-            dtgvDanhSachSanPham.SelectionChanged += DtgvDanhSachSanPham_SelectionChanged;
+ 
         }
 
         private void DtgvDanhSachSanPham_SelectionChanged(object sender, EventArgs e)
         {
-            if (dtgvDanhSachSanPham.SelectedRows.Count > 0)
-            {
-                int maSP = Convert.ToInt32(dtgvDanhSachSanPham.SelectedRows[0].Cells["MaSP"].Value);
-              /*  quanLySanPham_DAO.LayDanhSachChiTietSanPham();*/
-
-
-            }
+            
         }
 
         private void HienThiDanhSachSanPham()
         {
-            DataTable dt = quanLySanPham_DAO.LayDanhSachSanPham();
-            dtgvDanhSachSanPham.Rows.Clear();
-            foreach (DataRow row in dt.Rows) {
-                dtgvDanhSachSanPham.Rows.Add(row.ItemArray);
+            List<QuanLySanPham_DTO> danhSachSanPham = quanLySanPham_DAO.LayDanhSachSanPhamBan();
+
+            // Clear controls trong groupBox1 trước khi thêm dữ liệu mới
+            groupBox1.Controls.Clear();
+
+            int rowIndex = 0;
+
+            foreach (QuanLySanPham_DTO sanPham in danhSachSanPham)
+            {
+                // Tạo các controls để hiển thị thông tin sản phẩm
+                Label lblMaSP = new Label();
+                lblMaSP.Text = sanPham.MaSP.ToString();
+                lblMaSP.Dock = DockStyle.Top;
+                lblMaSP.Click += (sender, e) => HandleProductClick(sanPham.MaSP); // Handle click event
+
+                Label lblTenSP = new Label();
+                lblTenSP.Text = sanPham.TenSP;
+                lblTenSP.Dock = DockStyle.Top;
+
+                Label lblDonGia = new Label();
+                lblDonGia.Text = sanPham.DonGia.ToString("C");
+                lblDonGia.Dock = DockStyle.Top;
+
+                PictureBox picHinhAnh = new PictureBox();
+                // Đặt hình ảnh cho PictureBox (sanPham.AnhSP là đường dẫn đến hình ảnh)
+                picHinhAnh.ImageLocation = sanPham.AnhSP;
+                picHinhAnh.SizeMode = PictureBoxSizeMode.Zoom;
+                picHinhAnh.Dock = DockStyle.Top;
+
+                // ... other controls
+
+                // Thêm controls vào groupBox1
+                groupBox1.Controls.Add(lblMaSP);
+                groupBox1.Controls.Add(lblTenSP);
+                groupBox1.Controls.Add(lblDonGia);
+                groupBox1.Controls.Add(picHinhAnh);
+                // ... add other controls
+
+                rowIndex++;
             }
         }
 
+        private void HandleProductClick(int maSP)
+        {
+            // Implement your logic to handle the click event
+            MessageBox.Show($"Clicked on product with ID: {maSP}");
+
+            // If you want to open a detailed view, pass the maSP to the detailed view form
+            // Example: var detailedViewForm = new DetailedViewForm(maSP);
+            // detailedViewForm.Show();
+        }
 
     }
+
+
+  
 }
