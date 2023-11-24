@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoAn_CSharp.DAO
+namespace DoAn_CSharp.Databsase
 {
-    public class QuanLyKhachHang_DAO
+    internal class hihi
     {
     }
 }
