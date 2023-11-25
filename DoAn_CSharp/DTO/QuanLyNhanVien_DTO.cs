@@ -22,7 +22,6 @@ namespace DoAn_CSharp.DTO
         public string SDTNV { get; set; }
         public string CMNDNV { get; set; }
 
-
     }
 
 

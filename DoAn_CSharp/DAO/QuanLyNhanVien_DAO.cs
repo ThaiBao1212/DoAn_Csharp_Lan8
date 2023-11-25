@@ -85,8 +85,8 @@ namespace DoAn_CSharp.DAO
             {
                 // Thực hiện câu truy vấn thêm nhân viên vào cơ sở dữ liệu
                 string query = $"INSERT INTO nhanvien (MaCV, TenTaiKhoanNV, MatKhauNV, HoTenNV, GioiTinhNV, NgaySinh, DiaChiNV, EmailNV, SDTNV, CMNDNV,AnhNV) " +
-                               $"VALUES ('{maCV}', '{tenTaiKhoanNV}', '{matKhauNV}', '{hoTenNV}', '{gioiTinhNV}', '{ngaySinhNV.ToString("yyyy-MM-dd")}', " +
-                               $"'{diaChiNV}', '{emailNV}', '{sdtNV}', '{cmndNV}','{anhNV}')";
+                               $"VALUES (N'{maCV}', N'{tenTaiKhoanNV}', N'{matKhauNV}', N'{hoTenNV}', N'{gioiTinhNV}', N'{ngaySinhNV.ToString("yyyy-MM-dd")}', " +
+                               $"N'{diaChiNV}', N'{emailNV}', N'{sdtNV}', N'{cmndNV}',N'{anhNV}')";
 
                 // Gọi phương thức ExecuteNonQuery từ đối tượng Database để thực hiện câu truy vấn
                 provider.ExecuteNonQuery(query);
@@ -100,10 +100,21 @@ namespace DoAn_CSharp.DAO
                 return false;
             }
         }
-        // Trong lớp DAO (QuanLyNhanVien_DAO)
 
 
-    }
+        // Kiểm tra tên tài khoản đã tồn tại 
+        public bool IsTenTaiKhoanExists(string tenTaiKhoan)
+        {
+            string query = $"SELECT COUNT(*) FROM nhanvien WHERE TenTaiKhoanNV = '{tenTaiKhoan}'";
+            int count = Convert.ToInt32(provider.ExecuteScalar(query));
+
+            return count > 0;
+        }
+
+
+
+
+    }// Trong lớp DAO (QuanLyNhanVien_DAO)
 }
 
 // hàm lấy tên chuc vu 2 
