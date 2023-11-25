@@ -17,6 +17,9 @@ namespace DoAn_CSharp.Forms
             InitializeComponent();
         }
 
+        private void FormQuanLyNhaCungCap_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
