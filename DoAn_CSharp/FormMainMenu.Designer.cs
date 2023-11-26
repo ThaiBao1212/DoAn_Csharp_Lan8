@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnDangXuat = new FontAwesome.Sharp.IconButton();
             this.btnThongKe = new FontAwesome.Sharp.IconButton();
             this.btnBanHang = new FontAwesome.Sharp.IconButton();
             this.btnQuanLyNhapHang = new FontAwesome.Sharp.IconButton();
@@ -49,6 +49,7 @@
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.btnThietLap = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
@@ -58,7 +59,8 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.panelMenu.Controls.Add(this.iconButton1);
+            this.panelMenu.Controls.Add(this.btnThietLap);
+            this.panelMenu.Controls.Add(this.btnDangXuat);
             this.panelMenu.Controls.Add(this.btnThongKe);
             this.panelMenu.Controls.Add(this.btnBanHang);
             this.panelMenu.Controls.Add(this.btnQuanLyNhapHang);
@@ -75,24 +77,25 @@
             this.panelMenu.Size = new System.Drawing.Size(220, 760);
             this.panelMenu.TabIndex = 0;
             // 
-            // iconButton1
+            // btnDangXuat
             // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.iconButton1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.iconButton1.ForeColor = System.Drawing.Color.Maroon;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromBracket;
-            this.iconButton1.IconColor = System.Drawing.Color.Crimson;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 32;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(9, 715);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(123, 33);
-            this.iconButton1.TabIndex = 10;
-            this.iconButton1.Text = "Đăng Xuất ";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
+            this.btnDangXuat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnDangXuat.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.btnDangXuat.ForeColor = System.Drawing.Color.Maroon;
+            this.btnDangXuat.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromBracket;
+            this.btnDangXuat.IconColor = System.Drawing.Color.Crimson;
+            this.btnDangXuat.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDangXuat.IconSize = 32;
+            this.btnDangXuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDangXuat.Location = new System.Drawing.Point(21, 696);
+            this.btnDangXuat.Name = "btnDangXuat";
+            this.btnDangXuat.Size = new System.Drawing.Size(123, 33);
+            this.btnDangXuat.TabIndex = 10;
+            this.btnDangXuat.Text = "Đăng Xuất ";
+            this.btnDangXuat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDangXuat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDangXuat.UseVisualStyleBackColor = false;
+            this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
             // 
             // btnThongKe
             // 
@@ -404,6 +407,27 @@
             this.panelDesktop.Size = new System.Drawing.Size(1157, 676);
             this.panelDesktop.TabIndex = 3;
             // 
+            // btnThietLap
+            // 
+            this.btnThietLap.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnThietLap.FlatAppearance.BorderSize = 0;
+            this.btnThietLap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThietLap.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnThietLap.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnThietLap.IconColor = System.Drawing.Color.White;
+            this.btnThietLap.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnThietLap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThietLap.Location = new System.Drawing.Point(0, 590);
+            this.btnThietLap.Name = "btnThietLap";
+            this.btnThietLap.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnThietLap.Size = new System.Drawing.Size(220, 50);
+            this.btnThietLap.TabIndex = 11;
+            this.btnThietLap.Text = "Thiết Lập";
+            this.btnThietLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThietLap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnThietLap.UseVisualStyleBackColor = true;
+            this.btnThietLap.Click += new System.EventHandler(this.btnThietLap_Click);
+            // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,7 +472,8 @@
         private FontAwesome.Sharp.IconButton btnExit;
         private FontAwesome.Sharp.IconButton btnMinimize;
         private FontAwesome.Sharp.IconButton btnMaxmize;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnDangXuat;
+        private FontAwesome.Sharp.IconButton btnThietLap;
     }
 }
 

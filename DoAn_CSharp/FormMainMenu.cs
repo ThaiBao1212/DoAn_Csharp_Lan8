@@ -169,15 +169,19 @@ namespace DoAn_CSharp
             ActivateButton(sender, RGBColors.color3);
             OpenChildForm(new Forms.FormThongKe());
         }
+        private void btnThietLap_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color3);
+            OpenChildForm(new Forms.FormThietLap());
+        }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
             currentChildForm.Close();
 
             Reset();
-
         }
-
+       
         private void Reset()
         {
             DisableButton();
@@ -234,6 +238,16 @@ namespace DoAn_CSharp
             btnQuanLyNhapHang.Enabled = false;
             btnThongKe.Enabled = false;
             
+        }
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            Forms.FormLogin Login = new Forms.FormLogin();       
+            
+            this.Hide();
+            Login.Show();
+
+
         }
 
 

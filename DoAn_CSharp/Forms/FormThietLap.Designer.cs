@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 589);
             this.Name = "FormThietLap";
-            this.Text = "FormThietLap";
+            this.Text = "Thiết Lập";
             this.ResumeLayout(false);
 
         }
