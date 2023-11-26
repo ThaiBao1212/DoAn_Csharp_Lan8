@@ -30,6 +30,11 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtgvDanhSachHoaDon = new System.Windows.Forms.DataGridView();
+            this.MaHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayLapHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThaiHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnXoa = new FontAwesome.Sharp.IconButton();
             this.dateTimePickerDenNgay = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTuNgay = new System.Windows.Forms.DateTimePicker();
@@ -40,14 +45,21 @@
             this.cbTimKiem = new System.Windows.Forms.ComboBox();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtgvChiTietHoaDon = new System.Windows.Forms.DataGridView();
+            this.dtgvChiTietHD = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnXuatHoaDon = new FontAwesome.Sharp.IconButton();
             this.reportViewerHoaDon = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.MaCTHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SizeSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoLuongSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDanhSachHoaDon)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvChiTietHoaDon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvChiTietHD)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,10 +86,57 @@
             // dtgvDanhSachHoaDon
             // 
             this.dtgvDanhSachHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvDanhSachHoaDon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaHD,
+            this.MaKH,
+            this.MaNV,
+            this.NgayLapHD,
+            this.TrangThaiHD});
             this.dtgvDanhSachHoaDon.Location = new System.Drawing.Point(6, 140);
             this.dtgvDanhSachHoaDon.Name = "dtgvDanhSachHoaDon";
+            this.dtgvDanhSachHoaDon.RowHeadersWidth = 51;
             this.dtgvDanhSachHoaDon.Size = new System.Drawing.Size(504, 201);
             this.dtgvDanhSachHoaDon.TabIndex = 60;
+            // 
+            // MaHD
+            // 
+            this.MaHD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.MaHD.HeaderText = "MaHD";
+            this.MaHD.MinimumWidth = 6;
+            this.MaHD.Name = "MaHD";
+            this.MaHD.Width = 79;
+            // 
+            // MaKH
+            // 
+            this.MaKH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.MaKH.HeaderText = "MaKH";
+            this.MaKH.MinimumWidth = 6;
+            this.MaKH.Name = "MaKH";
+            this.MaKH.Width = 78;
+            // 
+            // MaNV
+            // 
+            this.MaNV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.MaNV.HeaderText = "MaNV";
+            this.MaNV.MinimumWidth = 6;
+            this.MaNV.Name = "MaNV";
+            this.MaNV.Width = 78;
+            // 
+            // NgayLapHD
+            // 
+            this.NgayLapHD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.NgayLapHD.HeaderText = "NgayLapHD";
+            this.NgayLapHD.MinimumWidth = 6;
+            this.NgayLapHD.Name = "NgayLapHD";
+            this.NgayLapHD.Width = 119;
+            // 
+            // TrangThaiHD
+            // 
+            this.TrangThaiHD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.TrangThaiHD.HeaderText = "TrangThaiHD";
+            this.TrangThaiHD.MinimumWidth = 6;
+            this.TrangThaiHD.Name = "TrangThaiHD";
+            this.TrangThaiHD.Width = 130;
             // 
             // btnXoa
             // 
@@ -168,7 +227,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dtgvChiTietHoaDon);
+            this.groupBox2.Controls.Add(this.dtgvChiTietHD);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(2, 355);
             this.groupBox2.Name = "groupBox2";
@@ -177,13 +236,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chi Tiết Hóa Đơn";
             // 
-            // dtgvChiTietHoaDon
+            // dtgvChiTietHD
             // 
-            this.dtgvChiTietHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvChiTietHoaDon.Location = new System.Drawing.Point(6, 21);
-            this.dtgvChiTietHoaDon.Name = "dtgvChiTietHoaDon";
-            this.dtgvChiTietHoaDon.Size = new System.Drawing.Size(504, 201);
-            this.dtgvChiTietHoaDon.TabIndex = 61;
+            this.dtgvChiTietHD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvChiTietHD.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaCTHD,
+            this.Column2,
+            this.MaSP,
+            this.DonGia,
+            this.SizeSP,
+            this.SoLuongSP,
+            this.ThanhTien});
+            this.dtgvChiTietHD.Location = new System.Drawing.Point(6, 24);
+            this.dtgvChiTietHD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtgvChiTietHD.Name = "dtgvChiTietHD";
+            this.dtgvChiTietHD.RowHeadersWidth = 51;
+            this.dtgvChiTietHD.RowTemplate.Height = 24;
+            this.dtgvChiTietHD.Size = new System.Drawing.Size(505, 197);
+            this.dtgvChiTietHD.TabIndex = 0;
             // 
             // panel1
             // 
@@ -215,6 +285,61 @@
             this.reportViewerHoaDon.Size = new System.Drawing.Size(460, 508);
             this.reportViewerHoaDon.TabIndex = 5;
             // 
+            // MaCTHD
+            // 
+            this.MaCTHD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.MaCTHD.HeaderText = "MaCTHD";
+            this.MaCTHD.MinimumWidth = 3;
+            this.MaCTHD.Name = "MaCTHD";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column2.HeaderText = "MaHD";
+            this.Column2.MinimumWidth = 3;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 79;
+            // 
+            // MaSP
+            // 
+            this.MaSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.MaSP.HeaderText = "MaSP ";
+            this.MaSP.MinimumWidth = 6;
+            this.MaSP.Name = "MaSP";
+            this.MaSP.Width = 77;
+            // 
+            // DonGia
+            // 
+            this.DonGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.DonGia.HeaderText = "DonGia";
+            this.DonGia.MinimumWidth = 6;
+            this.DonGia.Name = "DonGia";
+            this.DonGia.Width = 88;
+            // 
+            // SizeSP
+            // 
+            this.SizeSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.SizeSP.HeaderText = "SizeSP";
+            this.SizeSP.MinimumWidth = 6;
+            this.SizeSP.Name = "SizeSP";
+            this.SizeSP.Width = 80;
+            // 
+            // SoLuongSP
+            // 
+            this.SoLuongSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.SoLuongSP.HeaderText = "SoLuongSP";
+            this.SoLuongSP.MinimumWidth = 6;
+            this.SoLuongSP.Name = "SoLuongSP";
+            this.SoLuongSP.Width = 114;
+            // 
+            // ThanhTien
+            // 
+            this.ThanhTien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ThanhTien.HeaderText = "ThanhTien";
+            this.ThanhTien.MinimumWidth = 6;
+            this.ThanhTien.Name = "ThanhTien";
+            this.ThanhTien.Width = 109;
+            // 
             // FormQuanLyHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,7 +356,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDanhSachHoaDon)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvChiTietHoaDon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvChiTietHD)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -251,9 +376,21 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerDenNgay;
         private FontAwesome.Sharp.IconButton btnXoa;
         private System.Windows.Forms.DataGridView dtgvDanhSachHoaDon;
-        private System.Windows.Forms.DataGridView dtgvChiTietHoaDon;
         private System.Windows.Forms.Panel panel1;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewerHoaDon;
         private FontAwesome.Sharp.IconButton btnXuatHoaDon;
+        private System.Windows.Forms.DataGridView dtgvChiTietHD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaHD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaKH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaNV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgayLapHD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThaiHD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaCTHD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaSP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SizeSP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongSP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
     }
 }

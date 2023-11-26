@@ -1,0 +1,21 @@
+﻿-- Truy Vấn Xuất Hóa Đợn 
+SELECT
+    cthd.MaCTHD,
+    hd.MaHD,
+    sp.Tensp,
+    nv.HoTenNV,
+    kh.HoTenKH,
+    cthd.DonGia,
+    hd.NgayLapHD,
+    cthd.SizeSP,
+    cthd.ThanhTien
+FROM
+    chitiethd cthd
+JOIN
+    hoadon hd ON cthd.MaHD = hd.MaHD
+JOIN
+    khachhang kh ON hd.MaKH = kh.MaKH
+JOIN
+    nhanvien nv ON hd.MaNV = nv.MaNV
+JOIN
+    sanpham sp ON cthd.MaSP = sp.MaSP;

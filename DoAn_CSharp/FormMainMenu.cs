@@ -35,7 +35,7 @@ namespace DoAn_CSharp
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-
+    
 
         }
         // private struct RGBColors
