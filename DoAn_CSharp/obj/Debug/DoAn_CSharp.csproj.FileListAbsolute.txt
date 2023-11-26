@@ -222,3 +222,4 @@ C:\Users\ADMIN\OneDrive\Tài liệu\GitHub\DoAn_Csharp\DoAn_CSharp\obj\Debug\D
 C:\Users\ADMIN\OneDrive\Tài liệu\GitHub\DoAn_Csharp\DoAn_CSharp\obj\Debug\DoAn_CSharp.csproj.CopyComplete
 C:\Users\ADMIN\OneDrive\Tài liệu\GitHub\DoAn_Csharp\DoAn_CSharp\obj\Debug\DoAn_CSharp.exe
 C:\Users\ADMIN\OneDrive\Tài liệu\GitHub\DoAn_Csharp\DoAn_CSharp\obj\Debug\DoAn_CSharp.pdb
+C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\obj\Debug\DoAn_CSharp.Forms.FormThietLap.resources

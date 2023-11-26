@@ -10,6 +10,7 @@ using System.Windows.Media;
 using FontAwesome.Sharp;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using DoAn_CSharp.Databsase;
 
 namespace DoAn_CSharp
 {
@@ -220,5 +221,21 @@ namespace DoAn_CSharp
             WindowState = FormWindowState.Minimized; 
 
         }
+        public void EnableAdminControls()
+        {
+            btnQuanLyNhanVien.Enabled = true;
+            btnQuanLyNhapHang.Enabled = true;
+            btnThongKe.Enabled = true;
+        }
+
+        public void EnableEmployeeControls()
+        {
+            btnQuanLyNhanVien.Enabled = false;
+            btnQuanLyNhapHang.Enabled = false;
+            btnThongKe.Enabled = false;
+            
+        }
+
+
     }
 }

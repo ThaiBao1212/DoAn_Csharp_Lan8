@@ -158,9 +158,9 @@
             // dtgvQuanLyKhachHang
             // 
             this.dtgvQuanLyKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvQuanLyKhachHang.Location = new System.Drawing.Point(12, 395);
+            this.dtgvQuanLyKhachHang.Location = new System.Drawing.Point(12, 394);
             this.dtgvQuanLyKhachHang.Name = "dtgvQuanLyKhachHang";
-            this.dtgvQuanLyKhachHang.Size = new System.Drawing.Size(966, 182);
+            this.dtgvQuanLyKhachHang.Size = new System.Drawing.Size(966, 183);
             this.dtgvQuanLyKhachHang.TabIndex = 42;
             // 
             // txtHoTen
