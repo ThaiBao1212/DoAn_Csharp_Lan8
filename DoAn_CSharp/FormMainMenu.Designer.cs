@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnThongKe = new FontAwesome.Sharp.IconButton();
             this.btnBanHang = new FontAwesome.Sharp.IconButton();
             this.btnQuanLyNhapHang = new FontAwesome.Sharp.IconButton();
@@ -48,7 +49,6 @@
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
@@ -72,8 +72,27 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(220, 674);
+            this.panelMenu.Size = new System.Drawing.Size(220, 760);
             this.panelMenu.TabIndex = 0;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.iconButton1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.iconButton1.ForeColor = System.Drawing.Color.Maroon;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromBracket;
+            this.iconButton1.IconColor = System.Drawing.Color.Crimson;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 32;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(9, 715);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(123, 33);
+            this.iconButton1.TabIndex = 10;
+            this.iconButton1.Text = "Đăng Xuất ";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = false;
             // 
             // btnThongKe
             // 
@@ -294,7 +313,7 @@
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(980, 75);
+            this.panelTitleBar.Size = new System.Drawing.Size(1157, 75);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             // 
@@ -306,7 +325,7 @@
             this.btnMinimize.IconColor = System.Drawing.Color.Magenta;
             this.btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMinimize.IconSize = 20;
-            this.btnMinimize.Location = new System.Drawing.Point(901, 0);
+            this.btnMinimize.Location = new System.Drawing.Point(1078, 0);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(21, 22);
             this.btnMinimize.TabIndex = 4;
@@ -321,7 +340,7 @@
             this.btnMaxmize.IconColor = System.Drawing.Color.Magenta;
             this.btnMaxmize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMaxmize.IconSize = 20;
-            this.btnMaxmize.Location = new System.Drawing.Point(929, 0);
+            this.btnMaxmize.Location = new System.Drawing.Point(1106, 0);
             this.btnMaxmize.Name = "btnMaxmize";
             this.btnMaxmize.Size = new System.Drawing.Size(21, 22);
             this.btnMaxmize.TabIndex = 3;
@@ -336,7 +355,7 @@
             this.btnExit.IconColor = System.Drawing.Color.Magenta;
             this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExit.IconSize = 20;
-            this.btnExit.Location = new System.Drawing.Point(956, 0);
+            this.btnExit.Location = new System.Drawing.Point(1133, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(21, 22);
             this.btnExit.TabIndex = 2;
@@ -374,7 +393,7 @@
             this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelShadow.Location = new System.Drawing.Point(220, 75);
             this.panelShadow.Name = "panelShadow";
-            this.panelShadow.Size = new System.Drawing.Size(980, 9);
+            this.panelShadow.Size = new System.Drawing.Size(1157, 9);
             this.panelShadow.TabIndex = 2;
             // 
             // panelDesktop
@@ -382,39 +401,22 @@
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(220, 84);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(980, 590);
+            this.panelDesktop.Size = new System.Drawing.Size(1157, 676);
             this.panelDesktop.TabIndex = 3;
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.iconButton1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.iconButton1.ForeColor = System.Drawing.Color.Maroon;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.ArrowRightFromBracket;
-            this.iconButton1.IconColor = System.Drawing.Color.Crimson;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 32;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(22, 618);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(123, 33);
-            this.iconButton1.TabIndex = 10;
-            this.iconButton1.Text = "Đăng Xuất ";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
             // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 674);
+            this.ClientSize = new System.Drawing.Size(1377, 760);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Name = "FormMainMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             this.panelTitleBar.ResumeLayout(false);

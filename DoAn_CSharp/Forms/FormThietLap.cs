@@ -10,15 +10,11 @@ using System.Windows.Forms;
 
 namespace DoAn_CSharp.Forms
 {
-    public partial class FormBanHang : Form
+    public partial class FormThietLap : Form
     {
-        public FormBanHang()
+        public FormThietLap()
         {
             InitializeComponent();
         }
-
     }
 }
-
-
-
