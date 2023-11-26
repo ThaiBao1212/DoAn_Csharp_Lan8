@@ -14,7 +14,7 @@ namespace DoAn_CSharp.DAO
 {
     public class QuanLyNhanVien_DAO
     {
-        private Database provider = new Database();
+        private Database_TB provider = new Database_TB();
 
 
         public List<DTO.QuanLyNhanVien_DTO> GetNhanVien()

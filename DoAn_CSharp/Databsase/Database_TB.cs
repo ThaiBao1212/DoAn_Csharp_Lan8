@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DoAn_CSharp.Databsase
 {
-    public class Database : IDisposable
+    public class Database_TB : IDisposable
     {
         private SqlConnection sqlConn;
 
-        public Database()
+        public Database_TB()
         {
             // Thay đổi chuỗi kết nối tới cơ sở dữ liệu của bạn
             string connectionString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
