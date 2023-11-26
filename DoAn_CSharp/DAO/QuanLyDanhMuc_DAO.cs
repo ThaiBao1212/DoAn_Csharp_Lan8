@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 
 namespace DoAn_CSharp.DAO
 {
-    public class QuanLyDanhMuc_DAO
+    internal class QuanLyDanhMuc_DAO
     {
         private Database db;
         public QuanLyDanhMuc_DAO()
         {
             db = new Database();
+
         }
         public DataTable LayDanhSachDanhMuc()
         {
             string strSQL = "Select * from danhmuc";
-            DataTable dt = db.ExecuteQuery(strSQL);
+            DataTable dt = db.Execute(strSQL);
             return dt;
         }
     }

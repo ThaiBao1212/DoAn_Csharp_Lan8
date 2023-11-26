@@ -8,88 +8,40 @@ using System.Threading.Tasks;
 
 namespace DoAn_CSharp.Databsase
 {
-    public class Database : IDisposable
+    internal class Database
     {
-        private SqlConnection sqlConn;
+        SqlConnection sqlConn;
 
         public Database()
         {
-            // Thay đổi chuỗi kết nối tới cơ sở dữ liệu của bạn
-            string connectionString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
-            sqlConn = new SqlConnection(connectionString);
+            /*string strCnn = "Server=LAPTOP-PEQVO1V4\\ALINSBTC;Database=QLthuvien;uid=sa;pwd=123";*/
+            string strCnn = "Data Source=LAPTOP-PDE9TC1I\\SQLEXPRESS;Initial Catalog=QuanLyBanGiay;Integrated Security=true";
+
+            sqlConn = new SqlConnection(strCnn);
         }
 
-        public DataTable ExecuteQuery(string sqlStr)
+        public DataTable Execute(string sqlStr)
         {
-            try
-            {
-                using (SqlDataAdapter da = new SqlDataAdapter(sqlStr, sqlConn))
-                {
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
-                    return ds.Tables[0];
-                }
-            }
-            catch (Exception ex)
-            {
-                // Xử lý exception nếu có
-                Console.WriteLine("Error executing query: " + ex.Message);
-                return null;
-            }
+            SqlDataAdapter da = new SqlDataAdapter(sqlStr, sqlConn);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            return ds.Tables[0];
         }
-
         public object ExecuteScalar(string strSQL)
         {
-            try
-            {
-                using (SqlCommand sqlcmd = new SqlCommand(strSQL, sqlConn))
-                {
-                    sqlConn.Open();
-                    object result = sqlcmd.ExecuteScalar();
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Xử lý exception nếu có
-                Console.WriteLine("Error executing scalar query: " + ex.Message);
-                return null;
-            }
-            finally
-            {
-                sqlConn.Close();
-            }
+            SqlCommand sqlcmd = new SqlCommand(strSQL, sqlConn);
+            sqlConn.Open();
+            object result = sqlcmd.ExecuteScalar();
+            sqlConn.Close();
+            return result;
         }
 
         public void ExecuteNonQuery(string strSQL)
         {
-            try
-            {
-                using (SqlCommand sqlcmd = new SqlCommand(strSQL, sqlConn))
-                {
-                    sqlConn.Open();
-                    sqlcmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                // Xử lý exception nếu có
-                Console.WriteLine("Error executing non-query: " + ex.Message);
-            }
-            finally
-            {
-                sqlConn.Close();
-            }
-        }
-
-        public void Dispose()
-        {
-            // Đảm bảo rằng kết nối được đóng khi đối tượng bị hủy
-            if (sqlConn != null && sqlConn.State == ConnectionState.Open)
-            {
-                sqlConn.Close();
-                sqlConn.Dispose();
-            }
+            SqlCommand sqlcmd = new SqlCommand(strSQL, sqlConn);
+            sqlConn.Open();
+            sqlcmd.ExecuteNonQuery();
+            sqlConn.Close();
         }
     }
 }

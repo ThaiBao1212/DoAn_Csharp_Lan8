@@ -72,18 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\Account_DAO.cs" />
-    <Compile Include="DAO\QuanLyHoaDon_DAO.cs" />
-    <Compile Include="DAO\QuanLyDanhMuc_DAO.cs" />
-    <Compile Include="DAO\QuanLyKhachHang_DAO.cs" />
     <Compile Include="DAO\QuanLyNhanVien_DAO.cs" />
-    <Compile Include="DAO\QuanLyNhapHang_DAO.cs" />
-    <Compile Include="DAO\QuanLySanPham_DAO.cs" />
-    <Compile Include="Databsase\Database.cs" />
+    <Compile Include="Databsase\Database_TB.cs" />
     <Compile Include="Databsase\DataProvider.cs" />
     <Compile Include="Databsase\DataProvider1.cs" />
-    <Compile Include="DTO\QuanLyKhachHang_DTO.cs" />
-    <Compile Include="DTO\QuanLyDanhMuc_DTO.cs" />
-    <Compile Include="DTO\QuanLyNhaCungCap_DTO.cs" />
     <Compile Include="DTO\QuanLyNhanVien_DTO.cs" />
     <Compile Include="FormMainMenu.cs">
       <SubType>Form</SubType>
@@ -145,6 +137,12 @@
     <Compile Include="Forms\FormQuanLySanPham.Designer.cs">
       <DependentUpon>FormQuanLySanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormThietLap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormThietLap.Designer.cs">
+      <DependentUpon>FormThietLap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormQuanLySanPham.resx">
       <DependentUpon>FormQuanLySanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormThietLap.resx">
+      <DependentUpon>FormThietLap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormThongKe.resx">
       <DependentUpon>FormThongKe.cs</DependentUpon>

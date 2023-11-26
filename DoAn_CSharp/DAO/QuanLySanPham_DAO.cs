@@ -19,7 +19,7 @@ namespace DoAn_CSharp.DAO
         public DataTable LayDanhSachDanhMuc()
         {
             string strSQL = "Select * from sanpham";
-            DataTable dt = db.ExecuteQuery(strSQL);
+            DataTable dt = db.Execute(strSQL);
             return dt;
         }
     }

@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\DoAn_CSharp",
-    "\\DoAn_CSharp\\Forms",
-    "\\packages"
+    "\\DoAn_CSharp\\Forms"
   ],
-  "SelectedNode": "\\DoAn_CSharp\\Forms\\FormQuanLyNhanVien.cs",
+  "SelectedNode": "\\DoAn_CSharp\\Forms\\FormQuanLySanPham.cs",
   "PreviewInSolutionExplorer": false
 }

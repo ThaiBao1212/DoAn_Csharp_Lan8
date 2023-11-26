@@ -17,6 +17,9 @@ namespace DoAn_CSharp.Forms
             InitializeComponent();
         }
 
+        private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }
