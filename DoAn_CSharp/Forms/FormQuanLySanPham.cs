@@ -17,6 +17,24 @@ namespace DoAn_CSharp.Forms
             InitializeComponent();
         }
 
+        private void txtMaChucVu_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

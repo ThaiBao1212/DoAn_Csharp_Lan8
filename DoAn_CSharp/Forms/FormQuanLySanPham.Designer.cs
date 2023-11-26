@@ -44,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -72,6 +71,7 @@
             this.txtMaChucVu.Name = "txtMaChucVu";
             this.txtMaChucVu.Size = new System.Drawing.Size(183, 20);
             this.txtMaChucVu.TabIndex = 38;
+            this.txtMaChucVu.TextChanged += new System.EventHandler(this.txtMaChucVu_TextChanged);
             // 
             // cbMaChucVu
             // 
@@ -80,6 +80,7 @@
             this.cbMaChucVu.Name = "cbMaChucVu";
             this.cbMaChucVu.Size = new System.Drawing.Size(121, 21);
             this.cbMaChucVu.TabIndex = 37;
+            this.cbMaChucVu.SelectedIndexChanged += new System.EventHandler(this.cbMaChucVu_SelectedIndexChanged);
             // 
             // txtSDT
             // 
@@ -195,6 +196,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 39;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox1
             // 
@@ -202,16 +204,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(183, 20);
             this.textBox1.TabIndex = 40;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(680, 134);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(120, 17);
-            this.label13.TabIndex = 42;
-            this.label13.Text = "Hình Ảnh Ở Đây :";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label12
             // 
@@ -413,7 +406,6 @@
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.comboBox1);
@@ -458,7 +450,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;

@@ -16,5 +16,10 @@ namespace DoAn_CSharp.Forms
         {
             InitializeComponent();
         }
+
+        private void FormThietLap_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

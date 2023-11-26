@@ -70,11 +70,13 @@ namespace DoAn_CSharp.Forms
                 FormMainMenu f = new FormMainMenu();
                 this.Hide();
                 f.ShowDialog();
+               
             }
             else
             {
                 MessageBox.Show("Sai tên tài khoản hoặc mật khẩu !");
             }
+
         }
         bool Login(string userName, string passWord)
         {

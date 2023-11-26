@@ -245,7 +245,7 @@ namespace DoAn_CSharp
             Forms.FormLogin Login = new Forms.FormLogin();       
             
             this.Hide();
-            Login.Show();
+            
 
 
         }
