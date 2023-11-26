@@ -22,7 +22,7 @@ namespace DoAn_CSharp.DAO
         {
             try
             {
-                string strSQL = "SELECT * FROM danhmuc WHERE TrangThaiDM =N'Mở'";
+                string strSQL = "SELECT * FROM danhmuc";
                 DataTable dt = db.Execute(strSQL);
                 return dt;
             }
@@ -34,10 +34,11 @@ namespace DoAn_CSharp.DAO
         }
         public DataTable LayDanhSachSanPhamDanhMuc(QuanLyDanhMuc_DTO ql_danhmuc_DTO)
         {
-            string strSQL = $"Select * from sanpham where MaDM=N'{ql_danhmuc_DTO.maDanhMuc}'";
+            string strSQL = $"Select * from sanpham where MaDM = {ql_danhmuc_DTO.maDanhMuc}";
             DataTable dt = db.Execute(strSQL);
             return dt;
         }
+
 
 
         public void ThemDanhMuc(QuanLyDanhMuc_DTO ql_danhmuc_DTO)

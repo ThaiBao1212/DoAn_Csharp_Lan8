@@ -25,6 +25,7 @@ namespace DoAn_CSharp.Forms
             HienThiHoaDon();
             dtgvDanhSachHoaDon.SelectionChanged += dtgvDanhSachHoaDon_SelectionChanged;
 
+
         }
 
         private void FormQuanLyHoaDon_Load(object sender, EventArgs e)

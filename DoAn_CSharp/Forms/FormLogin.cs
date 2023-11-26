@@ -16,6 +16,7 @@ namespace DoAn_CSharp.Forms
         public FormLogin()
         {
             InitializeComponent();
+
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
