@@ -135,8 +135,9 @@ namespace DoAn_CSharp.Forms
                 string emailNV = row.Cells["EmailNV"].Value.ToString();
                 string sdtNV = row.Cells["SDTNV"].Value.ToString();
                 string cmnd = row.Cells["CMNDNV"].Value.ToString();
-                string anhNV = row.Cells["AnhNV"].Value.ToString();
+               
 
+                string anhNVPath = row.Cells["AnhNV"].Value.ToString();
                 // Hiển thị thông tin lên các TextBox
                 txtMaNhanVien.Text = maNV;
                 cbMaChucVu.SelectedItem = maCV;
@@ -150,8 +151,18 @@ namespace DoAn_CSharp.Forms
                 txtEmail.Text = emailNV;
                 txtSDT.Text = sdtNV;
                 txtCCCD.Text = cmnd;
-                pictureBoxAnhNhanVien.Image = Image.FromFile(anhNV);
 
+                if (System.IO.File.Exists(anhNVPath))
+                {
+                    pictureBoxAnhNhanVien.Image = Image.FromFile(anhNVPath);
+                    pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy hình ảnh.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                anhNV = anhNVPath;
                 if (cbGioiTinh.Items.Contains(gioiTinhNV))
                 {
                     cbGioiTinh.SelectedItem = gioiTinhNV;
@@ -161,6 +172,7 @@ namespace DoAn_CSharp.Forms
                     cbGioiTinh.SelectedIndex = -1; // Nếu không tìm thấy giới tính, chọn giá trị mặc định hoặc để không chọn
                 }
 
+               
             }
         }
 
@@ -169,16 +181,7 @@ namespace DoAn_CSharp.Forms
             ClearInput();
         }
 
-        private bool IsAllLetters(string input)
-        {
-            return input.All(char.IsLetter);
-        }
-        private bool IsLettersAndDiacritics(string input)
-        {
-            // Kiểm tra xem tất cả ký tự trong chuỗi có phải là chữ hoặc dấu không
-            return input.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || char.GetUnicodeCategory(c) == System.Globalization.UnicodeCategory.NonSpacingMark);
-        }
-
+ 
 
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -207,11 +210,13 @@ namespace DoAn_CSharp.Forms
             }
 
             // Kiểm tra xem đã chọn ảnh nhân viên chưa
+
             if (string.IsNullOrEmpty(anhNV))
             {
                 MessageBox.Show("Vui lòng chọn ảnh nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             // Kiểm tra xem tên tài khoản có bị trùng lắp không 
 
             if (nhanVien_DAO.IsTenTaiKhoanExists(tenTaiKhoanNV))
@@ -220,21 +225,47 @@ namespace DoAn_CSharp.Forms
                 return;
             }
 
-            // Kiểm tra tên tài khoản chỉ được nhập bằng chữ
-            if (!IsAllLetters(tenTaiKhoanNV))
+            if (!KiemTra_DAO.IsValidUsername(tenTaiKhoanNV))
             {
                 MessageBox.Show("Tên tài khoản chỉ được nhập bằng chữ.Viết Liền không dấu !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!IsLettersAndDiacritics(hoTenNV))
+            if (!KiemTra_DAO.IsStrongPassword(matKhauNV))
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 6 ký tự, chứa ít nhất một chữ hoa, một chữ số và một ký tự đặc biệt.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra tên tài khoản chỉ được nhập bằng chữ
+
+
+
+            if (!KiemTra_DAO.IsValidName(hoTenNV))
             {
                 MessageBox.Show("Họ tên chỉ được nhập bằng chữ và có thể nhập bằng dấu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (!KiemTra_DAO.IsValidEmail(emailNV))
+            {
+                MessageBox.Show("Tên Email không hợp lệ , Ví dụ : 'admin@gmail.com'", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-
+            if(!KiemTra_DAO.IsValidCCCD(cmndNV))
+            {
+                MessageBox.Show("Số CCCD chỉ được nhập số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!KiemTra_DAO.IsValidPhoneNumber(sdtNV))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ , số điện thoại chỉ được nhập 10 số !", "Thông Báo", MessageBoxButtons.OK,  MessageBoxIcon.Warning);
+                return;
+            }
+           
             // Thực hiện thêm nhân viên vào cơ sở dữ liệu
+
+
             bool isSuccess = nhanVien_DAO.AddNhanVien(maCV, tenTaiKhoanNV, matKhauNV, hoTenNV, gioiTinhNV, ngaySinhNV, diaChiNV, emailNV, sdtNV, cmndNV, anhNV);
 
             // Kiểm tra kết quả thêm nhân viên
@@ -262,15 +293,45 @@ namespace DoAn_CSharp.Forms
             {
                 string selectedImagePath = openFileDialog.FileName;
 
+                // Lưu ảnh vào thư mục "Images" trong dự án
+                string targetFolder = Path.Combine(Application.StartupPath, "Images");
+                string targetPath = Path.Combine(targetFolder, Path.GetFileName(selectedImagePath));
+
+                // Kiểm tra và tạo thư mục nếu nó chưa tồn tại
+                if (!Directory.Exists(targetFolder))
+                {
+                    Directory.CreateDirectory(targetFolder);
+                }
+
+                // Copy ảnh vào thư mục "Images"
+                File.Copy(selectedImagePath, targetPath, true);
+
+                // Hiển thị hình ảnh trong PictureBox
+                pictureBoxAnhNhanVien.Image = Image.FromFile(targetPath);
+                pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                // Lưu đường dẫn tương đối cho ảnh
+                anhNV = "Images\\" + Path.GetFileName(selectedImagePath);
+            }
+        }
+/*        private void btnChonAnh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.gif;*.bmp)|*.png;*.jpg;*.jpeg;*.gif;*.bmp|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedImagePath = openFileDialog.FileName;
+
                 // Hiển thị hình ảnh trong PictureBox
                 pictureBoxAnhNhanVien.Image = Image.FromFile(selectedImagePath);
                 pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 anhNV = selectedImagePath;
             }
-        }
+        }*/
 
-        private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
+            private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedMaChucVu = cbMaChucVu.SelectedItem.ToString();
 
@@ -281,6 +342,96 @@ namespace DoAn_CSharp.Forms
 
             txtTenChucVu.Text = tenChucVu;
         }
+
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+            // Lấy thông tin từ các controls trên form
+            string maNV = txtMaNhanVien.Text; // Bạn cần có một cách nào đó để lấy mã nhân viên đã chọn
+
+            string maCV = cbMaChucVu.SelectedItem.ToString();
+            string tenTaiKhoanNV = txtTenTaiKhoan.Text;
+            string matKhauNV = txtMatKhau.Text;
+            string hoTenNV = txtHoTen.Text;
+            string gioiTinhNV = cbGioiTinh.SelectedItem.ToString();
+            DateTime ngaySinhNV = dateTimePickerNgaySinh.Value;
+            string diaChiNV = txtDiaChi.Text;
+            string emailNV = txtEmail.Text;
+            string sdtNV = txtSDT.Text;
+            string cmndNV = txtCCCD.Text;
+
+            // Kiểm tra xem tất cả các trường thông tin đã được nhập đầy đủ chưa
+            if (string.IsNullOrWhiteSpace(maCV) || string.IsNullOrWhiteSpace(tenTaiKhoanNV) ||
+                string.IsNullOrWhiteSpace(matKhauNV) || string.IsNullOrWhiteSpace(hoTenNV) ||
+                string.IsNullOrWhiteSpace(gioiTinhNV) || string.IsNullOrWhiteSpace(diaChiNV) ||
+                string.IsNullOrWhiteSpace(emailNV) || string.IsNullOrWhiteSpace(sdtNV) ||
+                string.IsNullOrWhiteSpace(cmndNV))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra xem tên tài khoản có bị trùng lắp không
+            if (nhanVien_DAO.IsTenTaiKhoanExists(maNV, tenTaiKhoanNV))
+            {
+                MessageBox.Show("Tên tài khoản đã tồn tại. Vui lòng chọn tên tài khoản khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!KiemTra_DAO.IsValidUsername(tenTaiKhoanNV))
+            {
+                MessageBox.Show("Tên tài khoản chỉ được nhập bằng chữ.Viết Liền không dấu !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!KiemTra_DAO.IsStrongPassword(matKhauNV))
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 6 ký tự, chứa ít nhất một chữ hoa, một chữ số và một ký tự đặc biệt.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra tên tài khoản chỉ được nhập bằng chữ
+            if (!KiemTra_DAO.IsValidName(hoTenNV))
+            {
+                MessageBox.Show("Họ tên chỉ được nhập bằng chữ và có thể nhập bằng dấu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!KiemTra_DAO.IsValidEmail(emailNV))
+            {
+                MessageBox.Show("Tên Email không hợp lệ , Ví dụ : 'admin@gmail.com'", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!KiemTra_DAO.IsValidCCCD(cmndNV))
+            {
+                MessageBox.Show("Số CCCD chỉ được nhập số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!KiemTra_DAO.IsValidPhoneNumber(sdtNV))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ , số điện thoại chỉ được nhập 10 số !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Thực hiện cập nhật thông tin nhân viên vào cơ sở dữ liệu
+            bool isSuccess = nhanVien_DAO.UpdateNhanVien(maNV, maCV, tenTaiKhoanNV, matKhauNV, hoTenNV, gioiTinhNV, ngaySinhNV, diaChiNV, emailNV, sdtNV, cmndNV, anhNV);
+
+            // Kiểm tra kết quả cập nhật nhân viên
+            if (isSuccess)
+            {
+                MessageBox.Show("Cập nhật nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Sau khi cập nhật thành công, cập nhật lại DataGridView
+                LoadDataToDataGridView();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            ClearInput();
+        }
+
 
     }
 }

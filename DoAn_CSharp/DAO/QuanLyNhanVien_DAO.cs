@@ -102,14 +102,62 @@ namespace DoAn_CSharp.DAO
         }
 
 
+        public bool UpdateNhanVien(string maNV, string maCV, string tenTaiKhoanNV, string matKhauNV, string hoTenNV,
+                            string gioiTinhNV, DateTime ngaySinhNV, string diaChiNV,
+                            string emailNV, string sdtNV, string cmndNV, string anhNV)
+        {
+            try
+            {
+                // Thực hiện câu truy vấn cập nhật thông tin nhân viên trong cơ sở dữ liệu
+                string query = $"UPDATE nhanvien SET MaCV = N'{maCV}', TenTaiKhoanNV = N'{tenTaiKhoanNV}', " +
+                               $"MatKhauNV = N'{matKhauNV}', HoTenNV = N'{hoTenNV}', " +
+                               $"GioiTinhNV = N'{gioiTinhNV}', NgaySinh = N'{ngaySinhNV.ToString("yyyy-MM-dd")}', " +
+                               $"DiaChiNV = N'{diaChiNV}', EmailNV = N'{emailNV}', " +
+                               $"SDTNV = N'{sdtNV}', CMNDNV = N'{cmndNV}', AnhNV = N'{anhNV}' " +
+                               $"WHERE MaNV = '{maNV}'";
+
+                // Gọi phương thức ExecuteNonQuery từ đối tượng Database để thực hiện câu truy vấn
+                provider.ExecuteNonQuery(query);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý exception nếu có
+                Console.WriteLine("Error updating employee: " + ex.Message);
+                return false;
+            }
+        }
+
+
         // Kiểm tra tên tài khoản đã tồn tại 
-        public bool IsTenTaiKhoanExists(string tenTaiKhoan)
+        public  bool IsTenTaiKhoanExists(string tenTaiKhoan)
         {
             string query = $"SELECT COUNT(*) FROM nhanvien WHERE TenTaiKhoanNV = '{tenTaiKhoan}'";
             int count = Convert.ToInt32(provider.ExecuteScalar(query));
 
             return count > 0;
         }
+
+        public bool IsTenTaiKhoanExists(string tenTaiKhoan, string maNV)
+        {
+            try
+            {
+                // Thực hiện câu truy vấn kiểm tra tên tài khoản tồn tại trong cơ sở dữ liệu
+                string query = $"SELECT COUNT(*) FROM nhanvien WHERE TenTaiKhoanNV = N'{tenTaiKhoan}' AND MaNV <> N'{maNV}'";
+                int count = Convert.ToInt32(provider.ExecuteScalar(query));
+
+                // Trả về true nếu tên tài khoản tồn tại, ngược lại trả về false
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý exception nếu có
+                Console.WriteLine("Error checking username existence: " + ex.Message);
+                return false;
+            }
+        }
+
 
 
 
