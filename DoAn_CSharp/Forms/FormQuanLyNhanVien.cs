@@ -18,7 +18,8 @@ namespace DoAn_CSharp.Forms
     {
 
         private string anhNV;
-        private QuanLyNhanVien_DAO nhanVien_DAO = new QuanLyNhanVien_DAO() ;
+        private QuanLyNhanVien_DAO nhanVien_DAO = new QuanLyNhanVien_DAO();
+        private BindingSource bindingSource = new BindingSource();
 
         public FormQuanLyNhanVien()
         {
@@ -30,6 +31,8 @@ namespace DoAn_CSharp.Forms
             LoadDataToDataGridView();
             LoadDataToComboBoxMaChucVu();
             LoadDataToComBoBoxGioiTinh();
+            LoadDataToComBoBoxTimKiem();
+            bindingSource.DataSource = typeof(List<QuanLyNhanVien_DTO>);
 
             // Load ảnh nhân viên hiển thị đầy đủ
 
@@ -39,7 +42,7 @@ namespace DoAn_CSharp.Forms
             // Chọn giá trị đầu tiên của combobox mã chức vụ 
             if (cbMaChucVu.Items.Count > 0)
             {
-                cbMaChucVu.SelectedIndex = 0; 
+                cbMaChucVu.SelectedIndex = 0;
             }
 
 
@@ -47,7 +50,7 @@ namespace DoAn_CSharp.Forms
             if (cbGioiTinh.Items.Count > 0)
             {
                 cbGioiTinh.SelectedIndex = 0;
-            }    
+            }
 
 
         }
@@ -108,6 +111,24 @@ namespace DoAn_CSharp.Forms
             cbGioiTinh.Items.Add("Nữ");
         }
 
+        private void LoadDataToComBoBoxTimKiem()
+        {
+            cbTimKiem.Items.Add("MaNV");
+            cbTimKiem.Items.Add("TenTaiKhoanNV");
+            cbTimKiem.Items.Add("HoTenNV");
+            cbTimKiem.Items.Add("TenCV");
+            cbTimKiem.Items.Add("DiaChiNV");
+            cbTimKiem.Items.Add("SDTNV");
+            cbTimKiem.Items.Add("EmailNV");
+
+            if (cbTimKiem.Items.Count > 0)
+            {
+                cbTimKiem.SelectedIndex = 0;
+            }
+
+
+
+        }
 
 
         private void cbGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
@@ -135,7 +156,7 @@ namespace DoAn_CSharp.Forms
                 string emailNV = row.Cells["EmailNV"].Value.ToString();
                 string sdtNV = row.Cells["SDTNV"].Value.ToString();
                 string cmnd = row.Cells["CMNDNV"].Value.ToString();
-               
+
 
                 string anhNVPath = row.Cells["AnhNV"].Value.ToString();
                 // Hiển thị thông tin lên các TextBox
@@ -172,7 +193,7 @@ namespace DoAn_CSharp.Forms
                     cbGioiTinh.SelectedIndex = -1; // Nếu không tìm thấy giới tính, chọn giá trị mặc định hoặc để không chọn
                 }
 
-               
+
             }
         }
 
@@ -181,7 +202,7 @@ namespace DoAn_CSharp.Forms
             ClearInput();
         }
 
- 
+
 
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -252,17 +273,17 @@ namespace DoAn_CSharp.Forms
                 return;
             }
 
-            if(!KiemTra_DAO.IsValidCCCD(cmndNV))
+            if (!KiemTra_DAO.IsValidCCCD(cmndNV))
             {
                 MessageBox.Show("Số CCCD chỉ được nhập số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (!KiemTra_DAO.IsValidPhoneNumber(sdtNV))
             {
-                MessageBox.Show("Số điện thoại không hợp lệ , số điện thoại chỉ được nhập 10 số !", "Thông Báo", MessageBoxButtons.OK,  MessageBoxIcon.Warning);
+                MessageBox.Show("Số điện thoại không hợp lệ , số điện thoại chỉ được nhập 10 số !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-           
+
             // Thực hiện thêm nhân viên vào cơ sở dữ liệu
 
 
@@ -283,6 +304,7 @@ namespace DoAn_CSharp.Forms
 
             ClearInput();
         }
+
 
         private void btnChonAnh_Click(object sender, EventArgs e)
         {
@@ -314,24 +336,24 @@ namespace DoAn_CSharp.Forms
                 anhNV = "Images\\" + Path.GetFileName(selectedImagePath);
             }
         }
-/*        private void btnChonAnh_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.gif;*.bmp)|*.png;*.jpg;*.jpeg;*.gif;*.bmp|All files (*.*)|*.*";
+        /*        private void btnChonAnh_Click(object sender, EventArgs e)
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg;*.gif;*.bmp)|*.png;*.jpg;*.jpeg;*.gif;*.bmp|All files (*.*)|*.*";
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedImagePath = openFileDialog.FileName;
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedImagePath = openFileDialog.FileName;
 
-                // Hiển thị hình ảnh trong PictureBox
-                pictureBoxAnhNhanVien.Image = Image.FromFile(selectedImagePath);
-                pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
+                        // Hiển thị hình ảnh trong PictureBox
+                        pictureBoxAnhNhanVien.Image = Image.FromFile(selectedImagePath);
+                        pictureBoxAnhNhanVien.SizeMode = PictureBoxSizeMode.StretchImage;
 
-                anhNV = selectedImagePath;
-            }
-        }*/
+                        anhNV = selectedImagePath;
+                    }
+                }*/
 
-            private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedMaChucVu = cbMaChucVu.SelectedItem.ToString();
 
@@ -433,5 +455,79 @@ namespace DoAn_CSharp.Forms
         }
 
 
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            // Lấy mã nhân viên cần xóa từ TextBox txtMaNhanVien
+            string maNV = txtMaNhanVien.Text;
+
+            // Kiểm tra xem mã nhân viên có được nhập không
+            if (string.IsNullOrWhiteSpace(maNV))
+            {
+                MessageBox.Show("Vui lòng chọn nhân viên cần xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Hiển thị hộp thoại xác nhận xóa
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa nhân viên này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Thực hiện xóa nhân viên
+                bool isSuccess = nhanVien_DAO.DeleteNhanVien(maNV);
+
+                // Kiểm tra kết quả xóa nhân viên
+                if (isSuccess)
+                {
+                    MessageBox.Show("Xóa nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Sau khi xóa thành công, cập nhật lại DataGridView
+                    LoadDataToDataGridView();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Làm sạch các trường nhập liệu
+                ClearInput();
+            }
+        }
+
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            // Gọi phương thức để thực hiện tìm kiếm
+            TimKiemNhanVien();
+        }
+
+        private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Gọi phương thức để thực hiện tìm kiếm khi có sự thay đổi trong ComboBox
+            TimKiemNhanVien();
+        }
+        private void TimKiemNhanVien()
+        {
+            // Lấy văn bản tìm kiếm và cột cần tìm kiếm
+            string tuKhoa = txtTimKiem.Text.Trim();
+            string cotTimKiem = cbTimKiem.SelectedItem?.ToString();
+
+            // Kiểm tra xem cả hai điều kiện tìm kiếm đều đã được nhập
+            if (!string.IsNullOrEmpty(tuKhoa) && !string.IsNullOrEmpty(cotTimKiem))
+            {
+                // Thực hiện tìm kiếm
+                List<QuanLyNhanVien_DTO> ketQuaTimKiem = nhanVien_DAO.TimKiemNhanVien(cotTimKiem, tuKhoa);
+
+                // Gán danh sách kết quả tìm kiếm cho BindingSource
+                bindingSource.DataSource = ketQuaTimKiem;
+
+                // Gán BindingSource cho DataGridView
+                dtgvQuanLyNhanVien.DataSource = bindingSource;
+            }
+            else
+            {
+                // Nếu một trong hai điều kiện không được nhập, hiển thị tất cả nhân viên
+                LoadDataToDataGridView();
+            }
+        }
     }
 }

@@ -129,9 +129,70 @@ namespace DoAn_CSharp.DAO
             }
         }
 
+        public bool DeleteNhanVien(string maNV)
+        {
+            try
+            {
+                // Thực hiện câu truy vấn xóa nhân viên từ cơ sở dữ liệu
+                string query = $"DELETE FROM nhanvien WHERE MaNV = '{maNV}'";
+
+                // Gọi phương thức ExecuteNonQuery từ đối tượng Database để thực hiện câu truy vấn
+                provider.ExecuteNonQuery(query);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý exception nếu có
+                Console.WriteLine("Error deleting employee: " + ex.Message);
+                return false;
+            }
+        }
+
+        public List<QuanLyNhanVien_DTO> TimKiemNhanVien(string cotTimKiem, string tuKhoa)
+        {
+            try
+            {
+                // Sử dụng thủ tục SQL để thực hiện tìm kiếm
+                string query = $"SELECT nhanvien.*, chucvu.TenCV FROM nhanvien INNER JOIN chucvu ON nhanvien.MaCV = chucvu.MaCV WHERE {cotTimKiem} LIKE N'%{tuKhoa}%'";
+                
+                DataTable data = provider.ExecuteQuery(query);
+
+                // Chuyển đổi dữ liệu từ DataTable sang danh sách đối tượng QuanLyNhanVien_DTO
+                List<QuanLyNhanVien_DTO> ketQuaTimKiem = new List<QuanLyNhanVien_DTO>();
+
+                foreach (DataRow row in data.Rows)
+                {
+                    QuanLyNhanVien_DTO nhanVien = new QuanLyNhanVien_DTO();
+                    nhanVien.MaNV = row["MaNV"].ToString();
+                    nhanVien.MaCV = row["MaCV"].ToString();
+                    nhanVien.TenTaiKhoanNV = row["TenTaiKhoanNV"].ToString();
+                    nhanVien.MatKhauNV = row["MatKhauNV"].ToString();
+                    nhanVien.HoTenNV = row["HoTenNV"].ToString();
+                    nhanVien.GioiTinhNV = row["GioiTinhNV"].ToString();
+                    nhanVien.NgaySinh = Convert.ToDateTime(row["NgaySinh"]); // Thêm dòng này để lấy thông tin ngày sinh
+                    nhanVien.DiaChiNV = row["DiaChiNV"].ToString();
+                    nhanVien.EmailNV = row["EmailNV"].ToString();
+                    nhanVien.SDTNV = row["SDTNV"].ToString();
+                    nhanVien.CMNDNV = row["CMNDNV"].ToString();
+                    nhanVien.AnhNV = row["AnhNV"].ToString();
+                    nhanVien.TenCV = row["TenCV"].ToString(); 
+
+                    ketQuaTimKiem.Add(nhanVien);
+                }
+
+                return ketQuaTimKiem;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý exception nếu có
+                Console.WriteLine("Error searching employees: " + ex.Message);
+                return null;
+            }
+        }
 
         // Kiểm tra tên tài khoản đã tồn tại 
-        public  bool IsTenTaiKhoanExists(string tenTaiKhoan)
+        public bool IsTenTaiKhoanExists(string tenTaiKhoan)
         {
             string query = $"SELECT COUNT(*) FROM nhanvien WHERE TenTaiKhoanNV = '{tenTaiKhoan}'";
             int count = Convert.ToInt32(provider.ExecuteScalar(query));
@@ -157,6 +218,8 @@ namespace DoAn_CSharp.DAO
                 return false;
             }
         }
+
+
 
 
 
