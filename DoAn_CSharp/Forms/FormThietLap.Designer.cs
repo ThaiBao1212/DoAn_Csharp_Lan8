@@ -40,7 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnCapNhat = new FontAwesome.Sharp.IconButton();
             this.btnThem = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
@@ -152,20 +151,6 @@
             this.label2.TabIndex = 123;
             this.label2.Text = "Nhập Lại Mật Khẩu ";
             // 
-            // btnCapNhat
-            // 
-            this.btnCapNhat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCapNhat.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapNhat.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnCapNhat.IconColor = System.Drawing.Color.Black;
-            this.btnCapNhat.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCapNhat.Location = new System.Drawing.Point(557, 445);
-            this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(75, 23);
-            this.btnCapNhat.TabIndex = 126;
-            this.btnCapNhat.Text = "Hủy";
-            this.btnCapNhat.UseVisualStyleBackColor = true;
-            // 
             // btnThem
             // 
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -173,7 +158,7 @@
             this.btnThem.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnThem.IconColor = System.Drawing.Color.Black;
             this.btnThem.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThem.Location = new System.Drawing.Point(459, 445);
+            this.btnThem.Location = new System.Drawing.Point(436, 445);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 125;
@@ -185,7 +170,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 589);
-            this.Controls.Add(this.btnCapNhat);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
@@ -221,7 +205,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
-        private FontAwesome.Sharp.IconButton btnCapNhat;
         private FontAwesome.Sharp.IconButton btnThem;
     }
 }

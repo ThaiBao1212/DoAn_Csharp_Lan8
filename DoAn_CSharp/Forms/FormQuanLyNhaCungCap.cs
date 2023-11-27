@@ -18,8 +18,8 @@ namespace DoAn_CSharp.Forms
 
     public partial class FormQuanLyNhaCungCap : Form
     {
-        string tenNCC, diachiNCC, SDTNCC;
-        string Email = "letuananh@gmail.com";
+        string tenNCC, diachiNCC, SDTNCC, email;
+        
         string TrangThaiNCC = "Đóng";
 
         //string connString = "Data Source=LAPTOP-PDE9TC1I\\SQLEXPRESS;Initial Catalog=QuanLyBanGiay;Integrated Security=true";
@@ -42,6 +42,11 @@ namespace DoAn_CSharp.Forms
         {
             this.tenNCC = txtTenNhaCungCap.Text;
         }
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            this.email = txtEmail.Text;
+        }
+
 
         public FormQuanLyNhaCungCap()
         {
@@ -178,7 +183,7 @@ namespace DoAn_CSharp.Forms
             detail_name.Text = NCC_selected.TenNCC;
             detail_address.Text = NCC_selected.DiaChiNCC;
             detail_phone.Text = NCC_selected.SDTNCC;
-            detail_email.Text = this.Email;
+            detail_email.Text = NCC_selected.Email;
             if (NCC_selected.TrangThaiNCC == "Mở")
             {
                 detail_status.Checked = true;
@@ -246,18 +251,20 @@ namespace DoAn_CSharp.Forms
 
         private void detail_email_TextChanged(object sender, EventArgs e)
         {
-
+            NCC_selected.Email = detail_email.Text;
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            string query = "UPDATE nhacungcap SET TenNCC=@TenNCC,DiaChiNCC=@DiaChiNCC,SDTNCC=@SDTNCC,TrangThaiNCC=@TrangThaiNCC  WHERE MaNCC = @MaNCC";
+            string query = "UPDATE nhacungcap SET TenNCC=@TenNCC,DiaChiNCC=@DiaChiNCC,SDTNCC=@SDTNCC,Email = @Email ,TrangThaiNCC=@TrangThaiNCC  WHERE MaNCC = @MaNCC";
             using (SqlConnection connection = new SqlConnection(connString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@TenNCC", detail_name.Text);
                 command.Parameters.AddWithValue("@DiaChiNCC", detail_address.Text);
+                command.Parameters.AddWithValue("@Email", detail_email.Text);
                 command.Parameters.AddWithValue("@SDTNCC", detail_phone.Text);
+
                 if (detail_status.Checked)
                 {
                     command.Parameters.AddWithValue("@TrangThaiNCC", "Mở");
@@ -266,7 +273,7 @@ namespace DoAn_CSharp.Forms
                 {
                     command.Parameters.AddWithValue("@TrangThaiNCC", "Đóng");
                 }
-
+                
 
                 command.Parameters.AddWithValue("@MaNCC", NCC_selected.MaNCC);
 
@@ -295,6 +302,7 @@ namespace DoAn_CSharp.Forms
             }
         }
 
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             string query = "INSERT INTO nhacungcap (tenNCC,diachiNCC,SDTNCC,Email,TrangThaiNCC) VALUES (@tenNCC,@diachiNCC,@SDTNCC,@Email,@TrangThaiNCC )";
@@ -311,7 +319,7 @@ namespace DoAn_CSharp.Forms
                     command.Parameters.AddWithValue("@tenNCC", this.tenNCC);
                     command.Parameters.AddWithValue("@diachiNCC", this.diachiNCC);
                     command.Parameters.AddWithValue("@SDTNCC", this.SDTNCC);
-                    command.Parameters.AddWithValue("@Email", this.Email);
+                    command.Parameters.AddWithValue("@Email", this.email);
                     command.Parameters.AddWithValue("@TrangThaiNCC", this.TrangThaiNCC);
 
                     // Execute the query

@@ -47,10 +47,7 @@ namespace DoAn_CSharp.Forms
 
 
             // Chọn giá trị đầu tiên của combobox giới tính 
-            if (cbGioiTinh.Items.Count > 0)
-            {
-                cbGioiTinh.SelectedIndex = 0;
-            }
+
 
 
         }
@@ -109,6 +106,11 @@ namespace DoAn_CSharp.Forms
         {
             cbGioiTinh.Items.Add("Nam");
             cbGioiTinh.Items.Add("Nữ");
+
+            if (cbGioiTinh.Items.Count > 0)
+            {
+                cbGioiTinh.SelectedIndex = 0;
+            }
         }
 
         private void LoadDataToComBoBoxTimKiem()
