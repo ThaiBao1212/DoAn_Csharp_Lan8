@@ -102,7 +102,7 @@
             this.groupBox1.Controls.Add(this.txtHoTen);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1141, 280);
@@ -136,7 +136,7 @@
             this.dateTimePickerNgaySinh.Location = new System.Drawing.Point(561, 232);
             this.dateTimePickerNgaySinh.Name = "dateTimePickerNgaySinh";
             this.dateTimePickerNgaySinh.Size = new System.Drawing.Size(243, 26);
-            this.dateTimePickerNgaySinh.TabIndex = 106;
+            this.dateTimePickerNgaySinh.TabIndex = 6;
             // 
             // label1
             // 
@@ -154,7 +154,7 @@
             this.txtEmail.Location = new System.Drawing.Point(248, 232);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(241, 26);
-            this.txtEmail.TabIndex = 105;
+            this.txtEmail.TabIndex = 2;
             // 
             // txtTenChucVu
             // 
@@ -182,7 +182,7 @@
             this.cbMaChucVu.Location = new System.Drawing.Point(245, 114);
             this.cbMaChucVu.Name = "cbMaChucVu";
             this.cbMaChucVu.Size = new System.Drawing.Size(55, 27);
-            this.cbMaChucVu.TabIndex = 84;
+            this.cbMaChucVu.TabIndex = 0;
             this.cbMaChucVu.SelectedIndexChanged += new System.EventHandler(this.cbMaChucVu_SelectedIndexChanged);
             // 
             // label2
@@ -212,7 +212,7 @@
             this.cbGioiTinh.Location = new System.Drawing.Point(872, 168);
             this.cbGioiTinh.Name = "cbGioiTinh";
             this.cbGioiTinh.Size = new System.Drawing.Size(242, 27);
-            this.cbGioiTinh.TabIndex = 86;
+            this.cbGioiTinh.TabIndex = 9;
             // 
             // btnChonAnh
             // 
@@ -227,7 +227,7 @@
             this.btnChonAnh.Location = new System.Drawing.Point(58, 232);
             this.btnChonAnh.Name = "btnChonAnh";
             this.btnChonAnh.Size = new System.Drawing.Size(75, 23);
-            this.btnChonAnh.TabIndex = 101;
+            this.btnChonAnh.TabIndex = 10;
             this.btnChonAnh.Text = "Chọn Ảnh ";
             this.btnChonAnh.UseVisualStyleBackColor = true;
             this.btnChonAnh.Click += new System.EventHandler(this.btnChonAnh_Click);
@@ -238,7 +238,7 @@
             this.txtCCCD.Location = new System.Drawing.Point(872, 51);
             this.txtCCCD.Name = "txtCCCD";
             this.txtCCCD.Size = new System.Drawing.Size(244, 26);
-            this.txtCCCD.TabIndex = 83;
+            this.txtCCCD.TabIndex = 7;
             // 
             // btnClear
             // 
@@ -250,7 +250,7 @@
             this.btnClear.Location = new System.Drawing.Point(953, 231);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 99;
+            this.btnClear.TabIndex = 17;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -261,7 +261,7 @@
             this.txtSDT.Location = new System.Drawing.Point(561, 168);
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(243, 26);
-            this.txtSDT.TabIndex = 82;
+            this.txtSDT.TabIndex = 5;
             // 
             // pictureBoxAnhNhanVien
             // 
@@ -317,7 +317,7 @@
             this.txtTenTaiKhoan.Location = new System.Drawing.Point(560, 51);
             this.txtTenTaiKhoan.Name = "txtTenTaiKhoan";
             this.txtTenTaiKhoan.Size = new System.Drawing.Size(244, 26);
-            this.txtTenTaiKhoan.TabIndex = 79;
+            this.txtTenTaiKhoan.TabIndex = 3;
             // 
             // txtMatKhau
             // 
@@ -325,7 +325,7 @@
             this.txtMatKhau.Location = new System.Drawing.Point(561, 106);
             this.txtMatKhau.Name = "txtMatKhau";
             this.txtMatKhau.Size = new System.Drawing.Size(243, 26);
-            this.txtMatKhau.TabIndex = 80;
+            this.txtMatKhau.TabIndex = 4;
             // 
             // label4
             // 
@@ -343,7 +343,7 @@
             this.txtDiaChi.Location = new System.Drawing.Point(872, 106);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(244, 26);
-            this.txtDiaChi.TabIndex = 81;
+            this.txtDiaChi.TabIndex = 8;
             // 
             // txtHoTen
             // 
@@ -351,7 +351,7 @@
             this.txtHoTen.Location = new System.Drawing.Point(245, 172);
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.Size = new System.Drawing.Size(244, 26);
-            this.txtHoTen.TabIndex = 69;
+            this.txtHoTen.TabIndex = 1;
             // 
             // label5
             // 
@@ -373,7 +373,7 @@
             this.btnThem.Location = new System.Drawing.Point(100, 317);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
-            this.btnThem.TabIndex = 96;
+            this.btnThem.TabIndex = 11;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
@@ -388,7 +388,7 @@
             this.btnCapNhat.Location = new System.Drawing.Point(225, 317);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(75, 23);
-            this.btnCapNhat.TabIndex = 97;
+            this.btnCapNhat.TabIndex = 12;
             this.btnCapNhat.Text = "Cập Nhật";
             this.btnCapNhat.UseVisualStyleBackColor = true;
             this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
@@ -403,7 +403,7 @@
             this.btnXoa.Location = new System.Drawing.Point(347, 317);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
-            this.btnXoa.TabIndex = 98;
+            this.btnXoa.TabIndex = 13;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
@@ -415,7 +415,7 @@
             this.cbTimKiem.Location = new System.Drawing.Point(953, 318);
             this.cbTimKiem.Name = "cbTimKiem";
             this.cbTimKiem.Size = new System.Drawing.Size(150, 23);
-            this.cbTimKiem.TabIndex = 91;
+            this.cbTimKiem.TabIndex = 16;
             this.cbTimKiem.SelectedIndexChanged += new System.EventHandler(this.cbTimKiem_SelectedIndexChanged);
             // 
             // txtTimKiem
@@ -424,7 +424,7 @@
             this.txtTimKiem.Location = new System.Drawing.Point(651, 318);
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(257, 23);
-            this.txtTimKiem.TabIndex = 90;
+            this.txtTimKiem.TabIndex = 15;
             this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
             // 
             // label10
@@ -447,7 +447,7 @@
             this.btnXuatExcel.Location = new System.Drawing.Point(486, 317);
             this.btnXuatExcel.Name = "btnXuatExcel";
             this.btnXuatExcel.Size = new System.Drawing.Size(88, 23);
-            this.btnXuatExcel.TabIndex = 100;
+            this.btnXuatExcel.TabIndex = 14;
             this.btnXuatExcel.Text = "Xuất Excel";
             this.btnXuatExcel.UseVisualStyleBackColor = true;
             // 
@@ -456,7 +456,7 @@
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.dtgvQuanLyNhanVien);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(0, 360);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1141, 277);
@@ -470,7 +470,7 @@
             this.dtgvQuanLyNhanVien.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -479,7 +479,7 @@
             this.dtgvQuanLyNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.NullValue = "dd/MM/YYYY";
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -487,10 +487,10 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dtgvQuanLyNhanVien.DefaultCellStyle = dataGridViewCellStyle2;
             this.dtgvQuanLyNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgvQuanLyNhanVien.Location = new System.Drawing.Point(3, 22);
+            this.dtgvQuanLyNhanVien.Location = new System.Drawing.Point(3, 25);
             this.dtgvQuanLyNhanVien.Name = "dtgvQuanLyNhanVien";
-            this.dtgvQuanLyNhanVien.Size = new System.Drawing.Size(1135, 252);
-            this.dtgvQuanLyNhanVien.TabIndex = 0;
+            this.dtgvQuanLyNhanVien.Size = new System.Drawing.Size(1135, 249);
+            this.dtgvQuanLyNhanVien.TabIndex = 18;
             this.dtgvQuanLyNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvQuanLyNhanVien_CellClick);
             // 
             // FormQuanLyNhanVien

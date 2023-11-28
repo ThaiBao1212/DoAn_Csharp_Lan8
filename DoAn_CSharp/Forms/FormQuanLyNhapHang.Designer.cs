@@ -44,6 +44,7 @@
             this.cbTimKiemQLPN = new System.Windows.Forms.ComboBox();
             this.txtTimKiemQLPN = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnChuyenQua = new FontAwesome.Sharp.IconButton();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnNhapHang = new FontAwesome.Sharp.IconButton();
             this.label9 = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtMaPhieuNhap = new System.Windows.Forms.TextBox();
-            this.btnChuyenQua = new FontAwesome.Sharp.IconButton();
             this.tbQuanLyNhapHang.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -256,6 +256,20 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thêm Phiếu Nhập";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnChuyenQua
+            // 
+            this.btnChuyenQua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChuyenQua.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChuyenQua.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnChuyenQua.IconColor = System.Drawing.Color.Black;
+            this.btnChuyenQua.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnChuyenQua.Location = new System.Drawing.Point(473, 215);
+            this.btnChuyenQua.Name = "btnChuyenQua";
+            this.btnChuyenQua.Size = new System.Drawing.Size(38, 23);
+            this.btnChuyenQua.TabIndex = 66;
+            this.btnChuyenQua.Text = ">";
+            this.btnChuyenQua.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -477,20 +491,6 @@
             this.txtMaPhieuNhap.Name = "txtMaPhieuNhap";
             this.txtMaPhieuNhap.Size = new System.Drawing.Size(115, 20);
             this.txtMaPhieuNhap.TabIndex = 53;
-            // 
-            // btnChuyenQua
-            // 
-            this.btnChuyenQua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChuyenQua.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChuyenQua.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnChuyenQua.IconColor = System.Drawing.Color.Black;
-            this.btnChuyenQua.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnChuyenQua.Location = new System.Drawing.Point(473, 216);
-            this.btnChuyenQua.Name = "btnChuyenQua";
-            this.btnChuyenQua.Size = new System.Drawing.Size(38, 23);
-            this.btnChuyenQua.TabIndex = 66;
-            this.btnChuyenQua.Text = ">";
-            this.btnChuyenQua.UseVisualStyleBackColor = true;
             // 
             // FormQuanLyNhapHang
             // 
