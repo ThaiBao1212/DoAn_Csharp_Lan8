@@ -124,19 +124,21 @@
             this.listNCC.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.listNCC.BackgroundColor = System.Drawing.Color.White;
             this.listNCC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listNCC.Location = new System.Drawing.Point(18, 277);
+            this.listNCC.Location = new System.Drawing.Point(12, 254);
             this.listNCC.Name = "listNCC";
-            this.listNCC.Size = new System.Drawing.Size(550, 239);
+            this.listNCC.Size = new System.Drawing.Size(692, 144);
             this.listNCC.TabIndex = 60;
             this.listNCC.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvQuanLyNhaCungCap_CellContentClick);
+            this.listNCC.SelectionChanged += new System.EventHandler(this.listNCC_SelectionChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dtgvSanPhamCuaNhaCungCap);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 522);
+            this.groupBox1.Location = new System.Drawing.Point(0, 410);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(948, 227);
+            this.groupBox1.Size = new System.Drawing.Size(1141, 227);
             this.groupBox1.TabIndex = 61;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sản Phẩm Của Nhà Cung Cấp :";
@@ -145,9 +147,10 @@
             // 
             this.dtgvSanPhamCuaNhaCungCap.BackgroundColor = System.Drawing.Color.White;
             this.dtgvSanPhamCuaNhaCungCap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvSanPhamCuaNhaCungCap.Location = new System.Drawing.Point(6, 25);
+            this.dtgvSanPhamCuaNhaCungCap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgvSanPhamCuaNhaCungCap.Location = new System.Drawing.Point(3, 22);
             this.dtgvSanPhamCuaNhaCungCap.Name = "dtgvSanPhamCuaNhaCungCap";
-            this.dtgvSanPhamCuaNhaCungCap.Size = new System.Drawing.Size(936, 190);
+            this.dtgvSanPhamCuaNhaCungCap.Size = new System.Drawing.Size(1135, 202);
             this.dtgvSanPhamCuaNhaCungCap.TabIndex = 62;
             // 
             // btnClear
@@ -157,7 +160,7 @@
             this.btnClear.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnClear.IconColor = System.Drawing.Color.Black;
             this.btnClear.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnClear.Location = new System.Drawing.Point(249, 232);
+            this.btnClear.Location = new System.Drawing.Point(249, 215);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 66;
@@ -174,7 +177,7 @@
             this.btnXoa.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnXoa.IconColor = System.Drawing.Color.Black;
             this.btnXoa.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXoa.Location = new System.Drawing.Point(33, 437);
+            this.btnXoa.Location = new System.Drawing.Point(23, 346);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(112, 34);
             this.btnXoa.TabIndex = 65;
@@ -192,7 +195,7 @@
             this.btnCapNhat.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnCapNhat.IconColor = System.Drawing.Color.Black;
             this.btnCapNhat.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCapNhat.Location = new System.Drawing.Point(178, 437);
+            this.btnCapNhat.Location = new System.Drawing.Point(171, 346);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(174, 34);
             this.btnCapNhat.TabIndex = 64;
@@ -207,7 +210,7 @@
             this.btnThem.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnThem.IconColor = System.Drawing.Color.Black;
             this.btnThem.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThem.Location = new System.Drawing.Point(142, 232);
+            this.btnThem.Location = new System.Drawing.Point(142, 215);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 63;
@@ -222,7 +225,7 @@
             this.btnXuatExcel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnXuatExcel.IconColor = System.Drawing.Color.Black;
             this.btnXuatExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXuatExcel.Location = new System.Drawing.Point(362, 232);
+            this.btnXuatExcel.Location = new System.Drawing.Point(362, 215);
             this.btnXuatExcel.Name = "btnXuatExcel";
             this.btnXuatExcel.Size = new System.Drawing.Size(88, 23);
             this.btnXuatExcel.TabIndex = 67;
@@ -232,7 +235,7 @@
             // TT_NCC
             // 
             this.TT_NCC.AutoSize = true;
-            this.TT_NCC.Location = new System.Drawing.Point(143, 194);
+            this.TT_NCC.Location = new System.Drawing.Point(143, 177);
             this.TT_NCC.Margin = new System.Windows.Forms.Padding(2);
             this.TT_NCC.Name = "TT_NCC";
             this.TT_NCC.Size = new System.Drawing.Size(74, 17);
@@ -261,7 +264,7 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.label1.Location = new System.Drawing.Point(17, 17);
+            this.label1.Location = new System.Drawing.Point(54, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(243, 26);
@@ -347,17 +350,17 @@
             this.panel1.Controls.Add(this.detail_address);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.btnCapNhat);
-            this.panel1.Location = new System.Drawing.Point(588, 17);
+            this.panel1.Location = new System.Drawing.Point(725, 18);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(372, 499);
+            this.panel1.Size = new System.Drawing.Size(372, 398);
             this.panel1.TabIndex = 77;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // detail_status
             // 
             this.detail_status.AutoSize = true;
-            this.detail_status.Location = new System.Drawing.Point(91, 309);
+            this.detail_status.Location = new System.Drawing.Point(94, 300);
             this.detail_status.Margin = new System.Windows.Forms.Padding(2);
             this.detail_status.Name = "detail_status";
             this.detail_status.Size = new System.Drawing.Size(41, 17);
@@ -370,7 +373,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(19, 309);
+            this.label9.Location = new System.Drawing.Point(22, 300);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 17);
             this.label9.TabIndex = 79;
@@ -420,7 +423,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(972, 761);
+            this.ClientSize = new System.Drawing.Size(1141, 637);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.title);

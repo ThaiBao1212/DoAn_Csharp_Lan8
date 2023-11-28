@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoAn_CSharp.DTO
 {
-    internal class QuanLyNhaCungCap_DTO
+    public class QuanLyNhaCungCap_DTO
     {
         public int MaNCC { get; set; } // Supplier ID, PRIMARY KEY
         public string TenNCC { get; set; } // Supplier Name
