@@ -26,7 +26,12 @@ namespace DoAn_CSharp.DAO
         {
             try
             {
-                string strSQL = $"Select * from sanpham where MaSP ='{maSP}'";
+                string strSQL = $"SELECT sp.MaSP, TenSP, ncc.TenNCC, dm.TenDM, sp.SizeSP, sp.SoLuongSP, sp.DonGia, sp.AnhSP, sp.MieuTaSP, sp.TrangThaiSP " +
+                 "FROM sanpham sp " +
+                 "JOIN nhacungcap ncc ON sp.MaNCC = ncc.MaNCC " +
+                 "JOIN danhmuc dm ON dm.MaDanhMuc = sp.MaDM " +
+                 $"WHERE MaSP = '{maSP}'";
+
                 DataTable dt = db.Execute(strSQL);
 
                 if (dt.Rows.Count > 0)
@@ -37,9 +42,10 @@ namespace DoAn_CSharp.DAO
                     QuanLySanPham_DTO sanPham = new QuanLySanPham_DTO
                     {
                         MaSP = Convert.ToInt32(row["MaSP"]),
-                        MaNCC = Convert.ToInt32(row["MaNCC"]),
-                        MaDM = Convert.ToInt32(row["MaDM"]),
                         TenSP = row["TenSP"].ToString(),
+                        TenNCC = row["TenNCC"].ToString(),
+                        TenDM = row["TenDM"].ToString(),
+
                         SizeSP = row["SizeSP"].ToString(),
                         SoLuongSP = Convert.ToInt32(row["SoLuongSP"]),
                         MieuTaSP = row["MieuTaSP"].ToString(),
@@ -59,6 +65,7 @@ namespace DoAn_CSharp.DAO
                 return null;
             }
         }
+      
 
 
         public List<QuanLySanPham_DTO> LayDanhSachSanPhamDanhMuc(int maDanhMuc)

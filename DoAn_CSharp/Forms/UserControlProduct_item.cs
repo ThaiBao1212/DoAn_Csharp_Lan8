@@ -20,8 +20,8 @@ namespace DoAn_CSharp.Forms
             lblTenSP.Text = tenSP;
             lblDonGia.Text = donGia;
 
-            // Set the image identifier
-            ImageIdentifier = tenAnhSP;
+            // Set the product ID
+            ProductId = maSP;
 
             // Load the image from resources
             picHinhAnh.Image = (Image)Properties.Resources.ResourceManager.GetObject(tenAnhSP);
@@ -29,18 +29,33 @@ namespace DoAn_CSharp.Forms
 
             // Adjust the PictureBox size to the image size
             picHinhAnh.Size = new Size(212, 114);
+
+            // Subscribe to the click events of specific controls
+            label1.Click += Control_Click;
+            label2.Click += Control_Click;
+            lblMaSP.Click += Control_Click;
+            lblTenSP.Click += Control_Click;
+            lblDonGia.Click += Control_Click;
+            picHinhAnh.Click += Control_Click;
+
+            // Subscribe to the click event of the entire UserControlProduct_item
+            this.Click += UserControlProduct_item_Click;
+
+            // Make sure ProductClick event is initialized
+            ProductClick += (s, e) => { };
         }
-        private void UserControlProduct_item_Click(object sender, EventArgs e)
+
+        private void Control_Click(object sender, EventArgs e)
         {
+            // Raise the ProductClick event when specific controls are clicked
             ProductClick?.Invoke(this, EventArgs.Empty);
         }
 
-       
-
-        private void UserControlProduct_item_MouseClick(object sender, MouseEventArgs e)
+        private void UserControlProduct_item_Click(object sender, EventArgs e)
         {
-            // Raise the ProductClick event
+            // Raise the ProductClick event when the entire UserControlProduct_item is clicked
             ProductClick?.Invoke(this, EventArgs.Empty);
         }
     }
+
 }

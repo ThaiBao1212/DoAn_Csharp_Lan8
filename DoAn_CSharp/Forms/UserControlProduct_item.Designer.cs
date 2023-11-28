@@ -109,7 +109,7 @@
             this.Controls.Add(this.lblMaSP);
             this.Name = "UserControlProduct_item";
             this.Size = new System.Drawing.Size(222, 214);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.UserControlProduct_item_MouseClick);
+            this.Click += new System.EventHandler(this.UserControlProduct_item_Click);
             ((System.ComponentModel.ISupportInitialize)(this.picHinhAnh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

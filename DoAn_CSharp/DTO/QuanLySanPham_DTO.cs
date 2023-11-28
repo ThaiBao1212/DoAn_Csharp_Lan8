@@ -11,6 +11,8 @@ namespace DoAn_CSharp.DTO
         public int MaSP { get; set; }
         public int MaNCC { get; set; }
         public int MaDM { get; set; }
+        public string TenNCC { get; set; }
+        public string TenDM { get; set; }
         public string TenSP { get; set; }
         public string SizeSP { get; set; }
         public int SoLuongSP { get; set; }

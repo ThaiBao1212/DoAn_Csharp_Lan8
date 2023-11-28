@@ -89,6 +89,7 @@
     <Compile Include="DTO\QuanLyNhaCungCap_DTO.cs" />
     <Compile Include="DTO\QuanLyNhanVien_DTO.cs" />
     <Compile Include="DTO\QuanLySanPham_DTO.cs" />
+    <Compile Include="DTO\ShoppingCartItem_DTO.CS" />
     <Compile Include="FormMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +162,12 @@
     <Compile Include="Forms\UserControlProduct_item.Designer.cs">
       <DependentUpon>UserControlProduct_item.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControl_Cart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControl_Cart.Designer.cs">
+      <DependentUpon>UserControl_Cart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
@@ -199,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControlProduct_item.resx">
       <DependentUpon>UserControlProduct_item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControl_Cart.resx">
+      <DependentUpon>UserControl_Cart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

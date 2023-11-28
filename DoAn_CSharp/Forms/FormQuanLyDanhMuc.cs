@@ -25,11 +25,18 @@ namespace DoAn_CSharp.Forms
             InitializeComponent();
             HienThiDanhMuc();
             dtgvDanhSachDanhMuc.SelectionChanged += DtgvDanhSachDanhMuc_SelectionChanged;
-            
-          
+      
+
+
+
+
+        }
+        private void UserControlProduct_item_SelectionChanged(object sender, EventArgs e)
+        {
+            // Your event handling logic here
         }
 
-      
+
 
         private void HienThiDanhMuc()
         {
