@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,13 +60,8 @@
             this.btnThem = new FontAwesome.Sharp.IconButton();
             this.btnCapNhat = new FontAwesome.Sharp.IconButton();
             this.btnXoa = new FontAwesome.Sharp.IconButton();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtLocToi = new System.Windows.Forms.TextBox();
-            this.txtLocTu = new System.Windows.Forms.TextBox();
             this.cbTimKiem = new System.Windows.Forms.ComboBox();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnXuatExcel = new FontAwesome.Sharp.IconButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -375,7 +370,7 @@
             this.btnThem.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnThem.IconColor = System.Drawing.Color.Black;
             this.btnThem.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThem.Location = new System.Drawing.Point(50, 329);
+            this.btnThem.Location = new System.Drawing.Point(100, 317);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 96;
@@ -390,7 +385,7 @@
             this.btnCapNhat.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnCapNhat.IconColor = System.Drawing.Color.Black;
             this.btnCapNhat.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCapNhat.Location = new System.Drawing.Point(175, 329);
+            this.btnCapNhat.Location = new System.Drawing.Point(225, 317);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(75, 23);
             this.btnCapNhat.TabIndex = 97;
@@ -405,7 +400,7 @@
             this.btnXoa.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnXoa.IconColor = System.Drawing.Color.Black;
             this.btnXoa.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXoa.Location = new System.Drawing.Point(297, 329);
+            this.btnXoa.Location = new System.Drawing.Point(347, 317);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
             this.btnXoa.TabIndex = 98;
@@ -413,45 +408,11 @@
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(783, 367);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(30, 14);
-            this.label15.TabIndex = 95;
-            this.label15.Text = "Tới :";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(621, 367);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(30, 14);
-            this.label14.TabIndex = 94;
-            this.label14.Text = "Từ : ";
-            // 
-            // txtLocToi
-            // 
-            this.txtLocToi.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLocToi.Location = new System.Drawing.Point(819, 363);
-            this.txtLocToi.Name = "txtLocToi";
-            this.txtLocToi.Size = new System.Drawing.Size(91, 23);
-            this.txtLocToi.TabIndex = 93;
-            // 
-            // txtLocTu
-            // 
-            this.txtLocTu.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLocTu.Location = new System.Drawing.Point(653, 367);
-            this.txtLocTu.Name = "txtLocTu";
-            this.txtLocTu.Size = new System.Drawing.Size(91, 23);
-            this.txtLocTu.TabIndex = 92;
-            // 
             // cbTimKiem
             // 
             this.cbTimKiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTimKiem.FormattingEnabled = true;
-            this.cbTimKiem.Location = new System.Drawing.Point(953, 307);
+            this.cbTimKiem.Location = new System.Drawing.Point(953, 318);
             this.cbTimKiem.Name = "cbTimKiem";
             this.cbTimKiem.Size = new System.Drawing.Size(150, 23);
             this.cbTimKiem.TabIndex = 91;
@@ -460,27 +421,17 @@
             // txtTimKiem
             // 
             this.txtTimKiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTimKiem.Location = new System.Drawing.Point(651, 307);
+            this.txtTimKiem.Location = new System.Drawing.Point(651, 318);
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(257, 23);
             this.txtTimKiem.TabIndex = 90;
             this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(650, 347);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 17);
-            this.label11.TabIndex = 78;
-            this.label11.Text = "Lọc Theo Mã : ";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(648, 287);
+            this.label10.Location = new System.Drawing.Point(648, 298);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(78, 17);
             this.label10.TabIndex = 77;
@@ -493,7 +444,7 @@
             this.btnXuatExcel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnXuatExcel.IconColor = System.Drawing.Color.Black;
             this.btnXuatExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXuatExcel.Location = new System.Drawing.Point(436, 329);
+            this.btnXuatExcel.Location = new System.Drawing.Point(486, 317);
             this.btnXuatExcel.Name = "btnXuatExcel";
             this.btnXuatExcel.Size = new System.Drawing.Size(88, 23);
             this.btnXuatExcel.TabIndex = 100;
@@ -506,9 +457,9 @@
             this.groupBox2.Controls.Add(this.dtgvQuanLyNhanVien);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(0, 396);
+            this.groupBox2.Location = new System.Drawing.Point(0, 360);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1141, 241);
+            this.groupBox2.Size = new System.Drawing.Size(1141, 277);
             this.groupBox2.TabIndex = 101;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh Sách Sinh Viên";
@@ -517,28 +468,28 @@
             // 
             this.dtgvQuanLyNhanVien.BackgroundColor = System.Drawing.Color.White;
             this.dtgvQuanLyNhanVien.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvQuanLyNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvQuanLyNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvQuanLyNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.NullValue = "dd/MM/YYYY";
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgvQuanLyNhanVien.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.NullValue = "dd/MM/YYYY";
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgvQuanLyNhanVien.DefaultCellStyle = dataGridViewCellStyle2;
             this.dtgvQuanLyNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvQuanLyNhanVien.Location = new System.Drawing.Point(3, 22);
             this.dtgvQuanLyNhanVien.Name = "dtgvQuanLyNhanVien";
-            this.dtgvQuanLyNhanVien.Size = new System.Drawing.Size(1135, 216);
+            this.dtgvQuanLyNhanVien.Size = new System.Drawing.Size(1135, 252);
             this.dtgvQuanLyNhanVien.TabIndex = 0;
             this.dtgvQuanLyNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvQuanLyNhanVien_CellClick);
             // 
@@ -550,13 +501,8 @@
             this.ClientSize = new System.Drawing.Size(1141, 637);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnXuatExcel);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.txtLocToi);
-            this.Controls.Add(this.txtLocTu);
             this.Controls.Add(this.cbTimKiem);
             this.Controls.Add(this.txtTimKiem);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnThem);
@@ -595,10 +541,6 @@
         private FontAwesome.Sharp.IconButton btnXoa;
         private FontAwesome.Sharp.IconButton btnCapNhat;
         private FontAwesome.Sharp.IconButton btnThem;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtLocToi;
-        private System.Windows.Forms.TextBox txtLocTu;
         private System.Windows.Forms.ComboBox cbTimKiem;
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.ComboBox cbGioiTinh;
@@ -607,7 +549,6 @@
         private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.TextBox txtMatKhau;
         private System.Windows.Forms.TextBox txtTenTaiKhoan;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;

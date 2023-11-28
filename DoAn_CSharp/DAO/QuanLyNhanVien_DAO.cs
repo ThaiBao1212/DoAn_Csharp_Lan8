@@ -42,7 +42,12 @@ namespace DoAn_CSharp.DAO
                     CMNDNV = row["CMNDNV"].ToString()
 
                 };
-                listNhanVien.Add(nhanVien);
+               
+
+                if (!string.IsNullOrEmpty(nhanVien.MaNV)) // Kiểm tra MaKH có giá trị không
+                {
+                    listNhanVien.Add(nhanVien);
+                }
             }
 
             return listNhanVien;
@@ -155,7 +160,7 @@ namespace DoAn_CSharp.DAO
             {
                 // Sử dụng thủ tục SQL để thực hiện tìm kiếm
                 string query = $"SELECT nhanvien.*, chucvu.TenCV FROM nhanvien INNER JOIN chucvu ON nhanvien.MaCV = chucvu.MaCV WHERE {cotTimKiem} LIKE N'%{tuKhoa}%'";
-                
+
                 DataTable data = provider.ExecuteQuery(query);
 
                 // Chuyển đổi dữ liệu từ DataTable sang danh sách đối tượng QuanLyNhanVien_DTO
@@ -176,7 +181,7 @@ namespace DoAn_CSharp.DAO
                     nhanVien.SDTNV = row["SDTNV"].ToString();
                     nhanVien.CMNDNV = row["CMNDNV"].ToString();
                     nhanVien.AnhNV = row["AnhNV"].ToString();
-                    nhanVien.TenCV = row["TenCV"].ToString(); 
+                    nhanVien.TenCV = row["TenCV"].ToString();
 
                     ketQuaTimKiem.Add(nhanVien);
                 }
@@ -190,6 +195,49 @@ namespace DoAn_CSharp.DAO
                 return null;
             }
         }
+
+        /*        public List<QuanLyNhanVien_DTO> TimKiemNhanVienTatCa(string tuKhoa)
+                {
+                    // Thực hiện câu truy vấn tìm kiếm theo tất cả các trường trong bảng khachhang
+                    string query = $"SELECT * Form nhanvien WHERE " +
+                        $"MaNV LIKE N'%{tuKhoa}%' OR MaCV LIKE N'%{tuKhoa}%' " +
+                        $"OR TenTaiKhoanNV LIKE N'%{tuKhoa}%' OR HoTenNV LIKE N'%{tuKhoa}%'  OR GioiTinhNV LIKE N'%{tuKhoa}%' OR DiaChiNV LIKE N'%{tuKhoa}%' OR EmailNV LIKE N'%{tuKhoa}%' " +
+                        $"OR SDTNV LIKE N'%{tuKhoa}%' OR CMNDNV LIKE N'%{tuKhoa}%'";
+
+
+                    DataTable data = provider.ExecuteQuery(query);
+
+                    List<QuanLyNhanVien_DTO> ketQua = new List<QuanLyNhanVien_DTO>();
+                    foreach (DataRow row in data.Rows)
+                    {
+                        QuanLyNhanVien_DTO nhanvien = new QuanLyNhanVien_DTO()
+                        {
+                            MaNV = row["MaNV"].ToString(),
+                            MaCV = row["MaCV"].ToString(),
+
+                            TenTaiKhoanNV = row["TenTaiKhoanNV"].ToString(),
+                            HoTenNV = row["HoTenNV"].ToString(),
+                            MatKhauNV = row["MatKhauNV"].ToString(),
+                            GioiTinhNV = row["GioiTinhNV"].ToString(),
+                            NgaySinh = Convert.ToDateTime(row["NgaySinh"]),
+                            DiaChiNV = row["DiaChiNV"].ToString(),
+                            EmailNV = row["EmailNV"].ToString(),
+                            SDTNV = row["SDTNV"].ToString(),
+                            CMNDNV = row["CMNDNV"].ToString(),
+                            AnhNV = row["AnhNV"].ToString()
+
+
+                    };
+                            ketQua.Add(nhanvien);
+                    }
+
+                    return ketQua;
+                }*/
+
+
+
+
+
 
         // Kiểm tra tên tài khoản đã tồn tại 
         public bool IsTenTaiKhoanExists(string tenTaiKhoan)
@@ -225,7 +273,7 @@ namespace DoAn_CSharp.DAO
 
 
 
-    }// Trong lớp DAO (QuanLyNhanVien_DAO)
+    }
 }
 
 // hàm lấy tên chuc vu 2 

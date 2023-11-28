@@ -47,6 +47,7 @@ namespace DoAn_CSharp.Forms
             LoadDataToDataGridView();
             dataKH_load();
             LoadDataToComBoBoxGioiTinh();
+            LoadDataToComBoBoxTimKiem();
 
         }
         private void LoadDataToComBoBoxGioiTinh()
@@ -59,7 +60,26 @@ namespace DoAn_CSharp.Forms
                 cbGioiTinh.SelectedIndex = 0;
             }
         }
+        private void LoadDataToComBoBoxTimKiem()
+        {
+            cbTimKiem.Items.Add("Tất cả");
+            cbTimKiem.Items.Add("Mã Khách Hàng");
+            cbTimKiem.Items.Add("Họ Tên Khách Hàng");
+            cbTimKiem.Items.Add("Địa Chỉ Khách Hàng");
+            cbTimKiem.Items.Add("SĐT Khách Hàng");
+            cbTimKiem.Items.Add("CMND/CCCDKH");
+            cbTimKiem.Items.Add("Gioi Tinh KH");
+            cbTimKiem.Items.Add("Trạng Thái KH");
+           
 
+
+
+
+            if (cbTimKiem.Items.Count > 0)
+            {
+                cbTimKiem.SelectedIndex = 0;
+            }
+        }
         private void LoadDataToDataGridView()
         {
             List<QuanLyKhachHang_DTO> list_KH = khachHang_DAO.GetKhachHang();
@@ -149,6 +169,28 @@ namespace DoAn_CSharp.Forms
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin Khách Hàng ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            // Kiểm tra tên khách hàng 
+
+            if (khachHang_DAO.IsTenKhachHangExists(hoTenKH))
+            {
+                MessageBox.Show("Tên Khách Hàng  đã tồn tại. Vui lòng chọn tên Khách Hàng  khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!KiemTra_DAO.IsValidName(hoTenKH))
+            {
+                MessageBox.Show("Họ tên chỉ được nhập bằng chữ và có thể nhập bằng dấu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!KiemTra_DAO.IsValidPhoneNumber(sdtKH))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ , số điện thoại chỉ được nhập 10 số !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!KiemTra_DAO.IsValidCCCD(cmndKH))
+            {
+                MessageBox.Show("Số CCCD chỉ được nhập số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Thực hiện thêm khách hàng vào cơ sở dữ liệu
             bool isSuccess = khachHang_DAO.ThemKhachHang(new QuanLyKhachHang_DTO
@@ -198,6 +240,28 @@ namespace DoAn_CSharp.Forms
                 return;
             }
 
+            if (khachHang_DAO.IsTenKhachHangExists(maKH, hoTenKH))
+            {
+                MessageBox.Show("Tên Khách Hàng  đã tồn tại. Vui lòng chọn tên Khách Hàng  khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!KiemTra_DAO.IsValidName(hoTenKH))
+            {
+                MessageBox.Show("Họ tên chỉ được nhập bằng chữ và có thể nhập bằng dấu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!KiemTra_DAO.IsValidPhoneNumber(sdtKH))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ , số điện thoại chỉ được nhập 10 số !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!KiemTra_DAO.IsValidCCCD(cmndKH))
+            {
+                MessageBox.Show("Số CCCD chỉ được nhập số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
             // Thực hiện cập nhật khách hàng vào cơ sở dữ liệu
             bool isSuccess = khachHang_DAO.UpdateKhachHang(maKH, hoTenKH, diaChiKH, sdtKH, cmndKH, gioiTinhKH, trangThaiKH);
 
@@ -242,7 +306,66 @@ namespace DoAn_CSharp.Forms
         }
 
 
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            // Gọi phương thức tìm kiếm khi nội dung trong ô tìm kiếm thay đổi
+            TimKiemKhachHang();
+        }
 
+        private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Gọi phương thức tìm kiếm khi lựa chọn trong combobox thay đổi
+            TimKiemKhachHang();
+        }
+
+        private void TimKiemKhachHang()
+        {
+            // Lấy thông tin tìm kiếm từ ô nhập và combobox
+            string tuKhoa = txtTimKiem.Text.Trim();
+            string loaiTimKiem = cbTimKiem.SelectedItem?.ToString();
+
+            // Kiểm tra xem đã chọn loại tìm kiếm chưa
+            if (string.IsNullOrEmpty(loaiTimKiem))
+                return;
+
+            // Thực hiện tìm kiếm và cập nhật DataGridView
+            List<QuanLyKhachHang_DTO> ketQuaTimKiem = new List<QuanLyKhachHang_DTO>();
+            switch (loaiTimKiem)
+            {
+                case "Tất cả":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTatCa(tuKhoa);
+                    break;
+                case "Họ Tên Khách Hàng":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoHoTen(tuKhoa);
+                    break;
+                case "Mã Khách Hàng":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoMaKH(tuKhoa);
+                    break;
+                case "SĐT Khách Hàng":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoSDTKH(tuKhoa);
+                    break;
+                case "Địa Chỉ Khách Hàng":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoDiaChiKH(tuKhoa);
+                    break;
+                case "CMND/CCCDKH":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoCMNDKH(tuKhoa);
+                    break;
+                case "Gioi Tinh KH":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoGioiTinhKH(tuKhoa);
+                    break;
+                case "Trạng Thái KH":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoTrangThaiKH(tuKhoa);
+                    break;
+
+                // Thêm các trường hợp tìm kiếm khác ở đây nếu cần
+
+                default:
+                    break;
+            }
+
+            // Cập nhật DataGridView với kết quả tìm kiếm
+            dtgvQuanLyKhachHang.DataSource = ketQuaTimKiem;
+        }
 
     }
 }

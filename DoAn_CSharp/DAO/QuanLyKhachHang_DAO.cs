@@ -120,6 +120,231 @@ namespace DoAn_CSharp.DAO
         }
 
 
+        public List<QuanLyKhachHang_DTO> TimKiemKhachHangTatCa(string tuKhoa)
+        {
+            // Thực hiện câu truy vấn tìm kiếm theo tất cả các trường trong bảng khachhang
+            string query = $"SELECT * FROM khachhang WHERE HoTenKH LIKE N'%{tuKhoa}%' OR MaKH LIKE N'%{tuKhoa}%' OR SDTKH LIKE N'%{tuKhoa}%' OR TrangThaiKH LIKE N'%{tuKhoa}%' OR CMNDKH LIKE N'%{tuKhoa}%'  OR GioiTinhKH LIKE N'%{tuKhoa}%' ";
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyKhachHang_DTO> ketQua = new List<QuanLyKhachHang_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyKhachHang_DTO khachHang = new QuanLyKhachHang_DTO()
+                {
+                    MaKH = row["MaKH"].ToString(),
+                    HoTenKH = row["HoTenKH"].ToString(),
+                    DiaChiKH = row["DiaChiKH"].ToString(),
+                    SDTKH = row["SDTKH"].ToString(),
+                    CMNDKH = row["CMNDKH"].ToString(),
+                    GioiTinhKH = row["GioiTinhKH"].ToString(),
+                    TrangThaiKH = row["TrangThaiKH"].ToString()
+                };
+                ketQua.Add(khachHang);
+            }
+
+            return ketQua;
+        }
+
+
+        public List<QuanLyKhachHang_DTO> TimKiemKhachHangTheoHoTen(string hoTenKH)
+        {
+            // Thực hiện câu truy vấn tìm kiếm theo họ tên trong bảng khachhang
+            string query = $"SELECT * FROM khachhang WHERE HoTenKH LIKE N'%{hoTenKH}%'";
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyKhachHang_DTO> ketQua = new List<QuanLyKhachHang_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyKhachHang_DTO khachHang = new QuanLyKhachHang_DTO()
+                {
+                    MaKH = row["MaKH"].ToString(),
+                    HoTenKH = row["HoTenKH"].ToString(),
+                    DiaChiKH = row["DiaChiKH"].ToString(),
+                    SDTKH = row["SDTKH"].ToString(),
+                    CMNDKH = row["CMNDKH"].ToString(),
+                    GioiTinhKH = row["GioiTinhKH"].ToString(),
+                    TrangThaiKH = row["TrangThaiKH"].ToString()
+                };
+                ketQua.Add(khachHang);
+            }
+
+            return ketQua;
+        }
+        
+        public List<QuanLyKhachHang_DTO> TimKiemKhachHangTheoMaKH(string makH)
+        {
+            // Thực hiện câu truy vấn tìm kiếm theo họ tên trong bảng khachhang
+            string query = $"SELECT * FROM khachhang WHERE MaKH LIKE N'%{makH}%'";
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyKhachHang_DTO> ketQua = new List<QuanLyKhachHang_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyKhachHang_DTO khachHang = new QuanLyKhachHang_DTO()
+                {
+                    MaKH = row["MaKH"].ToString(),
+                    HoTenKH = row["HoTenKH"].ToString(),
+                    DiaChiKH = row["DiaChiKH"].ToString(),
+                    SDTKH = row["SDTKH"].ToString(),
+                    CMNDKH = row["CMNDKH"].ToString(),
+                    GioiTinhKH = row["GioiTinhKH"].ToString(),
+                    TrangThaiKH = row["TrangThaiKH"].ToString()
+                };
+                ketQua.Add(khachHang);
+            }
+
+            return ketQua;
+        }
+
+        public List<QuanLyKhachHang_DTO> TimKiemKhachHangTheoDiaChiKH(string tuKhoa)
+        {
+            // Thực hiện câu truy vấn tìm kiếm theo họ tên trong bảng khachhang
+            string query = $"SELECT * FROM khachhang WHERE DiaChiKH LIKE N'%{tuKhoa}%'";
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyKhachHang_DTO> ketQua = new List<QuanLyKhachHang_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyKhachHang_DTO khachHang = new QuanLyKhachHang_DTO()
+                {
+                    MaKH = row["MaKH"].ToString(),
+                    HoTenKH = row["HoTenKH"].ToString(),
+                    DiaChiKH = row["DiaChiKH"].ToString(),
+                    SDTKH = row["SDTKH"].ToString(),
+                    CMNDKH = row["CMNDKH"].ToString(),
+                    GioiTinhKH = row["GioiTinhKH"].ToString(),
+                    TrangThaiKH = row["TrangThaiKH"].ToString()
+                };
+                ketQua.Add(khachHang);
+            }
+
+            return ketQua;
+        }
+        public List<QuanLyKhachHang_DTO> TimKiemKhachHangTheoTrangThaiKH(string tuKhoa)
+        {
+            // Thực hiện câu truy vấn tìm kiếm theo họ tên trong bảng khachhang
+            string query = $"SELECT * FROM khachhang WHERE TrangThaiKH LIKE N'%{tuKhoa}%'";
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyKhachHang_DTO> ketQua = new List<QuanLyKhachHang_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyKhachHang_DTO khachHang = new QuanLyKhachHang_DTO()
+                {
+                    MaKH = row["MaKH"].ToString(),
+                    HoTenKH = row["HoTenKH"].ToString(),
+                    DiaChiKH = row["DiaChiKH"].ToString(),
+                    SDTKH = row["SDTKH"].ToString(),
+                    CMNDKH = row["CMNDKH"].ToString(),
+                    GioiTinhKH = row["GioiTinhKH"].ToString(),
+                    TrangThaiKH = row["TrangThaiKH"].ToString()
+                };
+                ketQua.Add(khachHang);
+            }
+
+            return ketQua;
+        }
+        public List<QuanLyKhachHang_DTO> TimKiemKhachHangTheoGioiTinhKH(string tuKhoa)
+        {
+            // Thực hiện câu truy vấn tìm kiếm theo họ tên trong bảng khachhang
+            string query = $"SELECT * FROM khachhang WHERE GioiTinhKH LIKE N'%{tuKhoa}%'";
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyKhachHang_DTO> ketQua = new List<QuanLyKhachHang_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyKhachHang_DTO khachHang = new QuanLyKhachHang_DTO()
+                {
+                    MaKH = row["MaKH"].ToString(),
+                    HoTenKH = row["HoTenKH"].ToString(),
+                    DiaChiKH = row["DiaChiKH"].ToString(),
+                    SDTKH = row["SDTKH"].ToString(),
+                    CMNDKH = row["CMNDKH"].ToString(),
+                    GioiTinhKH = row["GioiTinhKH"].ToString(),
+                    TrangThaiKH = row["TrangThaiKH"].ToString()
+                };
+                ketQua.Add(khachHang);
+            }
+
+            return ketQua;
+        }
+        public List<QuanLyKhachHang_DTO> TimKiemKhachHangTheoSDTKH(string tuKhoa)
+        {
+            // Thực hiện câu truy vấn tìm kiếm theo họ tên trong bảng khachhang
+            string query = $"SELECT * FROM khachhang WHERE SDTKH LIKE N'%{tuKhoa}%'";
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyKhachHang_DTO> ketQua = new List<QuanLyKhachHang_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyKhachHang_DTO khachHang = new QuanLyKhachHang_DTO()
+                {
+                    MaKH = row["MaKH"].ToString(),
+                    HoTenKH = row["HoTenKH"].ToString(),
+                    DiaChiKH = row["DiaChiKH"].ToString(),
+                    SDTKH = row["SDTKH"].ToString(),
+                    CMNDKH = row["CMNDKH"].ToString(),
+                    GioiTinhKH = row["GioiTinhKH"].ToString(),
+                    TrangThaiKH = row["TrangThaiKH"].ToString()
+                };
+                ketQua.Add(khachHang);
+            }
+
+            return ketQua;
+        }
+        public List<QuanLyKhachHang_DTO> TimKiemKhachHangTheoCMNDKH(string tuKhoa)
+        {
+            // Thực hiện câu truy vấn tìm kiếm theo họ tên trong bảng khachhang
+            string query = $"SELECT * FROM khachhang WHERE CMNDKH LIKE N'%{tuKhoa}%'";
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyKhachHang_DTO> ketQua = new List<QuanLyKhachHang_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyKhachHang_DTO khachHang = new QuanLyKhachHang_DTO()
+                {
+                    MaKH = row["MaKH"].ToString(),
+                    HoTenKH = row["HoTenKH"].ToString(),
+                    DiaChiKH = row["DiaChiKH"].ToString(),
+                    SDTKH = row["SDTKH"].ToString(),
+                    CMNDKH = row["CMNDKH"].ToString(),
+                    GioiTinhKH = row["GioiTinhKH"].ToString(),
+                    TrangThaiKH = row["TrangThaiKH"].ToString()
+                };
+                ketQua.Add(khachHang);
+            }
+
+            return ketQua;
+        }
+
+        // Kiểm tra tên khách hàng đã tồn tại hay chưa 
+
+        public bool IsTenKhachHangExists(string tenKhachHang)
+        {
+            string query = $"SELECT COUNT(*) FROM khachhang WHERE HoTenKH = N'{tenKhachHang}'";
+            int count = Convert.ToInt32(provider.ExecuteScalar(query));
+
+            return count > 0;
+        }
+        public bool IsTenKhachHangExists(string tenKhachHang, string maKH)
+        {
+            try
+            {
+                // Thực hiện câu truy vấn kiểm tra tên tài khoản tồn tại trong cơ sở dữ liệu
+                string query = $"SELECT COUNT(*) FROM khachhang WHERE HoTenKH = N'{tenKhachHang}' AND MaKH <> N'{maKH}'";
+                int count = Convert.ToInt32(provider.ExecuteScalar(query));
+
+                // Trả về true nếu tên tài khoản tồn tại, ngược lại trả về false
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý exception nếu có
+                Console.WriteLine("Error checking customer existence: " + ex.Message);
+                return false;
+            }
+        }
+
 
 
 
