@@ -1,5 +1,6 @@
 ﻿using DoAn_CSharp.DAO;
 using DoAn_CSharp.Databsase;
+using DoAn_CSharp.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,12 +63,13 @@ namespace DoAn_CSharp.Forms
             string passWord = txtPassword.Text;
             if (Login(userName, passWord))
             {
+                Account_DTO loginAccount = Account_DAO.Instance.GetAccountByUserName(userName);
                 maChucVu = GetMaChucVu(userName);
 
                 // Kiểm tra và enable/disable các controls dựa trên mã chức vụ
-                CheckUserRole();
+                /*CheckUserRole();*/
 
-                FormMainMenu f = new FormMainMenu();
+                FormMainMenu f = new FormMainMenu(loginAccount);
                 this.Hide();
                 f.ShowDialog();
                
@@ -98,24 +100,24 @@ namespace DoAn_CSharp.Forms
             return -1;
         }
 
-        private void CheckUserRole()
+        /*private void CheckUserRole()
         {
 
             if (maChucVu == 1) // Admin
             {
-                FormMainMenu f = new FormMainMenu();
+                FormMainMenu f = new FormMainMenu(loginAccount);
                 f.EnableAdminControls();
                 this.Hide();
                 f.ShowDialog();
             }
             else if (maChucVu == 2) // Nhân viên bán hàng
             {
-                FormMainMenu f = new FormMainMenu();
+                FormMainMenu f = new FormMainMenu(loginAccount);
                 f.EnableEmployeeControls();
                 this.Hide();
                 f.ShowDialog();
             }
-        }
+        }*/
 
 
 

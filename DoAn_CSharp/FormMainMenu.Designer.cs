@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnThietLap = new FontAwesome.Sharp.IconButton();
             this.btnDangXuat = new FontAwesome.Sharp.IconButton();
             this.btnThongKe = new FontAwesome.Sharp.IconButton();
             this.btnBanHang = new FontAwesome.Sharp.IconButton();
@@ -42,6 +43,7 @@
             this.panelLogo = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
             this.panelTitleBar = new System.Windows.Forms.Panel();
+            this.lbThongTinNhanVien = new System.Windows.Forms.Label();
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.btnMaxmize = new FontAwesome.Sharp.IconButton();
             this.btnExit = new FontAwesome.Sharp.IconButton();
@@ -49,7 +51,6 @@
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.btnThietLap = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.panelTitleBar.SuspendLayout();
@@ -76,6 +77,27 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(220, 760);
             this.panelMenu.TabIndex = 0;
+            // 
+            // btnThietLap
+            // 
+            this.btnThietLap.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnThietLap.FlatAppearance.BorderSize = 0;
+            this.btnThietLap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThietLap.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnThietLap.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.btnThietLap.IconColor = System.Drawing.Color.White;
+            this.btnThietLap.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnThietLap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThietLap.Location = new System.Drawing.Point(0, 590);
+            this.btnThietLap.Name = "btnThietLap";
+            this.btnThietLap.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnThietLap.Size = new System.Drawing.Size(220, 50);
+            this.btnThietLap.TabIndex = 11;
+            this.btnThietLap.Text = "Thiết Lập";
+            this.btnThietLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThietLap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnThietLap.UseVisualStyleBackColor = true;
+            this.btnThietLap.Click += new System.EventHandler(this.btnThietLap_Click);
             // 
             // btnDangXuat
             // 
@@ -308,6 +330,7 @@
             // panelTitleBar
             // 
             this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(62)))));
+            this.panelTitleBar.Controls.Add(this.lbThongTinNhanVien);
             this.panelTitleBar.Controls.Add(this.btnMinimize);
             this.panelTitleBar.Controls.Add(this.btnMaxmize);
             this.panelTitleBar.Controls.Add(this.btnExit);
@@ -319,6 +342,17 @@
             this.panelTitleBar.Size = new System.Drawing.Size(1157, 75);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            // 
+            // lbThongTinNhanVien
+            // 
+            this.lbThongTinNhanVien.AutoSize = true;
+            this.lbThongTinNhanVien.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbThongTinNhanVien.ForeColor = System.Drawing.Color.White;
+            this.lbThongTinNhanVien.Location = new System.Drawing.Point(77, 12);
+            this.lbThongTinNhanVien.Name = "lbThongTinNhanVien";
+            this.lbThongTinNhanVien.Size = new System.Drawing.Size(125, 19);
+            this.lbThongTinNhanVien.TabIndex = 5;
+            this.lbThongTinNhanVien.Text = "Tên Nhân Viên : ";
             // 
             // btnMinimize
             // 
@@ -407,27 +441,6 @@
             this.panelDesktop.Size = new System.Drawing.Size(1157, 676);
             this.panelDesktop.TabIndex = 3;
             // 
-            // btnThietLap
-            // 
-            this.btnThietLap.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnThietLap.FlatAppearance.BorderSize = 0;
-            this.btnThietLap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThietLap.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnThietLap.IconChar = FontAwesome.Sharp.IconChar.Gear;
-            this.btnThietLap.IconColor = System.Drawing.Color.White;
-            this.btnThietLap.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThietLap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThietLap.Location = new System.Drawing.Point(0, 590);
-            this.btnThietLap.Name = "btnThietLap";
-            this.btnThietLap.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnThietLap.Size = new System.Drawing.Size(220, 50);
-            this.btnThietLap.TabIndex = 11;
-            this.btnThietLap.Text = "Thiết Lập";
-            this.btnThietLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThietLap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnThietLap.UseVisualStyleBackColor = true;
-            this.btnThietLap.Click += new System.EventHandler(this.btnThietLap_Click);
-            // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,6 +487,7 @@
         private FontAwesome.Sharp.IconButton btnMaxmize;
         private FontAwesome.Sharp.IconButton btnDangXuat;
         private FontAwesome.Sharp.IconButton btnThietLap;
+        private System.Windows.Forms.Label lbThongTinNhanVien;
     }
 }
 

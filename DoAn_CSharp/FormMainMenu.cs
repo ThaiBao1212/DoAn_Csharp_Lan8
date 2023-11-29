@@ -11,6 +11,9 @@ using FontAwesome.Sharp;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using DoAn_CSharp.Databsase;
+using DoAn_CSharp.DAO;
+using DoAn_CSharp.DTO;
+using System.Runtime.CompilerServices;
 
 namespace DoAn_CSharp
 {
@@ -23,7 +26,17 @@ namespace DoAn_CSharp
 
         //Constructor 
 
-        public FormMainMenu()
+        private Account_DTO loginAccount;
+        public Account_DTO LoginAccount
+        {
+            get { return loginAccount; }
+            set { loginAccount = value; ChangeAccount(loginAccount.MaCV); }
+        }
+
+
+
+
+        public FormMainMenu(Account_DTO acc)
         {
             InitializeComponent();
 
@@ -36,9 +49,22 @@ namespace DoAn_CSharp
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
 
+            //Truyền  tài khoản đăng nhập vào 
+
+            this.LoginAccount = acc;
+
+
 
         }
         // private struct RGBColors
+        void ChangeAccount (int maCV)
+        {
+            btnQuanLyNhanVien.Enabled = maCV == 1;
+
+            lbThongTinNhanVien.Text += " " + LoginAccount.HoTenNV ;
+
+        }
+
 
         private struct RGBColors
         {
@@ -172,7 +198,8 @@ namespace DoAn_CSharp
         private void btnThietLap_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new Forms.FormThietLap());
+            
+            OpenChildForm(new Forms.FormThietLap(LoginAccount));
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -209,7 +236,12 @@ namespace DoAn_CSharp
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát chương trình ?", "Xác nhận Thoát ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void btnMaxmize_Click(object sender, EventArgs e)
@@ -225,29 +257,31 @@ namespace DoAn_CSharp
             WindowState = FormWindowState.Minimized; 
 
         }
-        public void EnableAdminControls()
-        {
-            btnQuanLyNhanVien.Enabled = true;
-            btnQuanLyNhapHang.Enabled = true;
-            btnThongKe.Enabled = true;
-        }
+        /*        public void EnableAdminControls()
+                {
+                    btnQuanLyNhanVien.Enabled = true;
+                    btnQuanLyNhapHang.Enabled = true;
+                    btnThongKe.Enabled = true;
+                }
 
-        public void EnableEmployeeControls()
-        {
-            btnQuanLyNhanVien.Enabled = false;
-            btnQuanLyNhapHang.Enabled = false;
-            btnThongKe.Enabled = false;
-            
-        }
+                public void EnableEmployeeControls()
+                {
+                    btnQuanLyNhanVien.Enabled = false;
+                    btnQuanLyNhapHang.Enabled = false;
+                    btnThongKe.Enabled = false;
+
+                }*/
 
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            Forms.FormLogin Login = new Forms.FormLogin();       
-            
-            this.Hide();
-            
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-
+            if (result == DialogResult.Yes)
+            {
+                Forms.FormLogin Login = new Forms.FormLogin();
+                Login.Show();
+                this.Hide();
+            }
         }
 
 

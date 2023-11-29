@@ -11,20 +11,26 @@ namespace DoAn_CSharp.DTO
     public class Account_DTO
     {
 
-        public Account_DTO(string maNV, string maCV, string hoTenNV, string tenTaiKhoanNV, int type, string matKhauNV = null)
+        public Account_DTO(string maNV, int maCV, string hoTenNV, string tenTaiKhoanNV, string matKhauNV = null)
         {
             this.MaNV = maNV;
-            this.maCV = maCV;
+            this.MaCV = maCV;
             this.HoTenNV = hoTenNV;
             this.TenTaiKhoanNV = tenTaiKhoanNV;
-            this.Type = type;
-            this.matKhauNV= matKhauNV;
-
+            
+            this.MatKhauNV= matKhauNV;
+            
         }
 
         public Account_DTO(DataRow row)
         {
-
+            this.MaNV = row["MaNV"].ToString();
+            this.MaCV = (int)row["MaCV"] ;
+            this.HoTenNV = row["HoTenNV"].ToString();
+            this.TenTaiKhoanNV = row["TenTaiKhoanNV"].ToString();
+            
+            this.MatKhauNV = row["MatKhauNV"].ToString();
+            
         }
         
         
@@ -34,20 +40,16 @@ namespace DoAn_CSharp.DTO
             get { return matKhauNV; }
             set { matKhauNV = value; }
         }
+        private string tenChucVu; // Đặt tên biến private
 
-
-
-        private int type;
-        public int Type
+        public string  TenChucVu // Tên thuộc tính
         {
-            get { return type; }
-            set { type = value; }
+            get { return tenChucVu; }
+            set { tenChucVu = value; }
         }
 
-
-
-        private string maCV;
-        public string MaCV
+        private int  maCV;
+        public int MaCV
         {
             get { return maCV; }
             set { maCV = value; }
