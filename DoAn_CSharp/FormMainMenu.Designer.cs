@@ -75,7 +75,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(220, 760);
+            this.panelMenu.Size = new System.Drawing.Size(220, 749);
             this.panelMenu.TabIndex = 0;
             // 
             // btnThietLap
@@ -339,7 +339,7 @@
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(220, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(1157, 75);
+            this.panelTitleBar.Size = new System.Drawing.Size(1150, 75);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             // 
@@ -362,7 +362,7 @@
             this.btnMinimize.IconColor = System.Drawing.Color.Magenta;
             this.btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMinimize.IconSize = 20;
-            this.btnMinimize.Location = new System.Drawing.Point(1078, 0);
+            this.btnMinimize.Location = new System.Drawing.Point(1071, 0);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(21, 22);
             this.btnMinimize.TabIndex = 4;
@@ -377,7 +377,7 @@
             this.btnMaxmize.IconColor = System.Drawing.Color.Magenta;
             this.btnMaxmize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMaxmize.IconSize = 20;
-            this.btnMaxmize.Location = new System.Drawing.Point(1106, 0);
+            this.btnMaxmize.Location = new System.Drawing.Point(1099, 0);
             this.btnMaxmize.Name = "btnMaxmize";
             this.btnMaxmize.Size = new System.Drawing.Size(21, 22);
             this.btnMaxmize.TabIndex = 3;
@@ -392,7 +392,7 @@
             this.btnExit.IconColor = System.Drawing.Color.Magenta;
             this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExit.IconSize = 20;
-            this.btnExit.Location = new System.Drawing.Point(1133, 0);
+            this.btnExit.Location = new System.Drawing.Point(1126, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(21, 22);
             this.btnExit.TabIndex = 2;
@@ -430,7 +430,7 @@
             this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelShadow.Location = new System.Drawing.Point(220, 75);
             this.panelShadow.Name = "panelShadow";
-            this.panelShadow.Size = new System.Drawing.Size(1157, 9);
+            this.panelShadow.Size = new System.Drawing.Size(1150, 9);
             this.panelShadow.TabIndex = 2;
             // 
             // panelDesktop
@@ -438,14 +438,14 @@
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(220, 84);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1157, 676);
+            this.panelDesktop.Size = new System.Drawing.Size(1150, 665);
             this.panelDesktop.TabIndex = 3;
             // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1377, 760);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);

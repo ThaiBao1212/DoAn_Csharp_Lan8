@@ -12,10 +12,10 @@ namespace DoAn_CSharp.DAO
     public class QuanLyNhaCungCap_DAO
     {
 
-        private Database db;
+        private Databsase.Database db;
         public QuanLyNhaCungCap_DAO()
         {
-            db = new Database();
+            db = new Databsase.Database();
 
         }
         public DataTable LayDanhSachSanPhamTrongNhaCungCap(QuanLyNhaCungCap_DTO ql_NhaCungCap_DTO)

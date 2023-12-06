@@ -12,10 +12,10 @@ namespace DoAn_CSharp.DAO
 {
     internal class QuanLyDanhMuc_DAO
     {
-        private Database db;
+        private Databsase.Database db;
         public QuanLyDanhMuc_DAO()
         {
-            db = new Database();
+            db = new Databsase.Database();
 
         }
         public DataTable LayDanhSachDanhMuc()

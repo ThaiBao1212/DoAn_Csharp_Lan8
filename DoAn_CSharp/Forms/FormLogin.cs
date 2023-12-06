@@ -1,4 +1,5 @@
 ﻿using DoAn_CSharp.DAO;
+using DoAn_CSharp.Database;
 using DoAn_CSharp.Databsase;
 using DoAn_CSharp.DTO;
 using System;
@@ -21,7 +22,7 @@ namespace DoAn_CSharp.Forms
         {
             InitializeComponent();
         }
-
+        private TripleDES_Class tripleDES = new TripleDES_Class();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -60,7 +61,7 @@ namespace DoAn_CSharp.Forms
         {
 
             string userName = txtUserName.Text;
-            string passWord = txtPassword.Text;
+            string passWord = tripleDES.MaHoa(txtPassword.Text);
             if (Login(userName, passWord))
             {
                 Account_DTO loginAccount = Account_DAO.Instance.GetAccountByUserName(userName);

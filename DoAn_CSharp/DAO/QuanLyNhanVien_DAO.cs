@@ -106,7 +106,6 @@ namespace DoAn_CSharp.DAO
             }
         }
 
-
         public bool UpdateNhanVien(string maNV, string maCV, string tenTaiKhoanNV, string matKhauNV, string hoTenNV,
                             string gioiTinhNV, DateTime ngaySinhNV, string diaChiNV,
                             string emailNV, string sdtNV, string cmndNV, string anhNV)
@@ -266,13 +265,6 @@ namespace DoAn_CSharp.DAO
                 return false;
             }
         }
-
-
-
-
-
-
-
     }
 }
 

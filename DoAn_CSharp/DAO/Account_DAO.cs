@@ -43,9 +43,7 @@ namespace DoAn_CSharp.DAO
             return null;
         }
 
-                    
-
-
+                   
         public bool UpdateAccount(string hoTenNV , string tenTaiKhoanNV , string matKhauNV , string matKhauMoi) 
         {
             int result = DataProvider.Instance.ExecuteNonQuery("exec USP_UpdateAccount @tenTaiKhoanNV  , @hoTenNV  , @matKhauNV , @matKhauMoi", new object[]{ hoTenNV, tenTaiKhoanNV , matKhauNV , matKhauMoi} );
@@ -54,6 +52,5 @@ namespace DoAn_CSharp.DAO
         }
 
     }
-
 
 }

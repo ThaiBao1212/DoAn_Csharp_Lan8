@@ -1,4 +1,6 @@
 ﻿using DoAn_CSharp.DAO;
+using DoAn_CSharp.Database;
+using DoAn_CSharp.Databsase;
 using DoAn_CSharp.DTO;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,9 @@ namespace DoAn_CSharp.Forms
 {
     public partial class FormQuanLyNhanVien : Form
     {
+
+        TripleDES_Class baomat = new TripleDES_Class();
+
 
         private string anhNV;
         private QuanLyNhanVien_DAO nhanVien_DAO = new QuanLyNhanVien_DAO();
@@ -45,11 +50,7 @@ namespace DoAn_CSharp.Forms
                 cbMaChucVu.SelectedIndex = 0;
             }
 
-
             // Chọn giá trị đầu tiên của combobox giới tính 
-
-
-
         }
 
 
@@ -117,7 +118,7 @@ namespace DoAn_CSharp.Forms
 
         private void LoadDataToComBoBoxTimKiem()
         {
-            
+
             cbTimKiem.Items.Add("MaNV");
             cbTimKiem.Items.Add("TenTaiKhoanNV");
             cbTimKiem.Items.Add("HoTenNV");
@@ -214,7 +215,7 @@ namespace DoAn_CSharp.Forms
             // Lấy thông tin từ các controls trên form
             string maCV = cbMaChucVu.SelectedItem.ToString();
             string tenTaiKhoanNV = txtTenTaiKhoan.Text;
-            string matKhauNV = txtMatKhau.Text;
+            string matKhauNV = baomat.MaHoa(txtMatKhau.Text);
             string hoTenNV = txtHoTen.Text;
             string gioiTinhNV = cbGioiTinh.SelectedItem.ToString();
             DateTime ngaySinhNV = dateTimePickerNgaySinh.Value;
@@ -378,7 +379,7 @@ namespace DoAn_CSharp.Forms
 
             string maCV = cbMaChucVu.SelectedItem.ToString();
             string tenTaiKhoanNV = txtTenTaiKhoan.Text;
-            string matKhauNV = txtMatKhau.Text;
+            string matKhauNV = baomat.MaHoa(txtMatKhau.Text);
             string hoTenNV = txtHoTen.Text;
             string gioiTinhNV = cbGioiTinh.SelectedItem.ToString();
             DateTime ngaySinhNV = dateTimePickerNgaySinh.Value;
@@ -536,7 +537,43 @@ namespace DoAn_CSharp.Forms
         }
 
 
-        /*private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        private void btnNhapExcel_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+     
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            
+        }
+       
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
             // Gọi phương thức tìm kiếm khi nội dung trong ô tìm kiếm thay đổi
             TimKiemNhanVien();
@@ -596,10 +633,3 @@ namespace DoAn_CSharp.Forms
             // Cập nhật DataGridView với kết quả tìm kiếm
             dtgvQuanLyNhanVien.DataSource = ketQuaTimKiem;
         }*/
-
-
-
-
-
-    }
-}
