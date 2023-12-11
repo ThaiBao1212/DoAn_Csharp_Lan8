@@ -10,11 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using DoAn_CSharp.Databsase;
 
 namespace DoAn_CSharp.Forms
 {
     public partial class FormThietLap : Form
     {
+        MD5Hash md5Hash = new MD5Hash();
 
         private Account_DTO loginAccount;
         public Account_DTO LoginAccount
@@ -55,9 +57,9 @@ namespace DoAn_CSharp.Forms
         {
             string hoTenNV = txtHoTen.Text;
             string tenTaiKhoanNV = txtTenTaiKhoan.Text;
-            string matKhauNV  = txtMatKhau.Text;
-            string matKhauMoi = txtMatKhauMoi.Text;
-            string nhapLaiMatKhau = txtNhapLaiMatKhau.Text;
+            string matKhauNV  = MD5Hash.CalculateMD5Hash(txtMatKhau.Text);
+            string matKhauMoi = MD5Hash.CalculateMD5Hash(txtMatKhauMoi.Text);
+            string nhapLaiMatKhau = MD5Hash.CalculateMD5Hash(txtNhapLaiMatKhau.Text);
 
             if (!matKhauMoi.Equals(nhapLaiMatKhau))
             {
@@ -98,5 +100,7 @@ namespace DoAn_CSharp.Forms
             txtMatKhauMoi.Clear();
             txtNhapLaiMatKhau.Clear();
         }
+
+
     }
 }

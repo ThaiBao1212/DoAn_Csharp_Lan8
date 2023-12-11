@@ -39,7 +39,6 @@ namespace DoAn_CSharp.Forms
             {
                 this.TrangThaiKH = "Đóng";
             }
-        
         }
 
         private void FormQuanLyKhachHang_Load(object sender, EventArgs e)
@@ -48,8 +47,8 @@ namespace DoAn_CSharp.Forms
             dataKH_load();
             LoadDataToComBoBoxGioiTinh();
             LoadDataToComBoBoxTimKiem();
-
         }
+
         private void LoadDataToComBoBoxGioiTinh()
         {
             cbGioiTinh.Items.Add("Nam");
@@ -60,6 +59,7 @@ namespace DoAn_CSharp.Forms
                 cbGioiTinh.SelectedIndex = 0;
             }
         }
+
         private void LoadDataToComBoBoxTimKiem()
         {
             cbTimKiem.Items.Add("Tất cả");
@@ -71,28 +71,27 @@ namespace DoAn_CSharp.Forms
             cbTimKiem.Items.Add("Gioi Tinh KH");
             cbTimKiem.Items.Add("Trạng Thái KH");
            
-
-
-
-
             if (cbTimKiem.Items.Count > 0)
             {
                 cbTimKiem.SelectedIndex = 0;
             }
         }
+
+
         private void LoadDataToDataGridView()
         {
             List<QuanLyKhachHang_DTO> list_KH = khachHang_DAO.GetKhachHang();
             dtgvQuanLyKhachHang.DataSource = list_KH;
 
-
         }
+
         private void dataKH_load()
         {
             dtgvQuanLyKhachHang.SelectionChanged += dtgvQuanLyKhachHang_SelectionChanged;
             dtgvQuanLyKhachHang.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dtgvQuanLyKhachHang.ReadOnly = true;
         }
+
 
         private void dtgvQuanLyKhachHang_SelectionChanged(object sender, EventArgs e)
         {
@@ -126,10 +125,9 @@ namespace DoAn_CSharp.Forms
                 {
                     cbGioiTinh.SelectedIndex = -1; // Nếu không tìm thấy giới tính, chọn giá trị mặc định hoặc để không chọn
                 }
-
-
             }
         }
+
 
         private void ClearInputFields()
         {
@@ -147,9 +145,6 @@ namespace DoAn_CSharp.Forms
         {
             ClearInputFields();
         }
-
-
-
 
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -218,6 +213,7 @@ namespace DoAn_CSharp.Forms
 
             ClearInputFields();
         }
+
 
 
         private void btnCapNhat_Click(object sender, EventArgs e)
@@ -312,11 +308,13 @@ namespace DoAn_CSharp.Forms
             TimKiemKhachHang();
         }
 
+
         private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Gọi phương thức tìm kiếm khi lựa chọn trong combobox thay đổi
             TimKiemKhachHang();
         }
+
 
         private void TimKiemKhachHang()
         {

@@ -14,5 +14,9 @@ namespace DoAn_CSharp.DTO
         public string SDTNCC { get; set; } // Supplier Phone Number
         public string Email { get; set; } // Supplier Email
         public string TrangThaiNCC { get; set; } // Supplier Status
+
+
     }
-}
+}   
+
+

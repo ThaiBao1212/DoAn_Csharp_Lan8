@@ -24,6 +24,8 @@ namespace DoAn_CSharp.Forms
         }
         private TripleDES_Class tripleDES = new TripleDES_Class();
 
+        MD5Hash md5hash = new MD5Hash();
+
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
@@ -61,7 +63,11 @@ namespace DoAn_CSharp.Forms
         {
 
             string userName = txtUserName.Text;
-            string passWord = tripleDES.MaHoa(txtPassword.Text);
+            //string passWord = tripleDES.MaHoa(txtPassword.Text);
+            string passWord = MD5Hash.CalculateMD5Hash(txtPassword.Text);
+
+            
+
             if (Login(userName, passWord))
             {
                 Account_DTO loginAccount = Account_DAO.Instance.GetAccountByUserName(userName);
