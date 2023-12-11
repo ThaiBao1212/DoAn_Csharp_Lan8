@@ -1,5 +1,5 @@
 ﻿using DoAn_CSharp.DAO;
-using DoAn_CSharp.Databsase;
+using DoAn_CSharp.Database;
 using DoAn_CSharp.DTO;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace DoAn_CSharp.Forms
 {
-   
+
     public partial class FormQuanLyDanhMuc : Form
     {
 
@@ -25,15 +25,8 @@ namespace DoAn_CSharp.Forms
             InitializeComponent();
             HienThiDanhMuc();
             dtgvDanhSachDanhMuc.SelectionChanged += DtgvDanhSachDanhMuc_SelectionChanged;
-      
 
 
-
-
-        }
-        private void UserControlProduct_item_SelectionChanged(object sender, EventArgs e)
-        {
-            // Your event handling logic here
         }
 
 
@@ -60,7 +53,7 @@ namespace DoAn_CSharp.Forms
         {
             try
             {
-                if ( string.IsNullOrEmpty(txtTenDanhMuc.Text))
+                if (string.IsNullOrEmpty(txtTenDanhMuc.Text))
                 {
                     MessageBox.Show("Vui lòng nhập đúng thông tin danh mục.");
                     return;
@@ -81,8 +74,6 @@ namespace DoAn_CSharp.Forms
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-
-
 
         }
 
@@ -185,9 +176,9 @@ namespace DoAn_CSharp.Forms
 
         private void dtgvDanhSachDanhMuc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
-               DataGridViewRow selectedRow = dtgvDanhSachDanhMuc.Rows[e.RowIndex];
+                DataGridViewRow selectedRow = dtgvDanhSachDanhMuc.Rows[e.RowIndex];
                 txtMaDanhMuc.Text = selectedRow.Cells["MaDanhMuc"].Value.ToString();
                 txtTenDanhMuc.Text = selectedRow.Cells["TenDM"].Value.ToString();
 
@@ -210,6 +201,6 @@ namespace DoAn_CSharp.Forms
 
 
     }
-    
+
 
 }

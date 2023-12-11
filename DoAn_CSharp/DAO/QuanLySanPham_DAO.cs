@@ -1,5 +1,5 @@
 ﻿
-using DoAn_CSharp.Databsase;
+using DoAn_CSharp.Database;
 using DoAn_CSharp.DTO;
 using System;
 using System.Collections.Generic;
@@ -9,11 +9,11 @@ namespace DoAn_CSharp.DAO
 {
     internal class QuanLySanPham_DAO
     {
-        private readonly Database db;
+        private readonly Database.Database db;
 
         public QuanLySanPham_DAO()
         {
-            db = new Database();
+            db = new Database.Database();
         }
 
         public DataTable LayDanhSachSanPham()
@@ -26,7 +26,7 @@ namespace DoAn_CSharp.DAO
         {
             try
             {
-                string strSQL = $"SELECT sp.MaSP, TenSP, ncc.TenNCC, dm.TenDM, sp.SizeSP, sp.SoLuongSP, sp.DonGia, sp.AnhSP, sp.MieuTaSP, sp.TrangThaiSP " +
+                string strSQL = $"SELECT sp.MaSP, TenSP, ncc.TenNCC, dm.TenDM, sp.DonGia, sp.AnhSP, sp.MieuTaSP, sp.TrangThaiSP " +
                  "FROM sanpham sp " +
                  "JOIN nhacungcap ncc ON sp.MaNCC = ncc.MaNCC " +
                  "JOIN danhmuc dm ON dm.MaDanhMuc = sp.MaDM " +
@@ -45,9 +45,6 @@ namespace DoAn_CSharp.DAO
                         TenSP = row["TenSP"].ToString(),
                         TenNCC = row["TenNCC"].ToString(),
                         TenDM = row["TenDM"].ToString(),
-
-                        SizeSP = row["SizeSP"].ToString(),
-                        SoLuongSP = Convert.ToInt32(row["SoLuongSP"]),
                         MieuTaSP = row["MieuTaSP"].ToString(),
                         DonGia = Convert.ToDecimal(row["DonGia"]),
                         TrangThaiSP = row["TrangThaiSP"].ToString(),
@@ -116,8 +113,7 @@ namespace DoAn_CSharp.DAO
                         MaNCC = Convert.ToInt32(row["MaNCC"]),
                         MaDM = Convert.ToInt32(row["MaDM"]),
                         TenSP = row["TenSP"].ToString(),
-                        SizeSP = row["SizeSP"].ToString(),
-                        SoLuongSP = Convert.ToInt32(row["SoLuongSP"]),
+                      
                         MieuTaSP = row["MieuTaSP"].ToString(),
                         DonGia = Convert.ToDecimal(row["DonGia"]),
                         TrangThaiSP = row["TrangThaiSP"].ToString(),

@@ -224,3 +224,4 @@ C:\Users\ADMIN\OneDrive\Tài liệu\GitHub\DoAn_Csharp\DoAn_CSharp\obj\Debug\D
 C:\Users\ADMIN\OneDrive\Tài liệu\GitHub\DoAn_Csharp\DoAn_CSharp\obj\Debug\DoAn_CSharp.pdb
 C:\Users\ADMIN\OneDrive\Tài liệu\GitHub\DoAn_CSharp\DoAn_CSharp\obj\Debug\DoAn_CSharp.Forms.UserControlProduct_item.resources
 C:\Users\ADMIN\OneDrive\Tài liệu\GitHub\DoAn_CSharp\DoAn_CSharp\obj\Debug\DoAn_CSharp.Forms.UserControl_Cart.resources
+C:\Users\ADMIN\OneDrive\Tài liệu\GitHub\DoAn_CSharp\DoAn_CSharp\obj\Debug\DoAn_CSharp.Forms.TimKhachHang_Form.resources

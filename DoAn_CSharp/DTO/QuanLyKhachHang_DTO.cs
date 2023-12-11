@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace DoAn_CSharp.DTO
 {
-    internal class QuanLyKhachHang_DTO
+    public class QuanLyKhachHang_DTO
     {
-        public int MaKH { get; set; } // Customer ID, PRIMARY KEY
-        public string HoTenKH { get; set; } // Customer Name
-        public string DiaChiKH { get; set; } // Customer Address
-        public string SDTKH { get; set; } // Customer Phone Number
-        public string CMNDKH { get; set; } // Customer ID Card Number
-        public string GioiTinhKH { get; set; } // Customer Gender
-        public string TrangThaiKH { get; set; } // Customer Status
+
+        public string MaKH { get; set; }
+        public string HoTenKH { get; set; }
+        public string DiaChiKH { get; set; }
+        public string SDTKH { get; set; }
+        public string CMNDKH { get; set; }
+        public string GioiTinhKH { get; set; }
+        public string TrangThaiKH { get; set; }
+
     }
 }

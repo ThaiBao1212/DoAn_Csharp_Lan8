@@ -1,4 +1,4 @@
-﻿using DoAn_CSharp.Databsase;
+﻿using DoAn_CSharp.Database;
 using DoAn_CSharp.DTO;
 using System;
 using System.Collections.Generic;
@@ -12,17 +12,17 @@ namespace DoAn_CSharp.DAO
 {
     internal class QuanLyDanhMuc_DAO
     {
-        private Database db;
+        private Database.Database db;
         public QuanLyDanhMuc_DAO()
         {
-            db = new Database();
+            db = new Database.Database();
 
         }
         public DataTable LayDanhSachDanhMuc()
         {
             try
             {
-                string strSQL = "SELECT * FROM danhmuc";
+                string strSQL = "SELECT * FROM danhmuc WHERE TrangThaiDM =N'Mở'";
                 DataTable dt = db.Execute(strSQL);
                 return dt;
             }
@@ -34,11 +34,10 @@ namespace DoAn_CSharp.DAO
         }
         public DataTable LayDanhSachSanPhamDanhMuc(QuanLyDanhMuc_DTO ql_danhmuc_DTO)
         {
-            string strSQL = $"Select * from sanpham where MaDM = {ql_danhmuc_DTO.maDanhMuc}";
+            string strSQL = $"Select * from sanpham where MaDM=N'{ql_danhmuc_DTO.maDanhMuc}'";
             DataTable dt = db.Execute(strSQL);
             return dt;
         }
-
 
 
         public void ThemDanhMuc(QuanLyDanhMuc_DTO ql_danhmuc_DTO)

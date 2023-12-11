@@ -10,52 +10,79 @@ using System.Windows.Media;
 using FontAwesome.Sharp;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using DoAn_CSharp.Database;
+using DoAn_CSharp.DAO;
+using DoAn_CSharp.DTO;
+using System.Runtime.CompilerServices;
+using DoAn_CSharp.Forms;
 
 namespace DoAn_CSharp
 {
     public partial class FormMainMenu : Form
     {
-        private IconButton currentBtn; 
+        private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Form currentChildForm;
 
 
         //Constructor 
 
-        public FormMainMenu()
+        private Account_DTO loginAccount;
+        public Account_DTO LoginAccount
+        {
+            get { return loginAccount; }
+            set { loginAccount = value; ChangeAccount(loginAccount.MaCV); }
+        }
+
+
+
+
+        public FormMainMenu(Account_DTO acc)
         {
             InitializeComponent();
 
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 50);
             panelMenu.Controls.Add(leftBorderBtn);
-            
+
             this.Text = string.Empty;
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-            this.WindowState = FormWindowState.Maximized;
+
+            //Truyền  tài khoản đăng nhập vào 
+
+            this.LoginAccount = acc;
+
 
 
         }
         // private struct RGBColors
+        void ChangeAccount(int maCV)
+        {
+            btnQuanLyNhanVien.Enabled = maCV == 1;
+
+            lbThongTinNhanVien.Text += " " + LoginAccount.HoTenNV;
+
+        }
+
 
         private struct RGBColors
         {
             public static System.Drawing.Color color1 = System.Drawing.Color.FromArgb(172, 126, 241);
             public static System.Drawing.Color color2 = System.Drawing.Color.FromArgb(249, 118, 176);
             public static System.Drawing.Color color3 = System.Drawing.Color.FromArgb(253, 138, 114);
-            public static System.Drawing.Color color4 = System.Drawing.Color.FromArgb(95,77,221);
+            public static System.Drawing.Color color4 = System.Drawing.Color.FromArgb(95, 77, 221);
             public static System.Drawing.Color color5 = System.Drawing.Color.FromArgb(249, 88, 155);
             public static System.Drawing.Color color6 = System.Drawing.Color.FromArgb(24, 161, 251);
 
         }
-        
+
         //Methods
 
         private void ActivateButton(object senderBtn, System.Drawing.Color color)
         {
-            if (senderBtn  != null)
+            if (senderBtn != null)
             {
                 DisableButton();
                 //Button
@@ -66,7 +93,7 @@ namespace DoAn_CSharp
                 currentBtn.IconColor = color;
                 currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
                 currentBtn.ImageAlign = ContentAlignment.MiddleRight;
-                
+
                 //Left border button
 
                 leftBorderBtn.BackColor = color;
@@ -86,7 +113,7 @@ namespace DoAn_CSharp
         {
             if (currentBtn != null)
             {
-            
+
                 currentBtn.BackColor = System.Drawing.Color.FromArgb(31, 30, 68);
                 currentBtn.ForeColor = System.Drawing.Color.Gainsboro;
                 currentBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -99,13 +126,13 @@ namespace DoAn_CSharp
 
         private void OpenChildForm(Form childForm)
         {
-            if(currentChildForm != null)
+            if (currentChildForm != null)
             {
                 currentChildForm.Close();
             }
             currentChildForm = childForm;
             childForm.TopLevel = false;
-            childForm.FormBorderStyle  = FormBorderStyle.None;
+            childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
             panelDesktop.Controls.Add(childForm);
             panelDesktop.Tag = childForm;
@@ -161,7 +188,8 @@ namespace DoAn_CSharp
         private void btnBanHang_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new Forms.FormBanHang());
+            FormBanHang formBanHang = new FormBanHang(LoginAccount);
+            OpenChildForm(formBanHang);
         }
 
         private void btnThongKe_Click(object sender, EventArgs e)
@@ -169,13 +197,18 @@ namespace DoAn_CSharp
             ActivateButton(sender, RGBColors.color3);
             OpenChildForm(new Forms.FormThongKe());
         }
+        private void btnThietLap_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color3);
+
+            OpenChildForm(new Forms.FormThietLap(LoginAccount));
+        }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
             currentChildForm.Close();
 
             Reset();
-
         }
 
         private void Reset()
@@ -192,8 +225,8 @@ namespace DoAn_CSharp
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
-        [DllImport("user32.DLL", EntryPoint ="SendMessage")]
-        private extern static void SendMessage(System.IntPtr hwnd, int WMsg , int wParam , int lParam);
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int WMsg, int wParam, int lParam);
 
 
         private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
@@ -205,7 +238,12 @@ namespace DoAn_CSharp
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát chương trình ?", "Xác nhận Thoát ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void btnMaxmize_Click(object sender, EventArgs e)
@@ -218,8 +256,36 @@ namespace DoAn_CSharp
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Minimized; 
+            WindowState = FormWindowState.Minimized;
 
         }
+        /*        public void EnableAdminControls()
+                {
+                    btnQuanLyNhanVien.Enabled = true;
+                    btnQuanLyNhapHang.Enabled = true;
+                    btnThongKe.Enabled = true;
+                }
+
+                public void EnableEmployeeControls()
+                {
+                    btnQuanLyNhanVien.Enabled = false;
+                    btnQuanLyNhapHang.Enabled = false;
+                    btnThongKe.Enabled = false;
+
+                }*/
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Forms.FormLogin Login = new Forms.FormLogin();
+                Login.Show();
+                this.Hide();
+            }
+        }
+
+
     }
 }

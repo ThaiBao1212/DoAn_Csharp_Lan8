@@ -1,4 +1,4 @@
-﻿using DoAn_CSharp.Databsase;
+﻿using DoAn_CSharp.Database;
 using DoAn_CSharp.DTO;
 using System;
 using System.Collections.Generic;
@@ -11,16 +11,16 @@ namespace DoAn_CSharp.DAO
 {
     internal class QuanLyHoaDon_DAO
     {
-        private Database db;
+        private Database.Database db;
 
         // Constructor mặc định
         public QuanLyHoaDon_DAO()
         {
-            db = new Database();
+            db = new Database.Database();
         }
 
         // Constructor nhận một đối tượng Database khác
-        public QuanLyHoaDon_DAO(Database otherDatabase)
+        public QuanLyHoaDon_DAO(Database.Database otherDatabase)
         {
             db = otherDatabase;
         }

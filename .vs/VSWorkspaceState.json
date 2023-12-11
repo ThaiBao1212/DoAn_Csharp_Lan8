@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\DoAn_CSharp",
-    "\\DoAn_CSharp\\DAO",
     "\\DoAn_CSharp\\Forms"
   ],
-  "SelectedNode": "\\DoAn_CSharp\\Forms\\UserControl_Cart.cs",
+  "SelectedNode": "\\DoAn_CSharp\\Forms\\FormLogin.Designer.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DoAn_CSharp.DAO;
+using DoAn_CSharp.Database;
+using DoAn_CSharp.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +16,12 @@ namespace DoAn_CSharp.Forms
 {
     public partial class FormLogin : Form
     {
+        private int maChucVu = -1;
         public FormLogin()
         {
             InitializeComponent();
-
         }
+
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -27,7 +31,7 @@ namespace DoAn_CSharp.Forms
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -54,8 +58,71 @@ namespace DoAn_CSharp.Forms
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            FormMainMenu formMain = new FormMainMenu();
-            formMain.ShowDialog();
+
+            string userName = txtUserName.Text;
+            string passWord = txtPassword.Text;
+            if (Login(userName, passWord))
+            {
+                Account_DTO loginAccount = Account_DAO.Instance.GetAccountByUserName(userName);
+                maChucVu = GetMaChucVu(userName);
+
+                // Kiểm tra và enable/disable các controls dựa trên mã chức vụ
+                /*CheckUserRole();*/
+
+                FormMainMenu f = new FormMainMenu(loginAccount);
+                this.Hide();
+                f.ShowDialog();
+
+            }
+            else
+            {
+                MessageBox.Show("Sai tên tài khoản hoặc mật khẩu !");
+            }
+
         }
+        bool Login(string userName, string passWord)
+        {
+            return Account_DAO.Instance.Login(userName, passWord);
+        }
+
+
+        private int GetMaChucVu(string userName)
+        {
+            string query = "SELECT MaCV FROM dbo.nhanvien WHERE TenTaiKhoanNV = @UserName";
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] { userName });
+
+            if (result.Rows.Count > 0)
+            {
+                return Convert.ToInt32(result.Rows[0]["MaCV"]);
+            }
+
+            // Trả về -1 hoặc giá trị không hợp lệ nếu không tìm thấy
+            return -1;
+        }
+
+        /*private void CheckUserRole()
+        {
+
+            if (maChucVu == 1) // Admin
+            {
+                FormMainMenu f = new FormMainMenu(loginAccount);
+                f.EnableAdminControls();
+                this.Hide();
+                f.ShowDialog();
+            }
+            else if (maChucVu == 2) // Nhân viên bán hàng
+            {
+                FormMainMenu f = new FormMainMenu(loginAccount);
+                f.EnableEmployeeControls();
+                this.Hide();
+                f.ShowDialog();
+            }
+        }*/
+
+
+
+
+
+
     }
 }

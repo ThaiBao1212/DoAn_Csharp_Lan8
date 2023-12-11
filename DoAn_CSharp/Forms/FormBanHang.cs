@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace DoAn_CSharp.Forms
 {
@@ -19,17 +20,34 @@ namespace DoAn_CSharp.Forms
 
         private DTO.QuanLyNhaCungCap_DTO quanLyNhaCungCap_DTO = new DTO.QuanLyNhaCungCap_DTO();
         private DAO.QuanLyNhaCungCap_DAO quanLyNhaCungCap_DAO = new DAO.QuanLyNhaCungCap_DAO();
+
         private DAO.QuanLyBanHang_DAO quanLyBanHang_DAO = new QuanLyBanHang_DAO();
+        private DTO.QuanLyBanHang_DTO quanLyBanHang_DTO = new QuanLyBanHang_DTO();
 
         private List<ShoppingCartItem_DTO> shoppingCart = new List<ShoppingCartItem_DTO>();
-        public FormBanHang()
+
+        private Account_DTO loginAccount;
+
+        public Account_DTO LoginAccount
+        {
+            get { return loginAccount; }
+            set { loginAccount = value; /* Optionally, perform additional actions when the login account is set */ }
+        }
+
+
+
+
+        public FormBanHang(Account_DTO acc)
         {
             InitializeComponent();
             HienThiDanhSachSanPhamfull();
             LoadDanhMucToComboBox();
+
             cbLocDanhMuc.SelectedIndexChanged += CbLocDanhMuc_SelectedIndexChanged;
 
-   
+            this.LoginAccount = acc;
+
+            lblnhanvienbanhang.Text = " " + LoginAccount.HoTenNV;
 
 
 
@@ -47,39 +65,59 @@ namespace DoAn_CSharp.Forms
         private void LoadDanhMucToComboBox()
         {
             DataTable dt = ql_danhmuc_DAO.LayDanhSachDanhMuc();
-            cbLocDanhMuc.DisplayMember = "TenDM"; 
+            cbLocDanhMuc.DisplayMember = "TenDM";
             cbLocDanhMuc.ValueMember = "MaDanhMuc";
             cbLocDanhMuc.DataSource = dt;
-      
+
+        }
+        private void LoadSiseToComboBox()
+        {
+            DataTable dt = quanLyBanHang_DAO.LayDanhSachSizes();
+            cbSizes.DisplayMember = "TenSize";
+            cbSizes.ValueMember = "MaSize";
+            cbSizes.DataSource = dt;
+
         }
 
         private void HienThiDanhSachSanPhamfull()
         {
             List<QuanLySanPham_DTO> danhSachSanPham = quanLySanPham_DAO.LayDanhSachSanPhamBan();
 
-            // Clear controls trong groupBox1 trước khi thêm dữ liệu mới
-            flowLayoutPanelProducts_item.Controls.Clear();
-
-            foreach (QuanLySanPham_DTO sanPham in danhSachSanPham)
+            // Check if danhSachSanPham is null
+            if (danhSachSanPham != null)
             {
-                // Create an instance of UserControlProduct_item for each product
-                var productItem = new UserControlProduct_item(
-                    sanPham.MaSP.ToString(),
-                    sanPham.TenSP,
-                    sanPham.DonGia.ToString("C"),
-                    sanPham.AnhSP
-                );
+                // Clear controls trong groupBox1 trước khi thêm dữ liệu mới
+                flowLayoutPanelProducts_item.Controls.Clear();
 
-                // Subscribe to the ProductClick event
-                productItem.ProductClick += ProductItem_ProductClick;
+                foreach (QuanLySanPham_DTO sanPham in danhSachSanPham)
+                {
+                    // Create an instance of UserControlProduct_item for each product
+                    var productItem = new UserControlProduct_item(
+                        sanPham.MaSP.ToString(),
+                        sanPham.TenSP,
+                        sanPham.DonGia.ToString("C"),
+                        sanPham.AnhSP
+                    );
 
-                // Add the UserControlProduct_item to the FlowLayoutPanel
-                flowLayoutPanelProducts_item.Controls.Add(productItem);
+                    // Subscribe to the ProductClick event
+                    productItem.ProductClick += ProductItem_ProductClick;
+
+                    // Add the UserControlProduct_item to the FlowLayoutPanel
+                    flowLayoutPanelProducts_item.Controls.Add(productItem);
+                }
+            }
+            else
+            {
+                // Handle the case where danhSachSanPham is null (e.g., display a message)
+                MessageBox.Show("No products available.");
             }
         }
 
+
         private void ProductItem_ProductClick(object sender, EventArgs e)
         {
+
+
             // Handle the product click event here
             if (sender is UserControlProduct_item productItem)
             {
@@ -88,6 +126,8 @@ namespace DoAn_CSharp.Forms
                 {
                     quanLySanPham_DTO.MaSP = maSP;
                     ChiTietSanPham();
+                    cbSizes.SelectedIndexChanged += cbSizes_SelectedIndexChanged;
+                    LoadSiseToComboBox();
                 }
                 else
                 {
@@ -99,7 +139,7 @@ namespace DoAn_CSharp.Forms
 
         private void ChiTietSanPham()
         {
-  
+
             QuanLySanPham_DTO productDetails = quanLySanPham_DAO.LayChiTietSanPham(quanLySanPham_DTO.MaSP);
 
             if (productDetails != null)
@@ -110,10 +150,10 @@ namespace DoAn_CSharp.Forms
                 txtSanPham.Text = productDetails.TenSP.ToString();
                 txtTenNhaCungCap.Text = productDetails.TenNCC.ToString();
                 txtTenDanhMuc.Text = productDetails.TenDM.ToString();
-      
-                txtSoLuong.Text = productDetails.SoLuongSP.ToString();
+                /*      
+                                txtSoLuong.Text = productDetails.SoLuongSP.ToString();
 
-                txtSize.Text = productDetails.SizeSP;
+                                txtSize.Text = productDetails.SizeSP;*/
                 txtDonGia.Text = productDetails.DonGia.ToString("C");
 
                 // Load the image from resources and update PictureBox
@@ -123,7 +163,7 @@ namespace DoAn_CSharp.Forms
             else
             {
                 // Handle the case where product details are not available
-                MessageBox.Show("Product details not found");
+                MessageBox.Show("Product details not found222");
             }
         }
 
@@ -154,69 +194,118 @@ namespace DoAn_CSharp.Forms
         }
         private void tbtGioHang_Click(object sender, EventArgs e)
         {
+            // Get the product ID and size ID
             string productId = txtMaSanPham.Text;
-            string productName = txtSanPham.Text;
+            object selectedValue = cbSizes.SelectedValue;
 
-            // Try to parse the price, handle invalid input
-            if (!decimal.TryParse(txtDonGia.Text, out decimal price))
+            // Check if size is selected
+            if (selectedValue == null)
             {
-                MessageBox.Show("Invalid price format.");
+                MessageBox.Show("Vui lòng chọn sản phẩm.");
                 return;
             }
 
-            // Check if the product is already in the shopping cart
-            var existingItem = shoppingCart.FirstOrDefault(item => item.ProductId == productId);
+            string sizeId = selectedValue.ToString();
 
-            if (existingItem != null)
+            // Check for null values before proceeding
+            if (productId == null || sizeId == null)
             {
-                // Product already in cart, increase quantity
-                existingItem.Quantity++;
-                // Update the corresponding UserControl_Cart
-                UpdateCartUI(existingItem);
+                // Handle the case where productId or sizeId is null
+                MessageBox.Show("Vui lòng chọn sản phẩm");
+                return;
+            }
+
+            // Check if the product ID or size ID is different from existing UserControl_Cart items
+            var existingCartControl = flowLayoutPanel_Cart.Controls
+                .OfType<UserControl_Cart>()
+                .FirstOrDefault(cart => cart.ProductId == productId && cart.SizeId == sizeId);
+
+            if (existingCartControl != null)
+            {
+                // Update existing UserControl_Cart
+                existingCartControl.Quantity += 1;
+
+                // Update the numericUpDownSoLuong in UserControl_Cart
+                existingCartControl.UpdateQuantity(existingCartControl.Quantity);
             }
             else
             {
-                // Product not in cart, add a new item
-                var newItem = new ShoppingCartItem_DTO
-                {
-                    ProductId = productId,
-                    ProductName = productName,
-                    Quantity = 1,
-                    Price = price
-                };
-
-                // Add the new item to the shopping cart
-                shoppingCart.Add(newItem);
-
                 // Create a new UserControl_Cart
-                var cart = new UserControl_Cart();
-                // Set information using properties or methods
-                cart.ProductId = newItem.ProductId;
-                cart.ProductName = newItem.ProductName;
-                cart.Quantity = newItem.Quantity;
-                cart.Sizes = newItem.Size;
-                cart.Price = newItem.Price;
+                var cart = new UserControl_Cart(
+                    productId,
+                    txtSanPham.Text,
+                    txtDonGia.Text,
+                    sizeId,   // Corrected to use the size ID
+                    "1"
+                );
 
-                // Add the UserControl_Cart to the flowLayoutPanel_Cart
                 flowLayoutPanel_Cart.Controls.Add(cart);
             }
         }
 
-        private void UpdateCartUI(ShoppingCartItem_DTO item)
-        {
-            var cartControl = flowLayoutPanel_Cart.Controls.OfType<UserControl_Cart>()
-                .FirstOrDefault(cart => cart.ProductId == item.ProductId && cart.Sizes == item.Size);
 
-            if (cartControl != null)
+
+
+        private void cbSizes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
             {
-                cartControl.Quantity = item.Quantity;
+                string productId = txtMaSanPham.Text;
+                int sizeId = Convert.ToInt32(cbSizes.SelectedValue);
+
+                // Create a QuanLyBanHang_DTO object with the necessary information
+                QuanLyBanHang_DTO quanLyBanHang_DTO = new QuanLyBanHang_DTO
+                {
+                    MaSP = Convert.ToInt32(productId),
+                    MaSize = sizeId
+                };
+
+                // Call the DAO method to get the quantity of the product for the selected size
+                int newQuantity = quanLyBanHang_DAO.LaySoLuongSanPhamSize(quanLyBanHang_DTO);
+
+                // Update txtSoLuong with the new quantity
+                txtSoLuong.Text = newQuantity.ToString();
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                MessageBox.Show("Error:111  " + ex.Message);
+            }
+        }
+        public void UpdateSelectedCustomerName(string tenKhachHang)
+        {
+            txtTenKhachHang.Text = tenKhachHang;
+        }
+
+
+        private void btnTimKhachHang_Click(object sender, EventArgs e)
+        {
+            // Create an instance of FormTimKhachHang
+            using (var timKhachHang_Form = new TimKhachHang_Form())
+            {
+                // Show FormTimKhachHang as a dialog
+                DialogResult result = timKhachHang_Form.ShowDialog();
+
+                // Check if the user clicked OK in FormTimKhachHang
+                if (result == DialogResult.OK)
+                {
+                    // Retrieve the selected customer information
+                    string maKhachHang = timKhachHang_Form.SelectedMaKhachHang;
+                    string tenKhachHang = timKhachHang_Form.SelectedTenKhachHang;
+
+                    // Update the txtTenKhachHang in FormBanHang
+                    txtTenKhachHang.Text = tenKhachHang;
+
+                    // Optionally, you can also use the maKhachHang for further processing if needed
+                    // ...
+                }
             }
         }
 
 
-
-
-
-
     }
 }
+
+
+
+

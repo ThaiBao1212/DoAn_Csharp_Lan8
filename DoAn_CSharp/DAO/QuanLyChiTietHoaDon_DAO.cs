@@ -1,4 +1,4 @@
-﻿using DoAn_CSharp.Databsase;
+﻿using DoAn_CSharp.Database;
 using DoAn_CSharp.DTO;
 using System;
 using System.Collections.Generic;
@@ -11,10 +11,10 @@ namespace DoAn_CSharp.DAO
 {
     internal class QuanLyChiTietHoaDon_DAO
     {
-        private Database db;
+        private Database.Database db;
         public QuanLyChiTietHoaDon_DAO()
         {
-            db = new Database();
+            db = new Database.Database();
 
         }
         public DataTable LayDanhSachChiTietDH(QuanLyChiTietHoaDon_DTO quanLyChiTietHoaDon_DTO)

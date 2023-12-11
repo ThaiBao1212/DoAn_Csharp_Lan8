@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoAn_CSharp.Databsase
+namespace DoAn_CSharp.Database
 {
     internal class Database
     {
@@ -15,7 +15,7 @@ namespace DoAn_CSharp.Databsase
         public Database()
         {
             /*string strCnn = "Server=LAPTOP-PEQVO1V4\\ALINSBTC;Database=QLthuvien;uid=sa;pwd=123";*/
-            string strCnn = "Server=LAPTOP-PEQVO1V4\\ALINSBTC;Database=QuanLyBanGiay;uid=sa;pwd=123";
+            string strCnn = "Server=LAPTOP-PEQVO1V4\\ALINSBTC;Database=QuanLyBanGiay4;uid=sa;pwd=123";
 
             sqlConn = new SqlConnection(strCnn);
         }
