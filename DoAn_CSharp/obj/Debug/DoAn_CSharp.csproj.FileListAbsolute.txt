@@ -243,3 +243,7 @@ C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\bin\Debug\System.N
 C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\obj\Debug\DoAn_CSharp.Forms.UserControlProduct_item.resources
+C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\obj\Debug\DoAn_CSharp.Forms.TimKhachHang_Form.resources
+C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\obj\Debug\DoAn_CSharp.Report.fDanhSachNhanVien.resources
+C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\obj\Debug\DoAn_CSharp.Forms.ThemNhaCungCap_Form.resources
+C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\obj\Debug\DoAn_CSharp.Forms.ThemDanhMuc_Form.resources

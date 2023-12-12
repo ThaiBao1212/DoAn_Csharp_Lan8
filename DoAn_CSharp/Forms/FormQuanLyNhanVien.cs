@@ -2,6 +2,7 @@
 using DoAn_CSharp.Database;
 using DoAn_CSharp.Databsase;
 using DoAn_CSharp.DTO;
+using DoAn_CSharp.Report;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -555,7 +556,9 @@ namespace DoAn_CSharp.Forms
 
         private void btnXuatExcel_Click(object sender, EventArgs e)
         {
-            
+            fDanhSachNhanVien f = new fDanhSachNhanVien();
+            /*f.MdiParent = this;*/
+            f.Show();
         }
        
     }

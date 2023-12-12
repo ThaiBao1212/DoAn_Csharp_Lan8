@@ -18,6 +18,8 @@ namespace DoAn_CSharp.DAO
             db = new Databsase.Database();
 
         }
+
+        Database_TB provider = new Database_TB();
         public DataTable LayDanhSachSanPhamTrongNhaCungCap(QuanLyNhaCungCap_DTO ql_NhaCungCap_DTO)
         {
             // Sử dụng thẳng giá trị MaNCC trong câu lệnh SQL
@@ -26,7 +28,27 @@ namespace DoAn_CSharp.DAO
             DataTable dt = db.Execute(strSQL);
             return dt;
         }
+        public bool ThemNhaCungCapNhanh(QuanLyNhaCungCap_DTO nhacungcap)
+        {
+            try
+            {
+                // Thực hiện câu truy vấn thêm khách hàng vào cơ sở dữ liệu
+                string query = $"INSERT INTO nhacungcap (TenNCC, DiaChiNCC, SDTNCC, Email) " +
+                               $"VALUES (N'{nhacungcap.TenNCC}', N'{nhacungcap.DiaChiNCC}', N'{nhacungcap.SDTNCC}', " +
+                               $"N'{nhacungcap.Email}')";
 
+                // Gọi phương thức ExecuteNonQuery từ đối tượng Database để thực hiện câu truy vấn
+                provider.ExecuteNonQuery(query);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý exception nếu có
+                Console.WriteLine("Error adding customer: " + ex.Message);
+                return false;
+            }
+        }
 
     }
 }

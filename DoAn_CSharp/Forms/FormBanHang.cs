@@ -50,12 +50,6 @@ namespace DoAn_CSharp.Forms
 
             lblnhanvienbanhang.Text = " " + LoginAccount.HoTenNV;
 
-            
-
-
-
-
-
         }
 
         private void CbLocDanhMuc_SelectedIndexChanged(object sender, EventArgs e)

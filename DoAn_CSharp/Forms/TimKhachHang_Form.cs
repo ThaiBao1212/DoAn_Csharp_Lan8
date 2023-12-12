@@ -30,6 +30,7 @@ namespace DoAn_CSharp.Forms
             dtgTimKhachHang.DataSource = list_KH;
         }
 
+
         private void btnOK_Click(object sender, EventArgs e)
         {
             // Set the DialogResult to OK
@@ -50,5 +51,84 @@ namespace DoAn_CSharp.Forms
             // Close the form
             Close();
         }
+        private void TimKhachHang_Form_Load(object sender, EventArgs e)
+        {
+            LoadDataToComBoBoxTimKiem();
+        }
+        private void LoadDataToComBoBoxTimKiem()
+        {
+            cbTimKiem.Items.Add("Tất cả");
+            cbTimKiem.Items.Add("Mã Khách Hàng");
+            cbTimKiem.Items.Add("Họ Tên Khách Hàng");
+            cbTimKiem.Items.Add("Địa Chỉ Khách Hàng");
+            cbTimKiem.Items.Add("SĐT Khách Hàng");
+            cbTimKiem.Items.Add("CMND/CCCDKH");
+            cbTimKiem.Items.Add("Gioi Tinh KH");
+            cbTimKiem.Items.Add("Trạng Thái KH");
+
+            if (cbTimKiem.Items.Count > 0)
+            {
+                cbTimKiem.SelectedIndex = 0;
+            }
+        }
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            TimKiemKhachHang();
+        }
+
+        private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TimKiemKhachHang();
+        }
+
+        private void TimKiemKhachHang()
+        {
+            // Lấy thông tin tìm kiếm từ ô nhập và combobox
+            string tuKhoa = txtTimKiem.Text.Trim();
+            string loaiTimKiem = cbTimKiem.SelectedItem?.ToString();
+
+            // Kiểm tra xem đã chọn loại tìm kiếm chưa
+            if (string.IsNullOrEmpty(loaiTimKiem))
+                return;
+
+            // Thực hiện tìm kiếm và cập nhật DataGridView
+            List<QuanLyKhachHang_DTO> ketQuaTimKiem = new List<QuanLyKhachHang_DTO>();
+            switch (loaiTimKiem)
+            {
+                case "Tất cả":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTatCa(tuKhoa);
+                    break;
+                case "Họ Tên Khách Hàng":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoHoTen(tuKhoa);
+                    break;
+                case "Mã Khách Hàng":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoMaKH(tuKhoa);
+                    break;
+                case "SĐT Khách Hàng":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoSDTKH(tuKhoa);
+                    break;
+                case "Địa Chỉ Khách Hàng":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoDiaChiKH(tuKhoa);
+                    break;
+                case "CMND/CCCDKH":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoCMNDKH(tuKhoa);
+                    break;
+                case "Gioi Tinh KH":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoGioiTinhKH(tuKhoa);
+                    break;
+                case "Trạng Thái KH":
+                    ketQuaTimKiem = khachHang_DAO.TimKiemKhachHangTheoTrangThaiKH(tuKhoa);
+                    break;
+
+                // Thêm các trường hợp tìm kiếm khác ở đây nếu cần
+
+                default:
+                    break;
+            }
+
+            // Cập nhật DataGridView với kết quả tìm kiếm
+            dtgTimKhachHang.DataSource = ketQuaTimKiem;
+        }
+
     }
 }

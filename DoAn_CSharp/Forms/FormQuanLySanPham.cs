@@ -31,6 +31,7 @@ namespace DoAn_CSharp.Forms
         public FormQuanLySanPham()
         {
             InitializeComponent();
+
         }
 
         private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
@@ -465,6 +466,30 @@ namespace DoAn_CSharp.Forms
 
                 }
             }
+        }
+
+        private void btnThemNhaCungCapNhanh_Click(object sender, EventArgs e)
+        {
+            ThemNhaCungCap_Form f = new ThemNhaCungCap_Form();
+
+            f.Show();
+
+        }
+        private void ThemNhaCungCap_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Gọi hàm cập nhật dữ liệu cho cbNhaCungCap sau khi form ThemNhaCungCap_Form được đóng
+            CapNhatDanhSachNhaCungCap();
+        }
+        private void CapNhatDanhSachNhaCungCap()
+        {
+
+
+        }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            ThemDanhMuc_Form f = new ThemDanhMuc_Form();
+            f.Show();
         }
     }
 }
