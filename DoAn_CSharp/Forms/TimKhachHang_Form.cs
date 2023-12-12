@@ -6,8 +6,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DoAn_CSharp.Forms
@@ -32,38 +30,25 @@ namespace DoAn_CSharp.Forms
             dtgTimKhachHang.DataSource = list_KH;
         }
 
-        // In FormTimKhachHang
         private void btnOK_Click(object sender, EventArgs e)
         {
             // Set the DialogResult to OK
             DialogResult = DialogResult.OK;
 
-            // Assign values to the properties
-            SelectedMaKhachHang = "SomeValue"; // Replace with the actual value
-            SelectedTenKhachHang = "SomeName"; // Replace with the actual value
-
-            // Close the form
-            Close();
-        }
-
-        private void dtgTimKhachHang_SelectionChanged(object sender, EventArgs e)
-        {
             // Check if there is a selected row
             if (dtgTimKhachHang.SelectedRows.Count > 0)
             {
-                // Get the selected customer's name from the DataGridView
-                string tenKhachHang = dtgTimKhachHang.SelectedRows[0].Cells["TenKhachHang"].Value?.ToString();
+                // Get the selected customer's information from the DataGridView
+                string maKhachHang = dtgTimKhachHang.SelectedRows[0].Cells["MaKH"].Value?.ToString();
+                string tenKhachHang = dtgTimKhachHang.SelectedRows[0].Cells["HoTenKH"].Value?.ToString();
 
-                if (!string.IsNullOrEmpty(tenKhachHang))
-                {
-                    // Pass the selected name to FormBanHang
-                    FormBanHang formBanHang = Application.OpenForms["FormBanHang"] as FormBanHang;
-                    if (formBanHang != null)
-                    {
-                        formBanHang.UpdateSelectedCustomerName(tenKhachHang);
-                    }
-                }
+                // Assign values to the properties
+                SelectedMaKhachHang = maKhachHang;
+                SelectedTenKhachHang = tenKhachHang;
             }
+
+            // Close the form
+            Close();
         }
     }
 }

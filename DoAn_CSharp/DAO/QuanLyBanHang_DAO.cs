@@ -79,6 +79,41 @@ namespace DoAn_CSharp.DAO
                 return null;
             }
         }
+        public List<GiamGia_DTO> LayDanhSachGiamGiaHieuLuc()
+        {
+            List<GiamGia_DTO> danhSachGiamGia = new List<GiamGia_DTO>();
+
+            try
+            {
+                string strSQL = "SELECT * FROM giamgia WHERE NgayBatDau <= GETDATE() AND NgayKetThuc >= GETDATE()";
+                DataTable dt = db.Execute(strSQL);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    GiamGia_DTO giamGia = new GiamGia_DTO
+                    {
+                        MaGiamGia = Convert.ToInt32(row["MaGiamGia"]),
+                        TenGiamGia = row["TenGiamGia"].ToString(),
+                        SoLuongGG = Convert.ToInt32(row["SoLuongGG"]),
+                        PhanTramGiam = Convert.ToInt32(row["PhanTramGiam"]),
+                        NgayBatDau = Convert.ToDateTime(row["NgayBatDau"]),
+                        NgayKetThuc = Convert.ToDateTime(row["NgayKetThuc"]),
+                        DieuKienGiamGia = Convert.ToDecimal(row["DieuKienGiamGia"])
+                       
+                    };
+
+                    danhSachGiamGia.Add(giamGia);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions according to your needs
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+            return danhSachGiamGia;
+        }
+
         public List<QuanLyBanHang_DTO> LayThongTinSanPham(string productId, string sizeId)
         {
             try

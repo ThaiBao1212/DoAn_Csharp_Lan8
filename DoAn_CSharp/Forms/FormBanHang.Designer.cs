@@ -32,12 +32,17 @@
             this.flowLayoutPanelProducts_item = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtTenKhachHang = new System.Windows.Forms.TextBox();
             this.lblnhanvienbanhang = new System.Windows.Forms.Label();
             this.flowLayoutPanel_Cart = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnTimKhachHang = new FontAwesome.Sharp.IconButton();
+            this.btnXoaALL = new FontAwesome.Sharp.IconButton();
+            this.btnXoa = new FontAwesome.Sharp.IconButton();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbSizes = new System.Windows.Forms.ComboBox();
+            this.picAnhChiTietSanPham = new System.Windows.Forms.PictureBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.txtDonGia = new System.Windows.Forms.TextBox();
@@ -49,6 +54,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtTenNhaCungCap = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.tbtGioHang = new FontAwesome.Sharp.IconButton();
             this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -60,29 +66,24 @@
             this.label19 = new System.Windows.Forms.Label();
             this.cbLocDanhMuc = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnThanhToan = new FontAwesome.Sharp.IconButton();
             this.label12 = new System.Windows.Forms.Label();
             this.txtTongTien = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtTienGiam = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtMaGiamGia = new System.Windows.Forms.TextBox();
+            this.txtTenGiamGia = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTamTinh = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnThanhToan = new FontAwesome.Sharp.IconButton();
-            this.picAnhChiTietSanPham = new System.Windows.Forms.PictureBox();
-            this.tbtGioHang = new FontAwesome.Sharp.IconButton();
-            this.btnTimKhachHang = new FontAwesome.Sharp.IconButton();
-            this.btnXoaALL = new FontAwesome.Sharp.IconButton();
-            this.btnXoa = new FontAwesome.Sharp.IconButton();
-            this.txtTenKhachHang = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picAnhChiTietSanPham)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picAnhChiTietSanPham)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -137,6 +138,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Giỏ Hàng ";
             // 
+            // txtTenKhachHang
+            // 
+            this.txtTenKhachHang.Font = new System.Drawing.Font("Times New Roman", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTenKhachHang.Location = new System.Drawing.Point(163, 72);
+            this.txtTenKhachHang.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTenKhachHang.Name = "txtTenKhachHang";
+            this.txtTenKhachHang.Size = new System.Drawing.Size(221, 23);
+            this.txtTenKhachHang.TabIndex = 69;
+            // 
             // lblnhanvienbanhang
             // 
             this.lblnhanvienbanhang.AutoSize = true;
@@ -166,6 +176,52 @@
             this.label1.Size = new System.Drawing.Size(119, 19);
             this.label1.TabIndex = 74;
             this.label1.Text = "Tên Nhân Viên ";
+            // 
+            // btnTimKhachHang
+            // 
+            this.btnTimKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTimKhachHang.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKhachHang.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnTimKhachHang.IconColor = System.Drawing.Color.Black;
+            this.btnTimKhachHang.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTimKhachHang.Location = new System.Drawing.Point(421, 72);
+            this.btnTimKhachHang.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTimKhachHang.Name = "btnTimKhachHang";
+            this.btnTimKhachHang.Size = new System.Drawing.Size(147, 28);
+            this.btnTimKhachHang.TabIndex = 63;
+            this.btnTimKhachHang.Text = "Tìm Khách Hàng ";
+            this.btnTimKhachHang.UseVisualStyleBackColor = true;
+            this.btnTimKhachHang.Click += new System.EventHandler(this.btnTimKhachHang_Click);
+            // 
+            // btnXoaALL
+            // 
+            this.btnXoaALL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXoaALL.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoaALL.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnXoaALL.IconColor = System.Drawing.Color.Black;
+            this.btnXoaALL.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnXoaALL.Location = new System.Drawing.Point(399, 642);
+            this.btnXoaALL.Margin = new System.Windows.Forms.Padding(4);
+            this.btnXoaALL.Name = "btnXoaALL";
+            this.btnXoaALL.Size = new System.Drawing.Size(100, 28);
+            this.btnXoaALL.TabIndex = 68;
+            this.btnXoaALL.Text = "Xóa ALL ";
+            this.btnXoaALL.UseVisualStyleBackColor = true;
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoa.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnXoa.IconColor = System.Drawing.Color.Black;
+            this.btnXoa.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnXoa.Location = new System.Drawing.Point(516, 642);
+            this.btnXoa.Margin = new System.Windows.Forms.Padding(4);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(100, 28);
+            this.btnXoa.TabIndex = 67;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -217,6 +273,14 @@
             this.cbSizes.Size = new System.Drawing.Size(86, 31);
             this.cbSizes.TabIndex = 89;
             this.cbSizes.SelectedIndexChanged += new System.EventHandler(this.cbSizes_SelectedIndexChanged);
+            // 
+            // picAnhChiTietSanPham
+            // 
+            this.picAnhChiTietSanPham.Location = new System.Drawing.Point(511, 69);
+            this.picAnhChiTietSanPham.Name = "picAnhChiTietSanPham";
+            this.picAnhChiTietSanPham.Size = new System.Drawing.Size(176, 122);
+            this.picAnhChiTietSanPham.TabIndex = 88;
+            this.picAnhChiTietSanPham.TabStop = false;
             // 
             // textBox6
             // 
@@ -328,6 +392,22 @@
             this.label5.Size = new System.Drawing.Size(124, 19);
             this.label5.TabIndex = 76;
             this.label5.Text = "Nhà Cung Cấp :";
+            // 
+            // tbtGioHang
+            // 
+            this.tbtGioHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tbtGioHang.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbtGioHang.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.tbtGioHang.IconColor = System.Drawing.Color.Black;
+            this.tbtGioHang.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.tbtGioHang.Location = new System.Drawing.Point(742, 109);
+            this.tbtGioHang.Margin = new System.Windows.Forms.Padding(4);
+            this.tbtGioHang.Name = "tbtGioHang";
+            this.tbtGioHang.Size = new System.Drawing.Size(149, 28);
+            this.tbtGioHang.TabIndex = 76;
+            this.tbtGioHang.Text = "Thêm Giỏ Hàng ";
+            this.tbtGioHang.UseVisualStyleBackColor = true;
+            this.tbtGioHang.Click += new System.EventHandler(this.tbtGioHang_Click);
             // 
             // label15
             // 
@@ -443,13 +523,14 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.iconButton1);
             this.groupBox4.Controls.Add(this.btnThanhToan);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.txtTongTien);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.txtTienGiam);
             this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.txtMaGiamGia);
+            this.groupBox4.Controls.Add(this.txtTenGiamGia);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.txtTamTinh);
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
@@ -461,6 +542,36 @@
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tính Tiền";
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.Location = new System.Drawing.Point(494, 76);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(4);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(125, 28);
+            this.iconButton1.TabIndex = 70;
+            this.iconButton1.Text = "Mã Giảm";
+            this.iconButton1.UseVisualStyleBackColor = true;
+            // 
+            // btnThanhToan
+            // 
+            this.btnThanhToan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThanhToan.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThanhToan.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnThanhToan.IconColor = System.Drawing.Color.Black;
+            this.btnThanhToan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnThanhToan.Location = new System.Drawing.Point(281, 213);
+            this.btnThanhToan.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThanhToan.Name = "btnThanhToan";
+            this.btnThanhToan.Size = new System.Drawing.Size(137, 28);
+            this.btnThanhToan.TabIndex = 69;
+            this.btnThanhToan.Text = "Thanh Toán";
+            this.btnThanhToan.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
@@ -513,14 +624,14 @@
             this.label10.TabIndex = 25;
             this.label10.Text = "Mã Giảm Giá :";
             // 
-            // txtMaGiamGia
+            // txtTenGiamGia
             // 
-            this.txtMaGiamGia.Font = new System.Drawing.Font("Times New Roman", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.txtMaGiamGia.Location = new System.Drawing.Point(213, 80);
-            this.txtMaGiamGia.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMaGiamGia.Name = "txtMaGiamGia";
-            this.txtMaGiamGia.Size = new System.Drawing.Size(273, 23);
-            this.txtMaGiamGia.TabIndex = 26;
+            this.txtTenGiamGia.Font = new System.Drawing.Font("Times New Roman", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.txtTenGiamGia.Location = new System.Drawing.Point(213, 80);
+            this.txtTenGiamGia.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTenGiamGia.Name = "txtTenGiamGia";
+            this.txtTenGiamGia.Size = new System.Drawing.Size(273, 23);
+            this.txtTenGiamGia.TabIndex = 26;
             // 
             // label9
             // 
@@ -552,100 +663,6 @@
             this.panel1.Size = new System.Drawing.Size(1622, 295);
             this.panel1.TabIndex = 0;
             // 
-            // btnThanhToan
-            // 
-            this.btnThanhToan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThanhToan.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThanhToan.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnThanhToan.IconColor = System.Drawing.Color.Black;
-            this.btnThanhToan.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThanhToan.Location = new System.Drawing.Point(281, 213);
-            this.btnThanhToan.Margin = new System.Windows.Forms.Padding(4);
-            this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(137, 28);
-            this.btnThanhToan.TabIndex = 69;
-            this.btnThanhToan.Text = "Thanh Toán";
-            this.btnThanhToan.UseVisualStyleBackColor = true;
-            // 
-            // picAnhChiTietSanPham
-            // 
-            this.picAnhChiTietSanPham.Location = new System.Drawing.Point(511, 69);
-            this.picAnhChiTietSanPham.Name = "picAnhChiTietSanPham";
-            this.picAnhChiTietSanPham.Size = new System.Drawing.Size(176, 122);
-            this.picAnhChiTietSanPham.TabIndex = 88;
-            this.picAnhChiTietSanPham.TabStop = false;
-            // 
-            // tbtGioHang
-            // 
-            this.tbtGioHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tbtGioHang.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbtGioHang.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.tbtGioHang.IconColor = System.Drawing.Color.Black;
-            this.tbtGioHang.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.tbtGioHang.Location = new System.Drawing.Point(742, 109);
-            this.tbtGioHang.Margin = new System.Windows.Forms.Padding(4);
-            this.tbtGioHang.Name = "tbtGioHang";
-            this.tbtGioHang.Size = new System.Drawing.Size(149, 28);
-            this.tbtGioHang.TabIndex = 76;
-            this.tbtGioHang.Text = "Thêm Giỏ Hàng ";
-            this.tbtGioHang.UseVisualStyleBackColor = true;
-            this.tbtGioHang.Click += new System.EventHandler(this.tbtGioHang_Click);
-            // 
-            // btnTimKhachHang
-            // 
-            this.btnTimKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTimKhachHang.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKhachHang.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnTimKhachHang.IconColor = System.Drawing.Color.Black;
-            this.btnTimKhachHang.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnTimKhachHang.Location = new System.Drawing.Point(421, 72);
-            this.btnTimKhachHang.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTimKhachHang.Name = "btnTimKhachHang";
-            this.btnTimKhachHang.Size = new System.Drawing.Size(147, 28);
-            this.btnTimKhachHang.TabIndex = 63;
-            this.btnTimKhachHang.Text = "Tìm Khách Hàng ";
-            this.btnTimKhachHang.UseVisualStyleBackColor = true;
-            this.btnTimKhachHang.Click += new System.EventHandler(this.btnTimKhachHang_Click);
-            // 
-            // btnXoaALL
-            // 
-            this.btnXoaALL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXoaALL.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaALL.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnXoaALL.IconColor = System.Drawing.Color.Black;
-            this.btnXoaALL.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXoaALL.Location = new System.Drawing.Point(399, 642);
-            this.btnXoaALL.Margin = new System.Windows.Forms.Padding(4);
-            this.btnXoaALL.Name = "btnXoaALL";
-            this.btnXoaALL.Size = new System.Drawing.Size(100, 28);
-            this.btnXoaALL.TabIndex = 68;
-            this.btnXoaALL.Text = "Xóa ALL ";
-            this.btnXoaALL.UseVisualStyleBackColor = true;
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoa.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnXoa.IconColor = System.Drawing.Color.Black;
-            this.btnXoa.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXoa.Location = new System.Drawing.Point(516, 642);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(4);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(100, 28);
-            this.btnXoa.TabIndex = 67;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = true;
-            // 
-            // txtTenKhachHang
-            // 
-            this.txtTenKhachHang.Font = new System.Drawing.Font("Times New Roman", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenKhachHang.Location = new System.Drawing.Point(163, 72);
-            this.txtTenKhachHang.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTenKhachHang.Name = "txtTenKhachHang";
-            this.txtTenKhachHang.Size = new System.Drawing.Size(221, 23);
-            this.txtTenKhachHang.TabIndex = 69;
-            // 
             // FormBanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -663,12 +680,12 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picAnhChiTietSanPham)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picAnhChiTietSanPham)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -710,7 +727,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtTienGiam;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtMaGiamGia;
+        private System.Windows.Forms.TextBox txtTenGiamGia;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtTamTinh;
         private System.Windows.Forms.Panel panel1;
@@ -722,5 +739,6 @@
         private System.Windows.Forms.ComboBox cbSizes;
         private System.Windows.Forms.Label lblnhanvienbanhang;
         private System.Windows.Forms.TextBox txtTenKhachHang;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

@@ -103,6 +103,7 @@
             this.numericUpDownSoLuong.Name = "numericUpDownSoLuong";
             this.numericUpDownSoLuong.Size = new System.Drawing.Size(120, 22);
             this.numericUpDownSoLuong.TabIndex = 11;
+            this.numericUpDownSoLuong.ValueChanged += new System.EventHandler(this.NumericUpDownSoLuong_ValueChanged);
             // 
             // label1
             // 

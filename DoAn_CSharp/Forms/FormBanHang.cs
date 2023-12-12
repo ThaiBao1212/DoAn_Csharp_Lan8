@@ -49,6 +49,8 @@ namespace DoAn_CSharp.Forms
 
             lblnhanvienbanhang.Text = " " + LoginAccount.HoTenNV;
 
+            
+
 
 
 
@@ -194,11 +196,9 @@ namespace DoAn_CSharp.Forms
         }
         private void tbtGioHang_Click(object sender, EventArgs e)
         {
-            // Get the product ID and size ID
             string productId = txtMaSanPham.Text;
             object selectedValue = cbSizes.SelectedValue;
 
-            // Check if size is selected
             if (selectedValue == null)
             {
                 MessageBox.Show("Vui lòng chọn sản phẩm.");
@@ -207,45 +207,91 @@ namespace DoAn_CSharp.Forms
 
             string sizeId = selectedValue.ToString();
 
-            // Check for null values before proceeding
             if (productId == null || sizeId == null)
             {
-                // Handle the case where productId or sizeId is null
                 MessageBox.Show("Vui lòng chọn sản phẩm");
                 return;
             }
 
-            // Check if the product ID or size ID is different from existing UserControl_Cart items
             var existingCartControl = flowLayoutPanel_Cart.Controls
                 .OfType<UserControl_Cart>()
                 .FirstOrDefault(cart => cart.ProductId == productId && cart.SizeId == sizeId);
 
             if (existingCartControl != null)
             {
-                // Update existing UserControl_Cart
                 existingCartControl.Quantity += 1;
-
-                // Update the numericUpDownSoLuong in UserControl_Cart
                 existingCartControl.UpdateQuantity(existingCartControl.Quantity);
             }
             else
             {
-                // Create a new UserControl_Cart
                 var cart = new UserControl_Cart(
                     productId,
                     txtSanPham.Text,
-                    txtDonGia.Text,
-                    sizeId,   // Corrected to use the size ID
-                    "1"
+                    decimal.Parse(txtDonGia.Text.Replace("₫", ""), System.Globalization.NumberStyles.Currency),
+
+                    sizeId,
+                    1
                 );
+
+
+                cart.QuantityChanged += (s, eventArgs) => UpdateTotal();
 
                 flowLayoutPanel_Cart.Controls.Add(cart);
             }
+
+            UpdateTotal();
+            // Calculate and display the total
+            decimal tongTien = decimal.Parse(txtTamTinh.Text.Replace("₫", ""), System.Globalization.NumberStyles.Currency);
+
+            // Lấy danh sách giảm giá hợp lệ
+            List<GiamGia_DTO> danhSachGiamGia = quanLyBanHang_DAO.LayDanhSachGiamGiaHieuLuc();
+
+            // Lọc danh sách giảm giá theo điều kiện và tổng tiền
+            var giamGiaHieuLuc = danhSachGiamGia
+                .Where(gg => gg.DieuKienGiamGia <= tongTien && 0 < gg.SoLuongGG && gg.NgayBatDau <= DateTime.Now && gg.NgayKetThuc >= DateTime.Now);
+            if (giamGiaHieuLuc.Any())
+            {
+                var giamGiaToiNhat = giamGiaHieuLuc.OrderByDescending(gg => gg.PhanTramGiam).First();
+
+                // Hiển thị thông tin giảm giá
+                txtTenGiamGia.Text = giamGiaToiNhat.TenGiamGia;
+            }
+            else
+            {
+                txtTenGiamGia.Text = "Không Giảm Giá";
+            }
+
+            // Calculate and display the total
+
+
+        }
+        private void UpdateTotal()
+        {
+            decimal total = 0;
+
+            foreach (UserControl_Cart cartControl in flowLayoutPanel_Cart.Controls)
+            {
+                decimal price = decimal.Parse(cartControl.LblGia.Text.Replace("₫", ""));
+                total += price * cartControl.Quantity;
+            }
+
+            txtTamTinh.Text = total.ToString("C");
         }
 
+        public void HandleCartItemRemoved(UserControl_Cart removedCart)
+        {
+            // Xóa UserControl_Cart khỏi FlowLayoutPanel
+            flowLayoutPanel_Cart.Controls.Remove(removedCart);
 
-
-
+            // Cập nhật tổng tiền sau khi xóa sản phẩm
+            UpdateTotal();
+        }
+        private void UserControl_Cart_QuantityChanged(object sender, EventArgs e)
+        {
+            // Khi giá trị của numericUpDownSoLuong trong UserControl_Cart thay đổi,
+            // cập nhật tổng tiền
+            UpdateTotal();
+        }
         private void cbSizes_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -305,7 +351,3 @@ namespace DoAn_CSharp.Forms
 
     }
 }
-
-
-
-

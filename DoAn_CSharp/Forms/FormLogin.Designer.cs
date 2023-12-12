@@ -71,8 +71,7 @@
             this.btnExit.Location = new System.Drawing.Point(849, 3);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(28, 23);
-            this.btnExit.TabIndex = 0;
-            this.btnExit.TabStop = false;
+            this.btnExit.TabIndex = 1;
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -88,7 +87,6 @@
             this.btnMini.Name = "btnMini";
             this.btnMini.Size = new System.Drawing.Size(25, 23);
             this.btnMini.TabIndex = 0;
-            this.btnMini.TabStop = false;
             this.btnMini.UseVisualStyleBackColor = false;
             this.btnMini.Click += new System.EventHandler(this.btnMini_Click);
             // 
@@ -105,7 +103,7 @@
             this.btnDangNhap.Location = new System.Drawing.Point(103, 279);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(120, 30);
-            this.btnDangNhap.TabIndex = 3;
+            this.btnDangNhap.TabIndex = 51;
             this.btnDangNhap.Text = "Đăng Nhập ";
             this.btnDangNhap.UseVisualStyleBackColor = true;
             this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
@@ -114,40 +112,39 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(25)))), ((int)(((byte)(93)))));
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.label7.Location = new System.Drawing.Point(69, 103);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 19);
+            this.label7.Size = new System.Drawing.Size(95, 19);
             this.label7.TabIndex = 52;
             this.label7.Text = "User Name :";
             // 
             // txtUserName
             // 
-            this.txtUserName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserName.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtUserName.Location = new System.Drawing.Point(72, 123);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(211, 26);
-            this.txtUserName.TabIndex = 1;
+            this.txtUserName.Size = new System.Drawing.Size(211, 30);
+            this.txtUserName.TabIndex = 53;
             // 
             // txtPassword
             // 
-            this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(72, 200);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(211, 26);
-            this.txtPassword.TabIndex = 2;
+            this.txtPassword.Size = new System.Drawing.Size(211, 27);
+            this.txtPassword.TabIndex = 54;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(10)))), ((int)(((byte)(60)))));
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.label1.Location = new System.Drawing.Point(69, 180);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 19);
+            this.label1.Size = new System.Drawing.Size(83, 19);
             this.label1.TabIndex = 55;
             this.label1.Text = "Password :";
             // 
@@ -183,8 +180,7 @@
             this.iconButton4.Location = new System.Drawing.Point(22, 194);
             this.iconButton4.Name = "iconButton4";
             this.iconButton4.Size = new System.Drawing.Size(41, 32);
-            this.iconButton4.TabIndex = 0;
-            this.iconButton4.TabStop = false;
+            this.iconButton4.TabIndex = 58;
             this.iconButton4.UseVisualStyleBackColor = false;
             // 
             // iconButton3
@@ -202,8 +198,7 @@
             this.iconButton3.Location = new System.Drawing.Point(22, 119);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Size = new System.Drawing.Size(41, 32);
-            this.iconButton3.TabIndex = 0;
-            this.iconButton3.TabStop = false;
+            this.iconButton3.TabIndex = 57;
             this.iconButton3.UseVisualStyleBackColor = false;
             // 
             // label2
@@ -214,14 +209,14 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.label2.Location = new System.Drawing.Point(118, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 26);
+            this.label2.Size = new System.Drawing.Size(115, 35);
             this.label2.TabIndex = 56;
             this.label2.Text = "LOGIN";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::DoAn_CSharp.Properties.Resources._5072616;
+            this.pictureBox1.Image = global::DoAn_CSharp.Properties.Resources._50726161;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(880, 512);
@@ -232,8 +227,7 @@
             // 
             // FormLogin
             // 
-            this.AcceptButton = this.btnDangNhap;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;

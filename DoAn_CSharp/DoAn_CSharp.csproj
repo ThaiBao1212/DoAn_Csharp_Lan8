@@ -86,6 +86,7 @@
     <Compile Include="Database\Database_TB.cs" />
     <Compile Include="Database\DataProvider.cs" />
     <Compile Include="DTO\Account_DTO.cs" />
+    <Compile Include="DTO\GiamGia_DTO.cs" />
     <Compile Include="DTO\QuanLyBanHang_DTO.cs" />
     <Compile Include="DTO\QuanLyChiTietHoaDon_DTO.cs" />
     <Compile Include="DTO\QuanLyHoaDon_DTO.cs" />

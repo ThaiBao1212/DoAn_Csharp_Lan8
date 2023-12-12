@@ -132,9 +132,9 @@ CREATE TABLE sanpham (
 );
 -- Đang đổ dữ liệu cho bảng `sanpham`
 INSERT INTO sanpham (MaNCC, MaDM, TenSP, MieuTaSP, DonGia, TrangThaiSP, AnhSP) VALUES
-(4, 1, N'ASICS GEL-RESPECTOR BLACK GOLD', N'Okeyyyy...kk', 2390000, N'Mở', N'1662728173320.jpg'),
-(3, 6, N'PUMA RS-100 SOUND MEN SNEAKERS', N'Okeyyy', 1400000, N'Mở', N'1662728239245.jpg'),
-(1, 2, N'NIKE AIR FORCE 1 SHADOW AQUA PINK',  N'Good...', 4600000, N'Mở', N'1662728351010.jpg');
+(4, 1, N'ASICS BLACK GOLD', N'Okeyyyy...kk', 2390000, N'Mở', N'1662728173320.jpg'),
+(3, 6, N'PUMA MEN SNEAKERS', N'Okeyyy', 1400000, N'Mở', N'1662728239245.jpg'),
+(1, 2, N'NIKE AIR FORCE 1 ',  N'Good...', 4600000, N'Mở', N'1662728351010.jpg');
 
 CREATE TABLE  SanPhamSize(
     MaSize INT NOT NULL,
@@ -161,21 +161,34 @@ INSERT INTO SanPhamSize (MaSize, MaSP, SoLuongSP)VALUES
 CREATE TABLE giamgia (
     MaGiamGia INT IDENTITY(1,1) PRIMARY KEY,
     TenGiamGia NVARCHAR(255) NOT NULL,
-    MaSP INT FOREIGN KEY REFERENCES sanpham(MaSP),
-    MaCV INT FOREIGN KEY REFERENCES chucvu(MaCV),
     SoLuongGG INT NOT NULL,
     PhanTramGiam INT NOT NULL CHECK (PhanTramGiam BETWEEN 0 AND 100),
     NgayBatDau DATE NOT NULL,
     NgayKetThuc DATE NOT NULL,
+    DieuKienGiamGia DECIMAL DEFAULT 0,
+	TrangThaiGG NVARCHAR(255) NOT NULL DEFAULT N'Mở',
     CONSTRAINT CHK_NgayKetThuc CHECK (NgayKetThuc > NgayBatDau) -- Ràng buộc ngày kết thúc sau ngày bắt đầu
+
 );
 
-
 -- Thêm dữ liệu vào bảng `giamgia`
-INSERT INTO giamgia (TenGiamGia, MaSP, MaCV, SoLuongGG, PhanTramGiam, NgayBatDau, NgayKetThuc) VALUES
-(N'Giảm giá mùa hè', 1, 1, 50, 10, '2023-07-01', '2023-08-01'),
-(N'Khuyến mãi đặc biệt', 2, 2, 30, 15, '2023-09-01', '2023-09-30'),
-(N'Ưu đãi cuối năm', 3, 1, 20, 5, '2023-11-01', '2023-12-31');
+-- Thêm dữ liệu vào bảng `giamgia` với cột `DieuKienGiamGia`
+-- Thêm dữ liệu vào bảng giamgia
+INSERT INTO giamgia (TenGiamGia, SoLuongGG, PhanTramGiam, NgayBatDau, NgayKetThuc, DieuKienGiamGia,TrangThaiGG)
+VALUES
+(N'Giảm giá với Hóa Đơn 5 triệu ', 50, 10, '2023-07-01', '2023-08-01', 5000000, N'Mở'),
+(N'Giảm giá với Hóa Đơn 3 triệu', 30, 15, '2023-09-01', '2023-09-30', 3000000, N'Mở'),
+(N'Giảm giá với Hóa Đơn 2 triệu', 20, 5, '2023-11-01', '2023-12-31', 2000000, N'Mở');
+
+-- Cập nhật cột DieuKienGiamGia dựa trên điều kiện tổng hóa đơn lớn hơn 5 triệu
+UPDATE giamgia
+SET DieuKienGiamGia = 1
+WHERE SoLuongGG > 0 AND PhanTramGiam > 0 AND NgayKetThuc > GETDATE();
+
+-- Hiển thị dữ liệu trong bảng `giamgia`
+SELECT *
+FROM giamgia;
+
 
 -- Tạo bảng hóa đơn
 CREATE TABLE hoadon (

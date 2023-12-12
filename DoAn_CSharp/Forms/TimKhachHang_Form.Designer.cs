@@ -81,11 +81,12 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.dtgTimKhachHang.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgTimKhachHang.Size = new System.Drawing.Size(778, 232);
-            this.dtgTimKhachHang.TabIndex = 42;            // 
+            this.dtgTimKhachHang.TabIndex = 42;
+            // 
             // txtTimKiem
             // 
             this.txtTimKiem.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTimKiem.Location = new System.Drawing.Point(184, 54);
+            this.txtTimKiem.Location = new System.Drawing.Point(126, 37);
             this.txtTimKiem.Margin = new System.Windows.Forms.Padding(4);
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(225, 30);
@@ -98,19 +99,20 @@
             this.btnOK.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnOK.IconColor = System.Drawing.Color.Black;
             this.btnOK.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnOK.Location = new System.Drawing.Point(653, 58);
+            this.btnOK.Location = new System.Drawing.Point(620, 37);
             this.btnOK.Margin = new System.Windows.Forms.Padding(4);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(117, 28);
             this.btnOK.TabIndex = 50;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // cbTimKiem
             // 
             this.cbTimKiem.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTimKiem.FormattingEnabled = true;
-            this.cbTimKiem.Location = new System.Drawing.Point(447, 53);
+            this.cbTimKiem.Location = new System.Drawing.Point(373, 37);
             this.cbTimKiem.Margin = new System.Windows.Forms.Padding(4);
             this.cbTimKiem.Name = "cbTimKiem";
             this.cbTimKiem.Size = new System.Drawing.Size(167, 31);
@@ -120,7 +122,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(40, 54);
+            this.label7.Location = new System.Drawing.Point(25, 42);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 19);
