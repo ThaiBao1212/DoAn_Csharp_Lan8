@@ -42,21 +42,20 @@
             this.TrangThaiDM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtgvSanPhamTrongDanhMuc = new System.Windows.Forms.DataGridView();
-            this.MaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaNCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaDM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SizeSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoLuongSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MieuTaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrangThaiSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AnhSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnClear = new FontAwesome.Sharp.IconButton();
             this.btnXoa = new FontAwesome.Sharp.IconButton();
             this.btnCapNhat = new FontAwesome.Sharp.IconButton();
             this.btnThem = new FontAwesome.Sharp.IconButton();
             this.btnXuatExcel = new FontAwesome.Sharp.IconButton();
+            this.MaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaNCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenDMM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoLuongSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThaiSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDanhSachDanhMuc)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -113,13 +112,11 @@
             // 
             this.cbTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTimKiem.FormattingEnabled = true;
-            this.cbTimKiem.Items.AddRange(new object[] {
-            "Mã Danh Mục",
-            "Tên Danh Mục"});
             this.cbTimKiem.Location = new System.Drawing.Point(635, 165);
             this.cbTimKiem.Name = "cbTimKiem";
             this.cbTimKiem.Size = new System.Drawing.Size(150, 28);
             this.cbTimKiem.TabIndex = 47;
+            this.cbTimKiem.SelectedIndexChanged += new System.EventHandler(this.cbTimKiem_SelectedIndexChanged);
             // 
             // txtTimKiem
             // 
@@ -128,6 +125,7 @@
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(303, 26);
             this.txtTimKiem.TabIndex = 46;
+            this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
             // 
             // groupBox1
             // 
@@ -196,92 +194,19 @@
             this.dtgvSanPhamTrongDanhMuc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaSP,
             this.MaNCC,
-            this.MaDM,
+            this.TenNCC,
+            this.TenDMM,
             this.TenSP,
-            this.SizeSP,
+            this.TenSize,
             this.SoLuongSP,
-            this.MieuTaSP,
             this.DonGia,
-            this.TrangThaiSP,
-            this.AnhSP});
+            this.TrangThaiSP});
             this.dtgvSanPhamTrongDanhMuc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvSanPhamTrongDanhMuc.Location = new System.Drawing.Point(3, 22);
             this.dtgvSanPhamTrongDanhMuc.Name = "dtgvSanPhamTrongDanhMuc";
             this.dtgvSanPhamTrongDanhMuc.RowHeadersWidth = 51;
             this.dtgvSanPhamTrongDanhMuc.Size = new System.Drawing.Size(1135, 202);
             this.dtgvSanPhamTrongDanhMuc.TabIndex = 44;
-            // 
-            // MaSP
-            // 
-            this.MaSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MaSP.HeaderText = "MaSP";
-            this.MaSP.MinimumWidth = 6;
-            this.MaSP.Name = "MaSP";
-            // 
-            // MaNCC
-            // 
-            this.MaNCC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MaNCC.HeaderText = "MaNCC";
-            this.MaNCC.MinimumWidth = 6;
-            this.MaNCC.Name = "MaNCC";
-            this.MaNCC.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // MaDM
-            // 
-            this.MaDM.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MaDM.HeaderText = "MaDM";
-            this.MaDM.MinimumWidth = 6;
-            this.MaDM.Name = "MaDM";
-            // 
-            // TenSP
-            // 
-            this.TenSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.TenSP.HeaderText = "TenSP";
-            this.TenSP.MinimumWidth = 6;
-            this.TenSP.Name = "TenSP";
-            this.TenSP.Width = 78;
-            // 
-            // SizeSP
-            // 
-            this.SizeSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SizeSP.HeaderText = "SizeSP";
-            this.SizeSP.MinimumWidth = 6;
-            this.SizeSP.Name = "SizeSP";
-            // 
-            // SoLuongSP
-            // 
-            this.SoLuongSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SoLuongSP.HeaderText = "SoLuongSP";
-            this.SoLuongSP.MinimumWidth = 6;
-            this.SoLuongSP.Name = "SoLuongSP";
-            // 
-            // MieuTaSP
-            // 
-            this.MieuTaSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.MieuTaSP.HeaderText = "MieuTaSP";
-            this.MieuTaSP.MinimumWidth = 6;
-            this.MieuTaSP.Name = "MieuTaSP";
-            // 
-            // DonGia
-            // 
-            this.DonGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DonGia.HeaderText = "DonGia";
-            this.DonGia.MinimumWidth = 6;
-            this.DonGia.Name = "DonGia";
-            // 
-            // TrangThaiSP
-            // 
-            this.TrangThaiSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TrangThaiSP.HeaderText = "TrangThaiSP";
-            this.TrangThaiSP.MinimumWidth = 6;
-            this.TrangThaiSP.Name = "TrangThaiSP";
-            // 
-            // AnhSP
-            // 
-            this.AnhSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.AnhSP.HeaderText = "AnhSP";
-            this.AnhSP.MinimumWidth = 6;
-            this.AnhSP.Name = "AnhSP";
             // 
             // btnClear
             // 
@@ -358,6 +283,71 @@
             this.btnXuatExcel.UseVisualStyleBackColor = true;
             this.btnXuatExcel.Click += new System.EventHandler(this.btnXuatExcel_Click);
             // 
+            // MaSP
+            // 
+            this.MaSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MaSP.HeaderText = "MaSP";
+            this.MaSP.MinimumWidth = 6;
+            this.MaSP.Name = "MaSP";
+            // 
+            // MaNCC
+            // 
+            this.MaNCC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MaNCC.HeaderText = "MaNCC";
+            this.MaNCC.MinimumWidth = 6;
+            this.MaNCC.Name = "MaNCC";
+            this.MaNCC.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // TenNCC
+            // 
+            this.TenNCC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TenNCC.HeaderText = "TenNCC";
+            this.TenNCC.MinimumWidth = 6;
+            this.TenNCC.Name = "TenNCC";
+            // 
+            // TenDMM
+            // 
+            this.TenDMM.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.TenDMM.HeaderText = "TenDM";
+            this.TenDMM.MinimumWidth = 6;
+            this.TenDMM.Name = "TenDMM";
+            this.TenDMM.Width = 84;
+            // 
+            // TenSP
+            // 
+            this.TenSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TenSP.HeaderText = "TenSP";
+            this.TenSP.MinimumWidth = 6;
+            this.TenSP.Name = "TenSP";
+            // 
+            // TenSize
+            // 
+            this.TenSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TenSize.HeaderText = "TenSize";
+            this.TenSize.MinimumWidth = 6;
+            this.TenSize.Name = "TenSize";
+            // 
+            // SoLuongSP
+            // 
+            this.SoLuongSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SoLuongSP.HeaderText = "SoLuongSP";
+            this.SoLuongSP.MinimumWidth = 6;
+            this.SoLuongSP.Name = "SoLuongSP";
+            // 
+            // DonGia
+            // 
+            this.DonGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DonGia.HeaderText = "DonGia";
+            this.DonGia.MinimumWidth = 6;
+            this.DonGia.Name = "DonGia";
+            // 
+            // TrangThaiSP
+            // 
+            this.TrangThaiSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TrangThaiSP.HeaderText = "TrangThaiSP";
+            this.TrangThaiSP.MinimumWidth = 6;
+            this.TrangThaiSP.Name = "TrangThaiSP";
+            // 
             // FormQuanLyDanhMuc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,13 +402,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThaiDM;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaSP;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaNCC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaDM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNCC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenDMM;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenSP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SizeSP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongSP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MieuTaSP;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThaiSP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AnhSP;
     }
 }

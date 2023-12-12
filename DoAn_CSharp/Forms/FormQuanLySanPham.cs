@@ -304,10 +304,7 @@ namespace DoAn_CSharp.Forms
 
                         }
                     }
-
-
-
-                    // Đóng kết nối cơ sở dữ liệu
+                     // Đóng kết nối cơ sở dữ liệu
                     connection.Close();
                 }
             }

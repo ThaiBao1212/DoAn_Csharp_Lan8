@@ -25,11 +25,22 @@ namespace DoAn_CSharp.Forms
             InitializeComponent();
             HienThiDanhMuc();
             dtgvDanhSachDanhMuc.SelectionChanged += DtgvDanhSachDanhMuc_SelectionChanged;
-
+            LoadDataToComBoBoxTimKiem();
 
         }
 
+        private void LoadDataToComBoBoxTimKiem()
+        {
+            cbTimKiem.Items.Add("Tất cả");
+            cbTimKiem.Items.Add("Mã Danh Mục");
+            cbTimKiem.Items.Add("Tên Danh Mục");
+            
 
+            if (cbTimKiem.Items.Count > 0)
+            {
+                cbTimKiem.SelectedIndex = 0;
+            }
+        }
 
         private void HienThiDanhMuc()
         {
@@ -198,6 +209,57 @@ namespace DoAn_CSharp.Forms
                 dtgvSanPhamTrongDanhMuc.Rows.Add(row.ItemArray);
             }
         }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            TimKiemDanhMuc();
+        }
+
+        private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TimKiemDanhMuc();
+        }
+        private void TimKiemDanhMuc()
+        {
+            // Lấy thông tin tìm kiếm từ ô nhập và combobox
+            string tuKhoa = txtTimKiem.Text.Trim();
+            string loaiTimKiem = cbTimKiem.SelectedItem?.ToString();
+
+            // Kiểm tra xem đã chọn loại tìm kiếm chưa
+            if (string.IsNullOrEmpty(loaiTimKiem))
+                return;
+
+            // Xóa dữ liệu cũ trước khi thêm mới
+            dtgvDanhSachDanhMuc.Rows.Clear();
+
+            // Thực hiện tìm kiếm và cập nhật DataGridView
+            List<QuanLyDanhMuc_DTO> ketQuaTimKiem = new List<QuanLyDanhMuc_DTO>();
+            switch (loaiTimKiem)
+            {
+                case "Tất cả":
+                    ketQuaTimKiem = ql_danhmuc_DAO.TimKiemDanhMucTatCa(tuKhoa);
+                    break;
+                case "Mã Danh Mục":
+                    ketQuaTimKiem = ql_danhmuc_DAO.TimKiemDanhMucTheoMaDM(tuKhoa);
+                    break;
+                case "Tên Danh Mục":
+                    ketQuaTimKiem = ql_danhmuc_DAO.TimKiemDanhMucTheoTenDM(tuKhoa);
+                    break;
+                // Thêm các trường hợp tìm kiếm khác ở đây nếu cần
+
+                default:
+                    break;
+            }
+
+            // Cập nhật DataGridView với kết quả tìm kiếm
+            foreach (QuanLyDanhMuc_DTO danhMuc in ketQuaTimKiem)
+            {
+                // Thêm từng dòng dữ liệu vào DataGridView
+                dtgvDanhSachDanhMuc.Rows.Add(danhMuc.maDanhMuc, danhMuc.tenDM, danhMuc.trangThaiDM);
+            }
+        }
+
+
 
 
     }

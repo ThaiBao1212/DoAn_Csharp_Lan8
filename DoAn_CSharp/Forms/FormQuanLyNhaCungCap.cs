@@ -451,7 +451,6 @@ namespace DoAn_CSharp.Forms
                                         reader["TenNCC"],
                                         reader["TenDM"],
                                         reader["TenSize"],
-
                                         reader["SoLuongSP"],
                                         reader["DonGia"],
                                         reader["TrangThaiSP"]
