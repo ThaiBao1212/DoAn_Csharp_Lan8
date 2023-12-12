@@ -16,7 +16,6 @@ using System.Windows.Forms;
 namespace DoAn_CSharp.Forms
 {
 
-
     public partial class FormQuanLyNhaCungCap : Form
     {
         string tenNCC, diachiNCC, SDTNCC, email;
@@ -27,8 +26,8 @@ namespace DoAn_CSharp.Forms
         private DTO.QuanLySanPham_DTO quanLySanPham_DTO = new DTO.QuanLySanPham_DTO();
 
         //string connString = "Data Source=LAPTOP-PDE9TC1I\\SQLEXPRESS;Initial Catalog=QuanLyBanGiay;Integrated Security=true";
-        string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
-
+        //string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
+        string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
         QuanLyNhaCungCap_DTO NCC_selected = new QuanLyNhaCungCap_DTO();
         List<QuanLyNhaCungCap_DTO> lsNCC = new List<QuanLyNhaCungCap_DTO>();
 
@@ -165,7 +164,6 @@ namespace DoAn_CSharp.Forms
             listNCC.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listNCC.ReadOnly = true;
         }
-
 
 
 
@@ -386,7 +384,7 @@ namespace DoAn_CSharp.Forms
         private void InitializeDataGridViewColumns()
         {
             // Xác định số cột và tên cột
-            string[] columnNames = { "MaSP",  "TenSP", "SoLuongSP", "DonGia", "TrangThaiSP" };
+            string[] columnNames = { "MaSP", "TenNCC", "TenDM", "TenSize", "TenSP", "SoLuongSP", "DonGia", "TrangThaiSP" };
 
             // Thêm cột vào DataGridView và cấu hình AutoSizeMode
             foreach (string columnName in columnNames)
@@ -415,8 +413,9 @@ namespace DoAn_CSharp.Forms
                 InitializeDataGridViewColumns();
             }
 
-            dtgvSanPhamCuaNhaCungCap.Rows.Clear(); 
+            dtgvSanPhamCuaNhaCungCap.Rows.Clear();
 
+            // Sử dụng using để tự động giải phóng tài nguyên của SqlConnection
             using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
@@ -424,31 +423,49 @@ namespace DoAn_CSharp.Forms
                     connection.Open();
 
                     // Sử dụng Parameters
-                    string query = "SELECT MaSP, TenSP, SoLuongSP, DonGia, TrangThaiSP FROM sanpham WHERE MaNCC = @MaNCC";
+                    string query = "SELECT sp.MaSP, ncc.MaNCC,ncc.TenNCC, dm.TenDM, sp.TenSP, s.TenSize, sps.SoLuongSP, sp.DonGia, sp.TrangThaiSP " +
+                                   "FROM sanpham sp " +
+                                   "JOIN nhacungcap ncc ON sp.MaNCC = ncc.MaNCC " +
+                                   "JOIN danhmuc dm ON sp.MaDM = dm.MaDanhMuc " +
+                                   "JOIN SanPhamSize sps ON sp.MaSP = sps.MaSP " +
+                                   "JOIN Sizes s ON sps.MaSize = s.MaSize " +
+                                   "WHERE ncc.MaNCC = @MaNCC";
+
+                    // Sử dụng using để tự động giải phóng tài nguyên của SqlCommand
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.Add("@MaNCC", SqlDbType.Int).Value = ql_NhaCungCap_DTO.MaNCC;
 
-                        // Sử dụng SqlDataReader để đọc dữ liệu từ cơ sở dữ liệu
+                        // Sử dụng using để tự động giải phóng tài nguyên của SqlDataReader
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
+                            // Kiểm tra xem có dữ liệu hay không
+                            if (reader.HasRows)
                             {
-                                // Thêm dữ liệu vào dtgvSanPhamCuaNhaCungCap
-                                dtgvSanPhamCuaNhaCungCap.Rows.Add(
-                                    reader["MaSP"],
-                                    reader["TenSP"],
-                                    reader["SoLuongSP"],
-                                    reader["DonGia"],
-                                    reader["TrangThaiSP"]
-                                );
+                                while (reader.Read())
+                                {
+                                    // Thêm dữ liệu vào dtgvSanPhamCuaNhaCungCap
+                                    dtgvSanPhamCuaNhaCungCap.Rows.Add(
+                                        reader["MaSP"],
+                                        reader["TenSP"],
+                                        reader["TenNCC"],
+                                        reader["TenDM"],
+                                        reader["TenSize"],
+
+                                        reader["SoLuongSP"],
+                                        reader["DonGia"],
+                                        reader["TrangThaiSP"]
+                                    );
+                                }
                             }
+
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi kết nối và lấy dữ liệu từ cơ sở dữ liệu: " + ex.Message);
+                    // Log lỗi hoặc hiển thị thông báo lỗi
+                    MessageBox.Show("Lỗi khi kết nối và lấy dữ liệu từ cơ sở dữ liệu:aaaa " + ex.Message);
                 }
             }
         }

@@ -270,7 +270,7 @@
             this.btnChuyenQua.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnChuyenQua.IconColor = System.Drawing.Color.Black;
             this.btnChuyenQua.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnChuyenQua.Location = new System.Drawing.Point(473, 190);
+            this.btnChuyenQua.Location = new System.Drawing.Point(479, 211);
             this.btnChuyenQua.Name = "btnChuyenQua";
             this.btnChuyenQua.Size = new System.Drawing.Size(32, 23);
             this.btnChuyenQua.TabIndex = 66;

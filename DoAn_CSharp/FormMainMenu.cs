@@ -14,6 +14,7 @@ using DoAn_CSharp.Databsase;
 using DoAn_CSharp.DAO;
 using DoAn_CSharp.DTO;
 using System.Runtime.CompilerServices;
+using DoAn_CSharp.Forms;
 
 namespace DoAn_CSharp
 {
@@ -187,7 +188,8 @@ namespace DoAn_CSharp
         private void btnBanHang_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new Forms.FormBanHang());
+            FormBanHang formBanHang = new FormBanHang(LoginAccount);
+            OpenChildForm(formBanHang);
         }
 
         private void btnThongKe_Click(object sender, EventArgs e)
@@ -284,6 +286,11 @@ namespace DoAn_CSharp
             }
         }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            currentChildForm.Close();
 
+            Reset();
+        }
     }
 }

@@ -242,3 +242,4 @@ C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\bin\Debug\System.M
 C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Admins\Documents\GitHub\DoAn_Csharp_Lan8\DoAn_CSharp\obj\Debug\DoAn_CSharp.Forms.UserControlProduct_item.resources

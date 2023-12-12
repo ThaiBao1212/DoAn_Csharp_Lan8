@@ -78,6 +78,7 @@
             this.dtgvDanhSachHoaDon.Name = "dtgvDanhSachHoaDon";
             this.dtgvDanhSachHoaDon.Size = new System.Drawing.Size(504, 201);
             this.dtgvDanhSachHoaDon.TabIndex = 60;
+            this.dtgvDanhSachHoaDon.SelectionChanged += new System.EventHandler(this.dtgvDanhSachHoaDon_SelectionChanged);
             // 
             // btnXoa
             // 

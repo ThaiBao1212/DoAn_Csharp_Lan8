@@ -29,6 +29,7 @@ namespace DoAn_CSharp.Forms
         {
             LoadDataToDataGridView();
             LoadDataToComBoBoxTimKiem();
+            dataPN_load();
         }
 
         private void AdjustDataGridViewColumns()
@@ -218,12 +219,12 @@ namespace DoAn_CSharp.Forms
             cbTimKiemQLPN.Items.Add("Mã Nhân Viên");
             cbTimKiemQLPN.Items.Add("Lọc Theo Ngày Lập Phiếu");
             
-
             if (cbTimKiemQLPN.Items.Count > 0)
             {
                 cbTimKiemQLPN.SelectedIndex = 0;
             }
         }
+
 
     }
 }

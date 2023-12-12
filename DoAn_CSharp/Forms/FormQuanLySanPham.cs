@@ -24,7 +24,8 @@ namespace DoAn_CSharp.Forms
         QuanLySanPham_DTO sp_selected_edit = new QuanLySanPham_DTO();
         string imageUpload = "";
         /* string connString = "Data Source=LAPTOP-PDE9TC1I\\SQLEXPRESS;Initial Catalog=QuanLyBanGiay;Integrated Security=true";*/
-        string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
+        //string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
+        string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
 
 
         public FormQuanLySanPham()
@@ -77,8 +78,8 @@ namespace DoAn_CSharp.Forms
                 sp_selected.MaNCC = (int)selectedRow.Cells["MaNCC"].Value;
                 sp_selected.MaDM = (int)selectedRow.Cells["MaDM"].Value;
                 sp_selected.TenSP = (string)selectedRow.Cells["TenSP"].Value;
-                sp_selected.SizeSP = (string)selectedRow.Cells["SizeSP"].Value;
-                sp_selected.SoLuongSP = (int)selectedRow.Cells["SoLuongSP"].Value;
+               /* sp_selected.SizeSP = (string)selectedRow.Cells["SizeSP"].Value;*/
+              /*  sp_selected.SoLuongSP = (int)selectedRow.Cells["SoLuongSP"].Value;*/
                 sp_selected.DonGia = (decimal)selectedRow.Cells["DonGia"].Value;
                 sp_selected.MieuTaSP = (string)selectedRow.Cells["MieuTaSP"].Value;
                 sp_selected.TrangThaiSP = (string)selectedRow.Cells["TrangThaiSP"].Value;
@@ -169,7 +170,7 @@ namespace DoAn_CSharp.Forms
 
         private void sp_size_TextChanged(object sender, EventArgs e)
         {
-            sanpham.SizeSP = sp_size.Text;
+/*            sanpham.SizeSP = sp_size.Text;*/
         }
 
         private void sp_description_TextChanged(object sender, EventArgs e)
@@ -199,8 +200,8 @@ namespace DoAn_CSharp.Forms
                         command.Parameters.AddWithValue("@MaNCC", sanpham.MaNCC);
                         command.Parameters.AddWithValue("@MaDM", sanpham.MaDM);
                         command.Parameters.AddWithValue("@TenSP", sanpham.TenSP);
-                        command.Parameters.AddWithValue("@SizeSP", sanpham.SizeSP);
-                        command.Parameters.AddWithValue("@SoLuongSP", sanpham.SoLuongSP);
+                        /*command.Parameters.AddWithValue("@SizeSP", sanpham.SizeSP);
+                        command.Parameters.AddWithValue("@SoLuongSP", sanpham.SoLuongSP);*/
                         command.Parameters.AddWithValue("@MieuTaSP", sanpham.MieuTaSP);
                         command.Parameters.AddWithValue("@DonGia", sanpham.DonGia);
                         command.Parameters.AddWithValue("@TrangThaiSP", sanpham.TrangThaiSP);
@@ -252,8 +253,8 @@ namespace DoAn_CSharp.Forms
 
         private void sp_quantity_TextChanged(object sender, EventArgs e)
         {
-            if (sp_quantity.Text != "")
-                sanpham.SoLuongSP = int.Parse(sp_quantity.Text);
+/*            if (sp_quantity.Text != "")
+                sanpham.SoLuongSP = int.Parse(sp_quantity.Text);*/
         }
 
         private void sp_status_CheckedChanged(object sender, EventArgs e)
@@ -316,8 +317,8 @@ namespace DoAn_CSharp.Forms
             QuanLySanPham_DTO sq_select_edit = new QuanLySanPham_DTO();
             detail_name.Text = sp_selected_edit.TenSP;
             detail_price.Text = sp_selected_edit.DonGia.ToString();
-            detail_quantity.Text = sp_selected_edit.SoLuongSP.ToString();
-            detail_size.Text = sp_selected_edit.SizeSP;
+/*            detail_quantity.Text = sp_selected_edit.SoLuongSP.ToString();
+            detail_size.Text = sp_selected_edit.SizeSP;*/
             detail_description.Text = sp_selected_edit.MieuTaSP;
             detail_image.ImageLocation = sp_selected_edit.AnhSP;
 
@@ -368,7 +369,7 @@ namespace DoAn_CSharp.Forms
 
         private void detail_size_TextChanged(object sender, EventArgs e)
         {
-            sp_selected_edit.SizeSP = detail_size.Text;
+/*            sp_selected_edit.SizeSP = detail_size.Text;*/
         }
 
         private void detail_description_TextChanged(object sender, EventArgs e)
@@ -384,8 +385,8 @@ namespace DoAn_CSharp.Forms
 
         private void detail_quantity_TextChanged(object sender, EventArgs e)
         {
-            if (detail_quantity.Text != "")
-                sp_selected_edit.SoLuongSP = int.Parse(detail_quantity.Text);
+/*            if (detail_quantity.Text != "")
+                sp_selected_edit.SoLuongSP = int.Parse(detail_quantity.Text);*/
         }
 
         private void detail_status_CheckedChanged(object sender, EventArgs e)
@@ -416,8 +417,8 @@ namespace DoAn_CSharp.Forms
                 command.Parameters.AddWithValue("@MaNCC", sp_selected_edit.MaNCC);
                 command.Parameters.AddWithValue("@MaDM", sp_selected_edit.MaDM);
                 command.Parameters.AddWithValue("@TenSP", sp_selected_edit.TenSP);
-                command.Parameters.AddWithValue("@SizeSP", sp_selected_edit.SizeSP);
-                command.Parameters.AddWithValue("@SoLuongSP", sp_selected_edit.SoLuongSP);
+/*                command.Parameters.AddWithValue("@SizeSP", sp_selected_edit.SizeSP);
+                command.Parameters.AddWithValue("@SoLuongSP", sp_selected_edit.SoLuongSP);*/
                 command.Parameters.AddWithValue("@MieuTaSP", sp_selected_edit.MieuTaSP);
                 command.Parameters.AddWithValue("@DonGia", sp_selected_edit.DonGia);
                 command.Parameters.AddWithValue("@AnhSP", sp_selected_edit.AnhSP);

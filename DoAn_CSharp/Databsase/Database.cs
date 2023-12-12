@@ -16,8 +16,8 @@ namespace DoAn_CSharp.Databsase
         {
             /*string strCnn = "Server=LAPTOP-PEQVO1V4\\ALINSBTC;Database=QLthuvien;uid=sa;pwd=123";*/
             // string strCnn = "Server=LAPTOP-PEQVO1V4\\ALINSBTC;Database=QuanLyBanGiay;uid=sa;pwd=123";
-            string strCnn = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
-
+            /*string strCnn = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";*/
+            string strCnn = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
 
             sqlConn = new SqlConnection(strCnn);
         }

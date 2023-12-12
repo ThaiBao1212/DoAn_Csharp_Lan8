@@ -110,8 +110,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\Account_DAO.cs" />
+    <Compile Include="DAO\ChiTietHoaDon_DTO.cs" />
     <Compile Include="DAO\KiemTra_DAO.cs" />
+    <Compile Include="DAO\QuanLyBanHang_DAO.cs" />
     <Compile Include="DAO\QuanLyDanhMuc_DAO.cs" />
+    <Compile Include="DAO\QuanLyHoaDon_DAO.cs" />
     <Compile Include="DAO\QuanLyKhachHang_DAO.cs" />
     <Compile Include="DAO\QuanLyNhaCungCap_DAO.cs" />
     <Compile Include="DAO\QuanLyNhanVien_DAO.cs" />
@@ -125,12 +128,16 @@
     <Compile Include="Databsase\MD5Hash.cs" />
     <Compile Include="Databsase\TrippleDES_Class.cs" />
     <Compile Include="DTO\Account_DTO.cs" />
+    <Compile Include="DTO\GiamGia_DTO.cs" />
+    <Compile Include="DTO\QuanLyBanHang_DTO.cs" />
     <Compile Include="DTO\QuanLyDanhMuc_DTO.cs" />
+    <Compile Include="DTO\QuanLyHoaDon_DTO.cs" />
     <Compile Include="DTO\QuanLyKhachHang_DTO.cs" />
     <Compile Include="DTO\QuanLyNhaCungCap_DTO.cs" />
     <Compile Include="DTO\QuanLyNhanVien_DTO.cs" />
     <Compile Include="DTO\QuanLyNhapHang_DTO.cs" />
     <Compile Include="DTO\QuanLySanPham_DTO.cs" />
+    <Compile Include="DTO\ShoppingCartItem_DTO.cs" />
     <Compile Include="FormMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +210,24 @@
     <Compile Include="Forms\FormThongKe.Designer.cs">
       <DependentUpon>FormThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TimKhachHang_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TimKhachHang_Form.Designer.cs">
+      <DependentUpon>TimKhachHang_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControlProduct_item.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControlProduct_item.Designer.cs">
+      <DependentUpon>UserControlProduct_item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControl_Cart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControl_Cart.Designer.cs">
+      <DependentUpon>UserControl_Cart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
@@ -242,6 +267,9 @@
     <EmbeddedResource Include="Forms\FormThongKe.resx">
       <DependentUpon>FormThongKe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControlProduct_item.resx">
+      <DependentUpon>UserControlProduct_item.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -268,6 +296,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\5072616.jpg" />
+    <None Include="Resources\logo-shoe2.jpg" />
+    <None Include="Resources\logo-shoe.jpg" />
+    <None Include="Resources\OIG-removebg-preview.png" />
+    <None Include="Resources\Untitled-1.png" />
+    <None Include="Resources\Untitled-1 %281%29.png" />
+    <None Include="Resources\logo-shoe-removebg-preview.png" />
+    <None Include="Resources\Untitled-1 %282%29.png" />
+    <None Include="Resources\product_3.png" />
+    <None Include="Resources\product_1.png" />
+    <None Include="Resources\product_2.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
