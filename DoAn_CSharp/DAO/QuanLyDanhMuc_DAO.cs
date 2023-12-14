@@ -28,13 +28,19 @@ namespace DoAn_CSharp.DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");    
                 return null;
             }
         }
         public DataTable LayDanhSachSanPhamDanhMuc(QuanLyDanhMuc_DTO ql_danhmuc_DTO)
         {
-            string strSQL = $"Select * from sanpham where MaDM=N'{ql_danhmuc_DTO.maDanhMuc}'";
+            string strSQL = "SELECT sp.MaSP, ncc.TenNCC, dm.TenDM, sp.TenSP, s.TenSize, sps.SoLuongSP, sp.DonGia,sp.MieuTaSP, sp.TrangThaiSP " +
+               "FROM sanpham sp " +
+               "JOIN nhacungcap ncc ON sp.MaNCC = ncc.MaNCC " +
+               "JOIN danhmuc dm ON sp.MaDM = dm.MaDanhMuc " +
+               "JOIN SanPhamSize sps ON sp.MaSP = sps.MaSP " +
+               "JOIN Sizes s ON sps.MaSize = s.MaSize " +
+               $"WHERE dm.MaDanhMuc =N'{ql_danhmuc_DTO.maDanhMuc}'";
             DataTable dt = db.Execute(strSQL);
             return dt;
         }

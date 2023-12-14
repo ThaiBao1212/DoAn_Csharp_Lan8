@@ -25,6 +25,9 @@ namespace DoAn_CSharp.Forms
             InitializeComponent();
             HienThiDanhMuc();
             dtgvDanhSachDanhMuc.SelectionChanged += DtgvDanhSachDanhMuc_SelectionChanged;
+  
+            dtgvDanhSachDanhMuc.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgvDanhSachDanhMuc.ReadOnly = true;
 
 
         }
@@ -199,7 +202,7 @@ namespace DoAn_CSharp.Forms
             }
         }
 
-
+       
     }
 
 

@@ -36,7 +36,9 @@ namespace DoAn_CSharp.Forms
             this.SizeId = idSize;
             lblTenSP.Text = tenSP;
             lblGia.Text = donGia.ToString("C");
+
             numericUpDownSoLuong.Value = quantity;
+
 
             LoadSizes();
             cbSizes.SelectedValue = idSize;
@@ -74,8 +76,7 @@ namespace DoAn_CSharp.Forms
         {
             numericUpDownSoLuong.Value = newQuantity;
         }
-
-        private void tbnXoa_Click(object sender, EventArgs e)
+        private void XoaCartSp()
         {
             var parentForm = FindForm();
 
@@ -85,10 +86,15 @@ namespace DoAn_CSharp.Forms
                 formBanHang.HandleCartItemRemoved(this);
             }
         }
+        private void tbnXoa_Click(object sender, EventArgs e)
+        {
+            XoaCartSp();
+        }
 
         private void NumericUpDownSoLuong_ValueChanged(object sender, EventArgs e)
         {
             QuantityChanged?.Invoke(this, EventArgs.Empty);
+
         }
     }
 

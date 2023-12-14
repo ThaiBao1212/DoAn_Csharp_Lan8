@@ -66,6 +66,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.cbLocDanhMuc = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cbGiamGia = new System.Windows.Forms.ComboBox();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnThanhToan = new FontAwesome.Sharp.IconButton();
             this.label12 = new System.Windows.Forms.Label();
@@ -73,7 +74,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtTienGiam = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtTenGiamGia = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTamTinh = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -523,6 +523,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.cbGiamGia);
             this.groupBox4.Controls.Add(this.iconButton1);
             this.groupBox4.Controls.Add(this.btnThanhToan);
             this.groupBox4.Controls.Add(this.label12);
@@ -530,7 +531,6 @@
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.txtTienGiam);
             this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.txtTenGiamGia);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.txtTamTinh);
             this.groupBox4.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
@@ -542,6 +542,14 @@
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tính Tiền";
+            // 
+            // cbGiamGia
+            // 
+            this.cbGiamGia.FormattingEnabled = true;
+            this.cbGiamGia.Location = new System.Drawing.Point(213, 79);
+            this.cbGiamGia.Name = "cbGiamGia";
+            this.cbGiamGia.Size = new System.Drawing.Size(273, 31);
+            this.cbGiamGia.TabIndex = 72;
             // 
             // iconButton1
             // 
@@ -572,6 +580,7 @@
             this.btnThanhToan.TabIndex = 69;
             this.btnThanhToan.Text = "Thanh Toán";
             this.btnThanhToan.UseVisualStyleBackColor = true;
+            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
             // 
             // label12
             // 
@@ -592,6 +601,7 @@
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.Size = new System.Drawing.Size(273, 23);
             this.txtTongTien.TabIndex = 30;
+            this.txtTongTien.TextChanged += new System.EventHandler(this.txtTongTien_TextChanged);
             // 
             // label11
             // 
@@ -612,6 +622,7 @@
             this.txtTienGiam.Name = "txtTienGiam";
             this.txtTienGiam.Size = new System.Drawing.Size(273, 23);
             this.txtTienGiam.TabIndex = 28;
+            this.txtTienGiam.TextChanged += new System.EventHandler(this.txtTienGiam_TextChanged);
             // 
             // label10
             // 
@@ -623,15 +634,6 @@
             this.label10.Size = new System.Drawing.Size(121, 19);
             this.label10.TabIndex = 25;
             this.label10.Text = "Mã Giảm Giá :";
-            // 
-            // txtTenGiamGia
-            // 
-            this.txtTenGiamGia.Font = new System.Drawing.Font("Times New Roman", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.txtTenGiamGia.Location = new System.Drawing.Point(213, 80);
-            this.txtTenGiamGia.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTenGiamGia.Name = "txtTenGiamGia";
-            this.txtTenGiamGia.Size = new System.Drawing.Size(273, 23);
-            this.txtTenGiamGia.TabIndex = 26;
             // 
             // label9
             // 
@@ -650,7 +652,7 @@
             this.txtTamTinh.Location = new System.Drawing.Point(213, 31);
             this.txtTamTinh.Margin = new System.Windows.Forms.Padding(4);
             this.txtTamTinh.Name = "txtTamTinh";
-            this.txtTamTinh.Size = new System.Drawing.Size(273, 23);
+            this.txtTamTinh.Size = new System.Drawing.Size(257, 23);
             this.txtTamTinh.TabIndex = 24;
             // 
             // panel1
@@ -727,7 +729,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtTienGiam;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtTenGiamGia;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtTamTinh;
         private System.Windows.Forms.Panel panel1;
@@ -740,5 +741,6 @@
         private System.Windows.Forms.Label lblnhanvienbanhang;
         private System.Windows.Forms.TextBox txtTenKhachHang;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.ComboBox cbGiamGia;
     }
 }

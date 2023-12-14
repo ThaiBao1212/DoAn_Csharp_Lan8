@@ -21,6 +21,8 @@ namespace DoAn_CSharp.Forms
         private QuanLyNhanVien_DAO nhanVien_DAO = new QuanLyNhanVien_DAO();
         private BindingSource bindingSource = new BindingSource();
 
+        MD5Hash md5hash = new MD5Hash();
+
         public FormQuanLyNhanVien()
         {
             InitializeComponent();
@@ -214,7 +216,7 @@ namespace DoAn_CSharp.Forms
             // Lấy thông tin từ các controls trên form
             string maCV = cbMaChucVu.SelectedItem.ToString();
             string tenTaiKhoanNV = txtTenTaiKhoan.Text;
-            string matKhauNV = txtMatKhau.Text;
+            string matKhauNV = MD5Hash.CalculateMD5Hash(txtMatKhau.Text);
             string hoTenNV = txtHoTen.Text;
             string gioiTinhNV = cbGioiTinh.SelectedItem.ToString();
             DateTime ngaySinhNV = dateTimePickerNgaySinh.Value;
@@ -257,11 +259,11 @@ namespace DoAn_CSharp.Forms
                 return;
             }
 
-            if (!KiemTra_DAO.IsStrongPassword(matKhauNV))
+/*            if (!KiemTra_DAO.IsStrongPassword(matKhauNV))
             {
                 MessageBox.Show("Mật khẩu phải có ít nhất 6 ký tự, chứa ít nhất một chữ hoa, một chữ số và một ký tự đặc biệt.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
+            }*/
 
             // Kiểm tra tên tài khoản chỉ được nhập bằng chữ
 
@@ -378,7 +380,7 @@ namespace DoAn_CSharp.Forms
 
             string maCV = cbMaChucVu.SelectedItem.ToString();
             string tenTaiKhoanNV = txtTenTaiKhoan.Text;
-            string matKhauNV = txtMatKhau.Text;
+            string matKhauNV = MD5Hash.CalculateMD5Hash(txtMatKhau.Text);
             string hoTenNV = txtHoTen.Text;
             string gioiTinhNV = cbGioiTinh.SelectedItem.ToString();
             DateTime ngaySinhNV = dateTimePickerNgaySinh.Value;
@@ -411,11 +413,11 @@ namespace DoAn_CSharp.Forms
                 return;
             }
 
-            if (!KiemTra_DAO.IsStrongPassword(matKhauNV))
+/*            if (!KiemTra_DAO.IsStrongPassword(matKhauNV))
             {
                 MessageBox.Show("Mật khẩu phải có ít nhất 6 ký tự, chứa ít nhất một chữ hoa, một chữ số và một ký tự đặc biệt.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
+            }*/
 
             // Kiểm tra tên tài khoản chỉ được nhập bằng chữ
             if (!KiemTra_DAO.IsValidName(hoTenNV))

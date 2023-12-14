@@ -21,7 +21,7 @@ namespace DoAn_CSharp.Forms
         {
             InitializeComponent();
         }
-
+        MD5Hash MD5Hash = new MD5Hash();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -61,6 +61,8 @@ namespace DoAn_CSharp.Forms
 
             string userName = txtUserName.Text;
             string passWord = txtPassword.Text;
+            //string passWord = MD5Hash.CalculateMD5Hash(txtPassword.Text);
+
             if (Login(userName, passWord))
             {
                 Account_DTO loginAccount = Account_DAO.Instance.GetAccountByUserName(userName);

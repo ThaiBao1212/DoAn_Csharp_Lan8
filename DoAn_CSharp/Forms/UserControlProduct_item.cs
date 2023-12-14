@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace DoAn_CSharp.Forms
@@ -22,13 +23,32 @@ namespace DoAn_CSharp.Forms
 
             // Set the product ID
             ProductId = maSP;
+            string imageFolderPath = Path.Combine(Application.StartupPath, "Image");
 
-            // Load the image from resources
-            picHinhAnh.Image = (Image)Properties.Resources.ResourceManager.GetObject(tenAnhSP);
-            picHinhAnh.SizeMode = PictureBoxSizeMode.Zoom;
+            if (Directory.Exists(imageFolderPath))
+            {
+                string imageName = tenAnhSP; // Thay thế bằng tên thực của hình ảnh
+                string imagePath = Path.Combine(imageFolderPath, imageName);
 
-            // Adjust the PictureBox size to the image size
-            picHinhAnh.Size = new Size(212, 114);
+                if (File.Exists(imagePath))
+                {
+                    // Load và hiển thị hình ảnh
+                    picHinhAnh.Image = Image.FromFile(imagePath);
+                    picHinhAnh.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    // Adjust the PictureBox size to the image size
+                    picHinhAnh.Size = new Size(212, 114);
+                }
+                else
+                {
+                    MessageBox.Show("Image not found in the 'Image' folder.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("The 'Image' folder does not exist.");
+            }
+
 
             // Subscribe to the click events of specific controls
             label1.Click += Control_Click;

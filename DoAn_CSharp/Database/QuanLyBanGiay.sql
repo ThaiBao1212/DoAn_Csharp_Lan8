@@ -234,8 +234,10 @@ INSERT INTO chitiethd (MaHD, MaSP, DonGia, SoLuongSP,ThanhTien) VALUES
 CREATE TABLE chitietphieunhap (
     MaCTPN INT Identity(1,1) PRIMARY KEY,
     MaPhieuNhap INT,
-    MaSP INT,
-    SoLuongNhap INT,
+	MaSP INT NOT NULL,
+    MaSize INT NOT NULL,
+	SoLuongSP INT DEFAULT 0 NOT NULL,
+	FOREIGN KEY (MaSize) REFERENCES Sizes(MaSize),
     FOREIGN KEY (MaPhieuNhap) REFERENCES phieunhap(MaPhieuNhap),
     FOREIGN KEY (MaSP) REFERENCES sanpham(MaSP)
 );

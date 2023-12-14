@@ -15,7 +15,8 @@ namespace DoAn_CSharp.DTO
         public DateTime NgayBatDau { get; set; }
         public DateTime NgayKetThuc { get; set; }
         public decimal DieuKienGiamGia { get; set; }
- 
+        private decimal TamTinh { get; set; }
+
 
 
     }

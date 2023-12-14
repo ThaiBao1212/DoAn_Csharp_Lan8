@@ -388,7 +388,8 @@ namespace DoAn_CSharp.Forms
         private void InitializeDataGridViewColumns()
         {
             // Xác định số cột và tên cột
-            string[] columnNames = { "MaSP", "TenSP", "SoLuongSP", "DonGia", "TrangThaiSP" };
+            string[] columnNames = { "MaSP","TenNCC", "TenDM",  "TenSP", "TenSize", "SoLuongSP", "DonGia", "TrangThaiSP" };
+
 
             // Thêm cột vào DataGridView và cấu hình AutoSizeMode
             foreach (string columnName in columnNames)
@@ -419,6 +420,7 @@ namespace DoAn_CSharp.Forms
 
             dtgvSanPhamCuaNhaCungCap.Rows.Clear();
 
+            // Sử dụng using để tự động giải phóng tài nguyên của SqlConnection
             using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
@@ -426,34 +428,57 @@ namespace DoAn_CSharp.Forms
                     connection.Open();
 
                     // Sử dụng Parameters
-                    string query = "SELECT MaSP, TenSP, SoLuongSP, DonGia, TrangThaiSP FROM sanpham WHERE MaNCC = @MaNCC";
+                    string query = "SELECT sp.MaSP,ncc.TenNCC, dm.TenDM, sp.TenSP, s.TenSize, sps.SoLuongSP, sp.DonGia, sp.TrangThaiSP " +
+                                   "FROM sanpham sp " +
+                                   "JOIN nhacungcap ncc ON sp.MaNCC = ncc.MaNCC " +
+                                   "JOIN danhmuc dm ON sp.MaDM = dm.MaDanhMuc " +
+                                   "JOIN SanPhamSize sps ON sp.MaSP = sps.MaSP " +
+                                   "JOIN Sizes s ON sps.MaSize = s.MaSize " +
+                                   "WHERE ncc.MaNCC = @MaNCC";
+
+                    // Sử dụng using để tự động giải phóng tài nguyên của SqlCommand
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.Add("@MaNCC", SqlDbType.Int).Value = ql_NhaCungCap_DTO.MaNCC;
 
-                        // Sử dụng SqlDataReader để đọc dữ liệu từ cơ sở dữ liệu
+                        // Sử dụng using để tự động giải phóng tài nguyên của SqlDataReader
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
+                            // Kiểm tra xem có dữ liệu hay không
+                            if (reader.HasRows)
                             {
-                                // Thêm dữ liệu vào dtgvSanPhamCuaNhaCungCap
-                                dtgvSanPhamCuaNhaCungCap.Rows.Add(
-                                    reader["MaSP"],
-                                    reader["TenSP"],
-                                    reader["SoLuongSP"],
-                                    reader["DonGia"],
-                                    reader["TrangThaiSP"]
-                                );
+                                while (reader.Read())
+                                {
+                                    // Thêm dữ liệu vào dtgvSanPhamCuaNhaCungCap
+                                    dtgvSanPhamCuaNhaCungCap.Rows.Add(
+                                        reader["MaSP"],
+                                       
+                                        reader["TenNCC"],
+                                        reader["TenDM"],
+                                         reader["TenSP"],
+                                        reader["TenSize"],
+
+                                        reader["SoLuongSP"],
+                                        reader["DonGia"],
+                                        reader["TrangThaiSP"]
+                                    );
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không có dữ liệu cho nhà cung cấp này.");
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi kết nối và lấy dữ liệu từ cơ sở dữ liệu: " + ex.Message);
+                    // Log lỗi hoặc hiển thị thông báo lỗi
+                    MessageBox.Show("Lỗi khi kết nối và lấy dữ liệu từ cơ sở dữ liệu:aaaa " + ex.Message);
                 }
             }
         }
+
 
 
 

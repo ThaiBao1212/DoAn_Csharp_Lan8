@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\Account_DAO.cs" />
+    <Compile Include="DAO\GiamGia_DAO.cs" />
     <Compile Include="DAO\KiemTra_DAO.cs" />
     <Compile Include="DAO\QuanLyBanHang_DAO.cs" />
     <Compile Include="DAO\QuanLyChiTietHoaDon_DAO.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Database_TB.cs" />
     <Compile Include="Database\DataProvider.cs" />
+    <Compile Include="Database\MD5Hash.cs" />
     <Compile Include="DTO\Account_DTO.cs" />
     <Compile Include="DTO\GiamGia_DTO.cs" />
     <Compile Include="DTO\QuanLyBanHang_DTO.cs" />
@@ -168,6 +170,12 @@
     <Compile Include="Forms\FormThongKe.Designer.cs">
       <DependentUpon>FormThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SanPhamsSize_Form .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SanPhamsSize_Form .Designer.cs">
+      <DependentUpon>SanPhamsSize_Form .cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TimKhachHang_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormThongKe.resx">
       <DependentUpon>FormThongKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SanPhamsSize_Form .resx">
+      <DependentUpon>SanPhamsSize_Form .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TimKhachHang_Form.resx">
       <DependentUpon>TimKhachHang_Form.cs</DependentUpon>

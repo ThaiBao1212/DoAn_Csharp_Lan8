@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\DoAn_CSharp",
+    "\\DoAn_CSharp\\Database",
     "\\DoAn_CSharp\\Forms"
   ],
-  "SelectedNode": "\\DoAn_CSharp\\Forms\\FormLogin.Designer.cs",
+  "SelectedNode": "\\DoAn_CSharp\\Forms\\FormBanHang.cs",
   "PreviewInSolutionExplorer": false
 }

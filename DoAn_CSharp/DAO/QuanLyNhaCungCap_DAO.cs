@@ -18,6 +18,14 @@ namespace DoAn_CSharp.DAO
             db = new Database.Database();
 
         }
+        public DataTable LayDanhSachNhaCungCap()
+        {
+           
+                string strSQL = "SELECT * FROM nhacungcap WHERE TrangThaiNCC =N'Mở'";
+                DataTable dt = db.Execute(strSQL);
+                return dt;
+           
+        }
         public DataTable LayDanhSachSanPhamTrongNhaCungCap(QuanLyNhaCungCap_DTO ql_NhaCungCap_DTO)
         {
             // Sử dụng thẳng giá trị MaNCC trong câu lệnh SQL
