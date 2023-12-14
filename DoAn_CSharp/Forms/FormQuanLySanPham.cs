@@ -1,5 +1,4 @@
 ﻿using DoAn_CSharp.DTO;
-/*using DoAn_CSharp.Forms.Edit_Forms;*/
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,485 +7,304 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
+
+
 
 namespace DoAn_CSharp.Forms
 {
 
 
+
     public partial class FormQuanLySanPham : Form
     {
-        QuanLySanPham_DTO sanpham = new QuanLySanPham_DTO();
-        QuanLySanPham_DTO sp_selected = new QuanLySanPham_DTO();
-        QuanLySanPham_DTO sp_selected_edit = new QuanLySanPham_DTO();
-        string imageUpload = "";
-        /* string connString = "Data Source=LAPTOP-PDE9TC1I\\SQLEXPRESS;Initial Catalog=QuanLyBanGiay;Integrated Security=true";*/
-        //string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
-        string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
+        private DAO.QuanLyDanhMuc_DAO ql_danhmuc_DAO = new DAO.QuanLyDanhMuc_DAO();
+        private DTO.QuanLyDanhMuc_DTO ql_danhmuc_DTO = new DTO.QuanLyDanhMuc_DTO();
+        private DAO.QuanLyNhaCungCap_DAO ql_cungcap_DAO = new DAO.QuanLyNhaCungCap_DAO();
 
+        private DAO.QuanLySanPham_DAO ql_sanpham_DAO = new DAO.QuanLySanPham_DAO();
+        private DTO.QuanLySanPham_DTO ql_sanpham_DTO = new DTO.QuanLySanPham_DTO();
 
         public FormQuanLySanPham()
         {
             InitializeComponent();
+            LoadDanhMucToComboBox();
+            LoadNhaCungCapToComboBox();
+            HienThiSanPham();
+
+            dtgvDanhSachSanPham.CellClick += DtgvDanhSachSanPham_CellClick;
+
+
+            dtgvDanhSachSanPham.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgvDanhSachSanPham.ReadOnly = true;
 
         }
 
-        private void cbMaChucVu_SelectedIndexChanged(object sender, EventArgs e)
+        private void DtgvDanhSachSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataRowView selectedRow = (DataRowView)sp_ncc.SelectedItem;
-            int maNCC = (int)(selectedRow["MaNCC"]);
-            sanpham.MaNCC = maNCC;
-        }
-
-        private void txtMaNhanVien_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtHoTen_TextChanged(object sender, EventArgs e)
-        {
-            sanpham.TenSP = sp_name.Text;
-        }
-
-        private void FormQuanLySanPham_Load(object sender, EventArgs e)
-        {
-            NCC_load();
-            DM_load();
-            listSP_load();
-            dataListSP_load();
-            imagePictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-            detail_image.SizeMode = PictureBoxSizeMode.Zoom;
-        }
-
-        private void dataListSP_load()
-        {
-            listSP.SelectionChanged += DataGridView_SelectionChanged;
-            listSP.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            listSP.ReadOnly = true;
-        }
-
-
-        private void DataGridView_SelectionChanged(object sender, EventArgs e)
-        {
-
-            if (listSP.SelectedRows.Count > 0)
+            // Check if the clicked cell is not a header cell
+            if (e.RowIndex >= 0)
             {
-                DataGridViewRow selectedRow = listSP.SelectedRows[0];
-                sp_selected.MaSP = (int)selectedRow.Cells["MaSP"].Value;
-                sp_selected.MaNCC = (int)selectedRow.Cells["MaNCC"].Value;
-                sp_selected.MaDM = (int)selectedRow.Cells["MaDM"].Value;
-                sp_selected.TenSP = (string)selectedRow.Cells["TenSP"].Value;
-               /* sp_selected.SizeSP = (string)selectedRow.Cells["SizeSP"].Value;*/
-              /*  sp_selected.SoLuongSP = (int)selectedRow.Cells["SoLuongSP"].Value;*/
-                sp_selected.DonGia = (decimal)selectedRow.Cells["DonGia"].Value;
-                sp_selected.MieuTaSP = (string)selectedRow.Cells["MieuTaSP"].Value;
-                sp_selected.TrangThaiSP = (string)selectedRow.Cells["TrangThaiSP"].Value;
-                sp_selected.AnhSP = (string)selectedRow.Cells["AnhSP"].Value;
-
-                sp_selected_edit = sp_selected;
-                sanpham_selected();
+                // Access the data only if it's not a header cell
+                DataGridViewRow selectedRow = dtgvDanhSachSanPham.Rows[e.RowIndex];
+                txtTenSP.Text = selectedRow.Cells["TenSP"].Value?.ToString();
+                cbTenNCC.SelectedValue = selectedRow.Cells["MaNCC"].Value;
+                cbTenDM.SelectedValue = selectedRow.Cells["MaDM"].Value;
+                txtMieuTa.Text = selectedRow.Cells["MieuTaSP"].Value?.ToString();
+                txtDonGia.Text = selectedRow.Cells["DonGia"].Value?.ToString();
             }
         }
 
 
-        private void listSP_load()
+        private void HienThiSanPham()
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+
+            DataTable dt = ql_sanpham_DAO.LayDanhSachSanPham();
+            dtgvDanhSachSanPham.Rows.Clear();
+            foreach (DataRow row in dt.Rows)
             {
-                try
+                dtgvDanhSachSanPham.Rows.Add(row.ItemArray);
+            }
+        }
+
+        private void LoadDanhMucToComboBox()
+        {
+            DataTable dt = ql_danhmuc_DAO.LayDanhSachDanhMuc();
+            cbTenDM.DisplayMember = "TenDM"; // Display the category name
+            cbTenDM.ValueMember = "MaDanhMuc"; // Use the correct column name for the ID
+            cbTenDM.DataSource = dt;
+        }
+
+        private void LoadNhaCungCapToComboBox()
+        {
+            DataTable dt = ql_cungcap_DAO.LayDanhSachNhaCungCap();
+            cbTenNCC.DisplayMember = "TenNCC"; // Display the supplier name
+            cbTenNCC.ValueMember = "MaNCC"; // Use the correct column name for the ID
+            cbTenNCC.DataSource = dt;
+        }
+
+
+
+        private string imagePath; // Declare a class-level variable to store the image path
+
+        private void browseButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*";
+                DialogResult result = openFileDialog.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    // Mở kết nối
-                    connection.Open();
+                    // Store the selected image path
+                    imagePath = openFileDialog.FileName;
 
-                    // Xây dựng câu truy vấn SQL để lấy dữ liệu từ bảng
-                    string query = "SELECT * FROM sanpham";
+                    iPBAnh.Image = Image.FromFile(imagePath);
 
-                    // Tạo đối tượng SqlDataAdapter và DataTable
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    DataTable dataTable = new DataTable();
-
-                    // Đổ dữ liệu từ cơ sở dữ liệu vào DataTable
-                    adapter.Fill(dataTable);
-
-                    // Gán DataTable làm nguồn dữ liệu cho DataGridView
-                    listSP.DataSource = dataTable;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi kết nối và lấy dữ liệu từ cơ sở dữ liệu: " + ex.Message);
+                    iPBAnh.SizeMode = PictureBoxSizeMode.Zoom;
                 }
             }
-        }
-
-        private void NCC_load()
-        {
-            string query = "SELECT MaNCC, TenNCC FROM nhacungcap";
-
-            using (SqlConnection connection = new SqlConnection(connString))
+            catch (Exception ex)
             {
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                sp_ncc.DisplayMember = "TenNCC";
-                sp_ncc.ValueMember = "MaNCC";
-                sp_ncc.DataSource = dataTable;
-
-                detail_ncc.DisplayMember = "TenNCC";
-                detail_ncc.ValueMember = "MaNCC";
-                detail_ncc.DataSource = dataTable;
+                // Handle any exceptions that may occur while loading the image
+                MessageBox.Show("Error loading image: " + ex.ToString());
             }
-        }
-
-        private void DM_load()
-        {
-            string query = "SELECT MaDanhMuc, TenDM FROM danhmuc";
-
-            using (SqlConnection connection = new SqlConnection(connString))
-            {
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                sp_dm.DisplayMember = "TenDM";
-                sp_dm.ValueMember = "MaDanhMuc";
-                sp_dm.DataSource = dataTable;
-
-
-                detail_dm.DisplayMember = "TenDM";
-                detail_dm.ValueMember = "MaDanhMuc";
-                detail_dm.DataSource = dataTable;
-            }
-        }
-
-        private void sp_dm_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataRowView selectedRow = (DataRowView)sp_dm.SelectedItem;
-            int maDM = (int)(selectedRow["MaDanhMuc"]);
-            sanpham.MaDM = maDM;
-        }
-
-        private void sp_size_TextChanged(object sender, EventArgs e)
-        {
-/*            sanpham.SizeSP = sp_size.Text;*/
-        }
-
-        private void sp_description_TextChanged(object sender, EventArgs e)
-        {
-            sanpham.MieuTaSP = sp_description.Text;
-        }
-
-        private void sp_price_TextChanged(object sender, EventArgs e)
-        {
-            if (sp_price.Text != "")
-                sanpham.DonGia = decimal.Parse(sp_price.Text);
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string query = "INSERT INTO sanpham (MaNCC,MaDM,TenSP,SizeSP,SoLuongSP,MieuTaSP, DonGia, TrangThaiSP, AnhSP) VALUES (@MaNCC,@MaDM,@TenSP,@SizeSP,@SoLuongSP,@MieuTaSP,@DonGia,@TrangThaiSP,@AnhSP)";
-
-
-            using (SqlConnection connection = new SqlConnection(connString))
+            try
             {
-                connection.Open();
+                // Check if an image is selected
+                if (string.IsNullOrEmpty(imagePath))
+                {
+                    MessageBox.Show("Please select an image.");
+                    return;
+                }
+
+                // Get values from the form controls
+                int maNCC = Convert.ToInt32(cbTenNCC.SelectedValue);
+                int maDM = Convert.ToInt32(cbTenDM.SelectedValue);
+                string tenSP = txtTenSP.Text;
+                string mieuTaSP = txtMieuTa.Text;
+                decimal donGia = Convert.ToDecimal(txtDonGia.Text);
+
+                // Use Path.Combine to create the full path to the Resources folder
+
+                string resourcesPath = Path.Combine(Application.StartupPath, "Image");
+
+                // Create a new folder if it doesn't exist
+                if (!Directory.Exists(resourcesPath))
+                {
+                    Directory.CreateDirectory(resourcesPath);
+                }
+
+                // Get the file name from the original path
+                string fileName = Path.GetFileName(imagePath);
+
+
+                // Combine the Resources folder path with the file name
+
+                string destinationPath = Path.Combine(resourcesPath, fileName);
+
+                // Copy the selected image to the Resources folder
+                File.Copy(imagePath, destinationPath, true);
+
+                // Set the image path to the destination path
+                string anhSP = fileName;
+
+                QuanLySanPham_DTO sanPham = new QuanLySanPham_DTO
+                {
+                    MaNCC = maNCC,
+                    MaDM = maDM,
+                    TenSP = tenSP,
+                    MieuTaSP = mieuTaSP,
+                    DonGia = donGia,
+                    AnhSP = anhSP,
+                };
+
+                // Call the method to add the product
+                ql_sanpham_DAO.ThemSanPham(sanPham);
+
+                MessageBox.Show("Sản phẩm đã được thêm thành công.");
+
+                // You can add additional logic here if needed
+
+                HienThiSanPham();
+                ClearFormControls();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Vui lòng nhập đúng định dạng cho trường số.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void ClearFormControls()
+        {
+            // Clear all form controls
+            cbTenNCC.SelectedIndex = -1;
+            cbTenDM.SelectedIndex = -1;
+            txtTenSP.Clear();
+            txtMieuTa.Clear();
+            txtDonGia.Clear();
+            imagePath = null;
+            iPBAnh.Image = null;
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (dtgvDanhSachSanPham.SelectedRows.Count == 1)
+            {
                 try
                 {
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    // Get the selected product's information from the DataGridView
+                    DataGridViewRow selectedRow = dtgvDanhSachSanPham.SelectedRows[0];
+                    int maSP = Convert.ToInt32(selectedRow.Cells["MaSP"].Value);
+                    string tenSP = txtTenSP.Text;
+                    int maNCC = Convert.ToInt32(cbTenNCC.SelectedValue);
+                    int maDM = Convert.ToInt32(cbTenDM.SelectedValue);
+                    string mieuTaSP = txtMieuTa.Text;
+                    decimal donGia = Convert.ToDecimal(txtDonGia.Text);
+
+                    // Check if an image is selected
+                    if (string.IsNullOrEmpty(imagePath))
                     {
-                        // Add parameters to the command
-                        command.Parameters.AddWithValue("@MaNCC", sanpham.MaNCC);
-                        command.Parameters.AddWithValue("@MaDM", sanpham.MaDM);
-                        command.Parameters.AddWithValue("@TenSP", sanpham.TenSP);
-                        /*command.Parameters.AddWithValue("@SizeSP", sanpham.SizeSP);
-                        command.Parameters.AddWithValue("@SoLuongSP", sanpham.SoLuongSP);*/
-                        command.Parameters.AddWithValue("@MieuTaSP", sanpham.MieuTaSP);
-                        command.Parameters.AddWithValue("@DonGia", sanpham.DonGia);
-                        command.Parameters.AddWithValue("@TrangThaiSP", sanpham.TrangThaiSP);
-                        command.Parameters.AddWithValue("@AnhSP", imageUpload);
-                        if (sanpham.AnhSP == "" || sanpham.AnhSP == null)
+                        // If imagePath is null or empty, it means the user didn't select a new image,
+                        // so we keep the existing image path.
+                        string existingImagePath = selectedRow.Cells["AnhSP"].Value?.ToString();
+                        if (!string.IsNullOrEmpty(existingImagePath))
                         {
-                            sanpham.AnhSP = "";
-                        };
-
-
-                        // Execute the query
-                        int rowsAffected = command.ExecuteNonQuery();
-
-                        // Check if the insertion was successful
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Thêm sản phẩm thành công.");
-                            clearForm();
-                            listSP_load();
-                            sanpham = new QuanLySanPham_DTO();
+                            // If there is an existing image path, use it
+                            imagePath = Path.Combine(Application.StartupPath, "Image", existingImagePath);
                         }
                         else
                         {
-                            MessageBox.Show("Thêm sản phẩm thất bại.");
+                            // Handle the case where there is no existing image path
+                            MessageBox.Show("Please select an image.");
+                            return;
                         }
                     }
-                }
-                catch (Exception )
-                {
-                    MessageBox.Show("Đã xảy ra lỗi khi lưu sản phẩm. Vui lòng kiểm tra và điền đầy đủ thông tin cho sản phẩm mới !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                // Create a SqlCommand object with the query and connection
-
-            }
-        }
-
-        private void clearForm()
-        {
-            sp_name.Text = "";
-            sp_ncc.SelectedIndex = 0;
-            sp_dm.SelectedIndex = 0;
-            sp_status.Checked = false;
-            sp_price.Text = "";
-            sp_quantity.Text = "";
-            sp_description.Text = "";
-            sp_size.Text = "";
-        }
-
-        private void sp_quantity_TextChanged(object sender, EventArgs e)
-        {
-/*            if (sp_quantity.Text != "")
-                sanpham.SoLuongSP = int.Parse(sp_quantity.Text);*/
-        }
-
-        private void sp_status_CheckedChanged(object sender, EventArgs e)
-        {
-            bool check = sp_status.Checked;
-            if (check)
-            {
-                sanpham.TrangThaiSP = "Mở";
-            }
-            else
-            {
-                sanpham.TrangThaiSP = "Đóng";
-            }
-        }
-
-        private void dtgvQuanLyNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-            if (sp_selected.TenSP != "" || sp_selected.TenSP != null)
-            {
-                string deleteQuery = "DELETE FROM sanpham WHERE MaSP = @MaSP";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    connection.Open();
-
-                    using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+                    else
                     {
-                        DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa sản phẩm này ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.Yes)
-                        {
-                            command.Parameters.AddWithValue("@MaSP", sp_selected.MaSP);
-
-                            // Thực thi câu truy vấn để xóa hàng
-                            command.ExecuteNonQuery();
-                            MessageBox.Show("Đã xóa: " + sp_selected.TenSP);
-                            listSP_load();
-                        }
-                        else
-                        {
-                            // Người dùng đã chọn No hoặc đóng hộp thoại
-
-                        }
+                        // If a new image is selected, update the image in the specified folder
+                        string resourcesPath = Path.Combine(Application.StartupPath, "Image");
+                        string fileName = Path.GetFileName(imagePath);
+                        string destinationPath = Path.Combine(resourcesPath, fileName);
+                        File.Copy(imagePath, destinationPath, true);
                     }
-                     // Đóng kết nối cơ sở dữ liệu
-                    connection.Close();
+
+                    // Set the image path to the destination path
+                    string anhSP = Path.GetFileName(imagePath);
+
+                    // Update the information in the DTO object
+                    ql_sanpham_DTO.MaSP = maSP;
+                    ql_sanpham_DTO.TenSP = tenSP;
+                    ql_sanpham_DTO.MaNCC = maNCC;
+                    ql_sanpham_DTO.MaDM = maDM;
+                    ql_sanpham_DTO.MieuTaSP = mieuTaSP;
+                    ql_sanpham_DTO.DonGia = donGia;
+                    ql_sanpham_DTO.AnhSP = anhSP;
+
+                    // Update the information in the database using your data access layer
+                    ql_sanpham_DAO.CapNhatSanPham(ql_sanpham_DTO);
+
+                    // Refresh the DataGridView to reflect the changes
+                    HienThiSanPham();
+                    ClearFormControls();
                 }
-            }
-        }
-
-        private void sanpham_selected()
-        {
-            QuanLySanPham_DTO sq_select_edit = new QuanLySanPham_DTO();
-            detail_name.Text = sp_selected_edit.TenSP;
-            detail_price.Text = sp_selected_edit.DonGia.ToString();
-/*            detail_quantity.Text = sp_selected_edit.SoLuongSP.ToString();
-            detail_size.Text = sp_selected_edit.SizeSP;*/
-            detail_description.Text = sp_selected_edit.MieuTaSP;
-            detail_image.ImageLocation = sp_selected_edit.AnhSP;
-
-
-            for (int i = 0; i < detail_ncc.Items.Count; i++)
-            {
-                DataRowView item = (DataRowView)detail_ncc.Items[i];
-                if ((int)item["MaNCC"] == sp_selected_edit.MaNCC)
+                catch (Exception ex)
                 {
-                    detail_ncc.SelectedIndex = i;
-                    break;
+                    MessageBox.Show($"Error: {ex.Message}");
                 }
-            }
-
-
-
-
-            for (int i = 0; i < detail_dm.Items.Count; i++)
-            {
-                DataRowView item = (DataRowView)detail_dm.Items[i];
-                if ((int)item["MaDanhMuc"] == sp_selected_edit.MaDM)
-                {
-                    detail_dm.SelectedIndex = i;
-                    break;
-                }
-            }
-        }
-
-        private void detail_ncc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataRowView selectedRow = (DataRowView)detail_ncc.SelectedItem;
-            int maNCC = (int)(selectedRow["MaNCC"]);
-            sp_selected_edit.MaNCC = maNCC;
-        }
-
-        private void detail_name_TextChanged(object sender, EventArgs e)
-        {
-            sp_selected_edit.TenSP = detail_name.Text;
-
-        }
-
-        private void detail_dm_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataRowView selectedRow = (DataRowView)detail_dm.SelectedItem;
-            int maDM = (int)(selectedRow["MaDanhMuc"]);
-            sp_selected_edit.MaDM = maDM;
-        }
-
-        private void detail_size_TextChanged(object sender, EventArgs e)
-        {
-/*            sp_selected_edit.SizeSP = detail_size.Text;*/
-        }
-
-        private void detail_description_TextChanged(object sender, EventArgs e)
-        {
-            sp_selected_edit.MieuTaSP = detail_description.Text;
-        }
-
-        private void detail_price_TextChanged(object sender, EventArgs e)
-        {
-            if (detail_price.Text != "")
-                sp_selected_edit.DonGia = decimal.Parse(detail_price.Text);
-        }
-
-        private void detail_quantity_TextChanged(object sender, EventArgs e)
-        {
-/*            if (detail_quantity.Text != "")
-                sp_selected_edit.SoLuongSP = int.Parse(detail_quantity.Text);*/
-        }
-
-        private void detail_status_CheckedChanged(object sender, EventArgs e)
-        {
-            bool check = detail_status.Checked;
-            if (check)
-            {
-                sp_selected_edit.TrangThaiSP = "Mở";
             }
             else
             {
-                sp_selected_edit.TrangThaiSP = "Đóng";
+                MessageBox.Show("Vui lòng chỉ chọn một sản phẩm để sửa.", "Thông báo");
             }
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnXoa_Click(object sender, EventArgs e)
         {
-            sp_selected_edit = sp_selected;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string query = "UPDATE sanpham SET MaNCC=@MaNCC,MaDM=@MaDM,TenSP=@TenSP,SizeSP=@SizeSP,SoLuongSP=@SoLuongSP,MieuTaSP=@MieuTaSP,DonGia=@DonGia,TrangThaiSP=@TrangThaiSP,AnhSP=@AnhSP WHERE MaSP = @MaSP";
-            using (SqlConnection connection = new SqlConnection(connString))
+            if (dtgvDanhSachSanPham.SelectedRows.Count == 1)
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@MaSP", sp_selected_edit.MaSP);
-                command.Parameters.AddWithValue("@MaNCC", sp_selected_edit.MaNCC);
-                command.Parameters.AddWithValue("@MaDM", sp_selected_edit.MaDM);
-                command.Parameters.AddWithValue("@TenSP", sp_selected_edit.TenSP);
-/*                command.Parameters.AddWithValue("@SizeSP", sp_selected_edit.SizeSP);
-                command.Parameters.AddWithValue("@SoLuongSP", sp_selected_edit.SoLuongSP);*/
-                command.Parameters.AddWithValue("@MieuTaSP", sp_selected_edit.MieuTaSP);
-                command.Parameters.AddWithValue("@DonGia", sp_selected_edit.DonGia);
-                command.Parameters.AddWithValue("@AnhSP", sp_selected_edit.AnhSP);
-                if (detail_status.Checked)
+                try
                 {
-                    command.Parameters.AddWithValue("@TrangThaiSP", "Mở");
+                    // Get the selected product's information from the DataGridView
+                    DataGridViewRow selectedRow = dtgvDanhSachSanPham.SelectedRows[0];
+                    int maSP = Convert.ToInt32(selectedRow.Cells["MaSP"].Value);
+
+                    // Call the method to delete the product
+                    ql_sanpham_DAO.XoaSanPham(maSP);
+
+                    MessageBox.Show("Sản phẩm đã được xóa thành công.");
+
+                    // Refresh the DataGridView to reflect the changes
+                    HienThiSanPham();
                 }
-                else
+                catch (Exception ex)
                 {
-                    command.Parameters.AddWithValue("@TrangThaiSP", "Đóng");
+                    MessageBox.Show($"Error: {ex.Message}");
                 }
-
-                MessageBox.Show("Cập nhật san pham thành công.");
-
-
-
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-
-                listSP_load();
-
             }
-        }
-
-        private void browseButton_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            else
             {
-                openFileDialog.Filter = "Image Files (*.jpg, *.png, *.gif)|*.jpg;*.png;*.gif";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string imagePath = openFileDialog.FileName;
-                    string destinationFolder = Path.Combine(Application.StartupPath, "Images");
-
-                    // Create the "Images" folder if it doesn't exist
-                    if (!Directory.Exists(destinationFolder))
-                        Directory.CreateDirectory(destinationFolder);
-
-                    string destinationPath = Path.Combine(destinationFolder, Path.GetFileName(imagePath));
-                    File.Copy(imagePath, destinationPath, true);
-                    imagePictureBox.ImageLocation = destinationPath;
-                    imageUpload = destinationPath;
-
-                }
+                MessageBox.Show("Vui lòng chỉ chọn một sản phẩm để xóa.", "Thông báo");
             }
         }
 
-        private void btnThemNhaCungCapNhanh_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            ThemNhaCungCap_Form f = new ThemNhaCungCap_Form();
-
-            f.Show();
-
-        }
-        private void ThemNhaCungCap_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Gọi hàm cập nhật dữ liệu cho cbNhaCungCap sau khi form ThemNhaCungCap_Form được đóng
-            CapNhatDanhSachNhaCungCap();
-        }
-        private void CapNhatDanhSachNhaCungCap()
-        {
-
-
-        }
-
-        private void iconButton3_Click(object sender, EventArgs e)
-        {
-            ThemDanhMuc_Form f = new ThemDanhMuc_Form();
-            f.Show();
+            HienThiSanPham();
+            ClearFormControls();
         }
     }
 }
