@@ -53,7 +53,146 @@ namespace DoAn_CSharp.DAO
             return data;
         }
 
+        public List<QuanLyHoaDon_DTO> TimKiemHoaDonTatCa(string tuKhoa = "")
+        {
+            string query = $"SELECT * FROM hoadon WHERE " +
+                           $"MaHD LIKE '%{tuKhoa}%' OR " +
+                           $"MaKH LIKE '%{tuKhoa}%' OR " +
+                           $"MaNV LIKE '%{tuKhoa}%' OR " +
+                           $"NgayLapHD LIKE N'%{tuKhoa}%'";
+
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyHoaDon_DTO> ketQua = new List<QuanLyHoaDon_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyHoaDon_DTO hoadon = new QuanLyHoaDon_DTO();
+                if (row["MaHD"] != DBNull.Value)
+                    hoadon.MaHD = Convert.ToInt32(row["MaHD"]);
+                if (row["MaKH"] != DBNull.Value)
+                    hoadon.MaKH = Convert.ToInt32(row["MaKH"]);
+                if (row["MaNV"] != DBNull.Value)
+                    hoadon.MaNV = Convert.ToInt32(row["MaNV"]);
+                if (row["NgayLapHD"] != DBNull.Value)
+                    hoadon.NgayLapHD = Convert.ToDateTime(row["NgayLapHD"]);
+                // Các trường khác nếu cần
+
+                ketQua.Add(hoadon);
+            }
+
+            return ketQua;
+        }
 
 
+        public List<QuanLyHoaDon_DTO> TimKiemHoaDonTheoMaHD(string tuKhoa = "")
+        {
+            string query = $"SELECT * FROM hoadon WHERE " +
+                           $"MaHD LIKE '%{tuKhoa}%'";
+
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyHoaDon_DTO> ketQua = new List<QuanLyHoaDon_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyHoaDon_DTO hoadon = new QuanLyHoaDon_DTO();
+                if (row["MaHD"] != DBNull.Value)
+                    hoadon.MaHD = Convert.ToInt32(row["MaHD"]);
+                if (row["MaKH"] != DBNull.Value)
+                    hoadon.MaKH = Convert.ToInt32(row["MaKH"]);
+                if (row["MaNV"] != DBNull.Value)
+                    hoadon.MaNV = Convert.ToInt32(row["MaNV"]);
+                if (row["NgayLapHD"] != DBNull.Value)
+                    hoadon.NgayLapHD = Convert.ToDateTime(row["NgayLapHD"]);
+                // Các trường khác nếu cần
+
+                ketQua.Add(hoadon);
+            }
+
+            return ketQua;
+        }
+
+        public List<QuanLyHoaDon_DTO> TimKiemHoaDonTheoMaNV(string tuKhoa = "")
+        {
+            string query = $"SELECT * FROM hoadon WHERE " +
+                           $"MaNV LIKE '%{tuKhoa}%'";
+
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyHoaDon_DTO> ketQua = new List<QuanLyHoaDon_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyHoaDon_DTO hoadon = new QuanLyHoaDon_DTO();
+                if (row["MaHD"] != DBNull.Value)
+                    hoadon.MaHD = Convert.ToInt32(row["MaHD"]);
+                if (row["MaKH"] != DBNull.Value)
+                    hoadon.MaKH = Convert.ToInt32(row["MaKH"]);
+                if (row["MaNV"] != DBNull.Value)
+                    hoadon.MaNV = Convert.ToInt32(row["MaNV"]);
+                if (row["NgayLapHD"] != DBNull.Value)
+                    hoadon.NgayLapHD = Convert.ToDateTime(row["NgayLapHD"]);
+                // Các trường khác nếu cần
+
+                ketQua.Add(hoadon);
+            }
+
+            return ketQua;
+        }
+
+        public List<QuanLyHoaDon_DTO> TimKiemHoaDonTheoMaKH(string tuKhoa = "")
+        {
+            string query = $"SELECT * FROM hoadon WHERE " +
+                           $"MaKH LIKE '%{tuKhoa}%'";
+
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyHoaDon_DTO> ketQua = new List<QuanLyHoaDon_DTO>();
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyHoaDon_DTO hoadon = new QuanLyHoaDon_DTO();
+                if (row["MaHD"] != DBNull.Value)
+                    hoadon.MaHD = Convert.ToInt32(row["MaHD"]);
+                if (row["MaKH"] != DBNull.Value)
+                    hoadon.MaKH = Convert.ToInt32(row["MaKH"]);
+                if (row["MaNV"] != DBNull.Value)
+                    hoadon.MaNV = Convert.ToInt32(row["MaNV"]);
+                if (row["NgayLapHD"] != DBNull.Value)
+                    hoadon.NgayLapHD = Convert.ToDateTime(row["NgayLapHD"]);
+                // Các trường khác nếu cần
+
+                ketQua.Add(hoadon);
+            }
+
+            return ketQua;
+        }
+
+        public List<QuanLyHoaDon_DTO> TimKiemHoaDonTheoNgayLapHD(DateTime tuNgay, DateTime denNgay)
+        {
+            string query = $"SELECT * FROM hoadon WHERE " +
+                           $"NgayLapHD BETWEEN '{tuNgay}' AND '{denNgay}'";
+
+            DataTable data = provider.ExecuteQuery(query);
+
+            List<QuanLyHoaDon_DTO> ketQua = new List<QuanLyHoaDon_DTO>();
+
+            foreach (DataRow row in data.Rows)
+            {
+                QuanLyHoaDon_DTO hoadon = new QuanLyHoaDon_DTO();
+                if (row["MaHD"] != DBNull.Value)
+                    hoadon.MaHD = Convert.ToInt32(row["MaHD"]);
+                if (row["MaKH"] != DBNull.Value)
+                    hoadon.MaKH = Convert.ToInt32(row["MaKH"]);
+                if (row["MaNV"] != DBNull.Value)
+                    hoadon.MaNV = Convert.ToInt32(row["MaNV"]);
+                if (row["NgayLapHD"] != DBNull.Value)
+                    hoadon.NgayLapHD = Convert.ToDateTime(row["NgayLapHD"]);
+                // Các trường khác nếu cần
+
+                ketQua.Add(hoadon);
+            }
+
+            return ketQua;
+        }
+
+       
     }
 }

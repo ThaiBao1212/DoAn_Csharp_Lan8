@@ -46,7 +46,7 @@
             this.txtEmail.Location = new System.Drawing.Point(230, 176);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(426, 20);
-            this.txtEmail.TabIndex = 89;
+            this.txtEmail.TabIndex = 3;
             // 
             // label10
             // 
@@ -78,7 +78,7 @@
             this.TT_NCC.Margin = new System.Windows.Forms.Padding(2);
             this.TT_NCC.Name = "TT_NCC";
             this.TT_NCC.Size = new System.Drawing.Size(74, 17);
-            this.TT_NCC.TabIndex = 86;
+            this.TT_NCC.TabIndex = 4;
             this.TT_NCC.Text = "Trạng thái";
             this.TT_NCC.UseVisualStyleBackColor = true;
             // 
@@ -87,21 +87,21 @@
             this.txtTenNhaCungCap.Location = new System.Drawing.Point(229, 85);
             this.txtTenNhaCungCap.Name = "txtTenNhaCungCap";
             this.txtTenNhaCungCap.Size = new System.Drawing.Size(426, 20);
-            this.txtTenNhaCungCap.TabIndex = 85;
+            this.txtTenNhaCungCap.TabIndex = 0;
             // 
             // txtSDTNhaCungCap
             // 
             this.txtSDTNhaCungCap.Location = new System.Drawing.Point(229, 146);
             this.txtSDTNhaCungCap.Name = "txtSDTNhaCungCap";
             this.txtSDTNhaCungCap.Size = new System.Drawing.Size(426, 20);
-            this.txtSDTNhaCungCap.TabIndex = 84;
+            this.txtSDTNhaCungCap.TabIndex = 2;
             // 
             // txtDiaChiNhaCungCap
             // 
             this.txtDiaChiNhaCungCap.Location = new System.Drawing.Point(229, 116);
             this.txtDiaChiNhaCungCap.Name = "txtDiaChiNhaCungCap";
             this.txtDiaChiNhaCungCap.Size = new System.Drawing.Size(426, 20);
-            this.txtDiaChiNhaCungCap.TabIndex = 83;
+            this.txtDiaChiNhaCungCap.TabIndex = 1;
             // 
             // label4
             // 
@@ -135,21 +135,24 @@
             // 
             // btnThem
             // 
+            this.btnThem.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThem.ForeColor = System.Drawing.Color.White;
             this.btnThem.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnThem.IconColor = System.Drawing.Color.Black;
             this.btnThem.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThem.Location = new System.Drawing.Point(317, 237);
+            this.btnThem.Location = new System.Drawing.Point(320, 228);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(175, 23);
-            this.btnThem.TabIndex = 90;
+            this.btnThem.Size = new System.Drawing.Size(183, 32);
+            this.btnThem.TabIndex = 5;
             this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click_1);
             // 
             // ThemNhaCungCap_Form
             // 
+            this.AcceptButton = this.btnThem;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 272);

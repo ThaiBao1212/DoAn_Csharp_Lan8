@@ -61,6 +61,9 @@ namespace DoAn_CSharp
         void ChangeAccount (int maCV)
         {
             btnQuanLyNhanVien.Enabled = maCV == 1;
+            btnQuanLyNhaCungCap.Enabled = maCV == 1;
+            btnThongKe.Enabled = maCV == 1;
+            btnQuanLyNhapHang.Enabled = maCV == 1; 
 
             lbThongTinNhanVien.Text += " " + LoginAccount.HoTenNV ;
 
@@ -79,7 +82,7 @@ namespace DoAn_CSharp
         }
         
         //Methods
-
+         
         private void ActivateButton(object senderBtn, System.Drawing.Color color)
         {
             if (senderBtn  != null)

@@ -40,7 +40,7 @@
             this.txtTenDanhMuc.Location = new System.Drawing.Point(236, 112);
             this.txtTenDanhMuc.Name = "txtTenDanhMuc";
             this.txtTenDanhMuc.Size = new System.Drawing.Size(319, 26);
-            this.txtTenDanhMuc.TabIndex = 28;
+            this.txtTenDanhMuc.TabIndex = 0;
             // 
             // label2
             // 
@@ -67,23 +67,27 @@
             // 
             // btnThem
             // 
+            this.btnThem.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThem.ForeColor = System.Drawing.Color.White;
             this.btnThem.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnThem.IconColor = System.Drawing.Color.Black;
             this.btnThem.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThem.Location = new System.Drawing.Point(250, 193);
+            this.btnThem.Location = new System.Drawing.Point(267, 181);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(175, 23);
+            this.btnThem.Size = new System.Drawing.Size(175, 33);
             this.btnThem.TabIndex = 91;
             this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // ThemDanhMuc_Form
             // 
+            this.AcceptButton = this.btnThem;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(651, 251);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.title);

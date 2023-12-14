@@ -39,7 +39,12 @@ namespace DoAn_CSharp.Forms
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát chương trình ?", "Xác nhận Thoát ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }         
         }
 
         private void btnMini_Click(object sender, EventArgs e)

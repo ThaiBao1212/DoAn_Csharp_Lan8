@@ -101,6 +101,7 @@
             this.dateTimePickerDenNgay.Name = "dateTimePickerDenNgay";
             this.dateTimePickerDenNgay.Size = new System.Drawing.Size(122, 20);
             this.dateTimePickerDenNgay.TabIndex = 58;
+            this.dateTimePickerDenNgay.ValueChanged += new System.EventHandler(this.dateTimePickerDenNgay_ValueChanged);
             // 
             // dateTimePickerTuNgay
             // 
@@ -109,6 +110,7 @@
             this.dateTimePickerTuNgay.Name = "dateTimePickerTuNgay";
             this.dateTimePickerTuNgay.Size = new System.Drawing.Size(122, 20);
             this.dateTimePickerTuNgay.TabIndex = 57;
+            this.dateTimePickerTuNgay.ValueChanged += new System.EventHandler(this.dateTimePickerTuNgay_ValueChanged);
             // 
             // label3
             // 
@@ -158,6 +160,7 @@
             this.cbTimKiem.Name = "cbTimKiem";
             this.cbTimKiem.Size = new System.Drawing.Size(115, 22);
             this.cbTimKiem.TabIndex = 51;
+            this.cbTimKiem.SelectedIndexChanged += new System.EventHandler(this.cbTimKiem_SelectedIndexChanged);
             // 
             // txtTimKiem
             // 
@@ -166,6 +169,7 @@
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(200, 20);
             this.txtTimKiem.TabIndex = 50;
+            this.txtTimKiem.TextChanged += new System.EventHandler(this.txtTimKiem_TextChanged);
             // 
             // groupBox2
             // 

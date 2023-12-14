@@ -61,12 +61,12 @@
             // 
             // picHinhAnh
             // 
-            this.picHinhAnh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picHinhAnh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picHinhAnh.Image = global::DoAn_CSharp.Properties.Resources.product_2;
-            this.picHinhAnh.Location = new System.Drawing.Point(5, 26);
+            this.picHinhAnh.Location = new System.Drawing.Point(6, 26);
             this.picHinhAnh.Margin = new System.Windows.Forms.Padding(2);
             this.picHinhAnh.Name = "picHinhAnh";
-            this.picHinhAnh.Size = new System.Drawing.Size(159, 93);
+            this.picHinhAnh.Size = new System.Drawing.Size(125, 78);
             this.picHinhAnh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picHinhAnh.TabIndex = 2;
             this.picHinhAnh.TabStop = false;
@@ -75,7 +75,7 @@
             // 
             this.lblTenSP.AutoSize = true;
             this.lblTenSP.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenSP.Location = new System.Drawing.Point(12, 124);
+            this.lblTenSP.Location = new System.Drawing.Point(16, 128);
             this.lblTenSP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTenSP.Name = "lblTenSP";
             this.lblTenSP.Size = new System.Drawing.Size(96, 17);
@@ -86,7 +86,7 @@
             // 
             this.lblDonGia.AutoSize = true;
             this.lblDonGia.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDonGia.Location = new System.Drawing.Point(51, 149);
+            this.lblDonGia.Location = new System.Drawing.Point(61, 145);
             this.lblDonGia.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDonGia.Name = "lblDonGia";
             this.lblDonGia.Size = new System.Drawing.Size(33, 19);
@@ -97,7 +97,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 149);
+            this.label2.Location = new System.Drawing.Point(24, 145);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 19);
@@ -117,7 +117,7 @@
             this.Controls.Add(this.lblMaSP);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UserControlProduct_item";
-            this.Size = new System.Drawing.Size(166, 174);
+            this.Size = new System.Drawing.Size(142, 177);
             this.Click += new System.EventHandler(this.UserControlProduct_item_Click);
             ((System.ComponentModel.ISupportInitialize)(this.picHinhAnh)).EndInit();
             this.ResumeLayout(false);

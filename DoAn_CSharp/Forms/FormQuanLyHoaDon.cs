@@ -24,6 +24,7 @@ namespace DoAn_CSharp.Forms
 
             this.reportViewerHoaDon.RefreshReport();
             LoadDataToDataGridView();
+            LoadDataToComBoBoxTimKiem();
         }
 
         private QuanLyHoaDon_DTO ql_HoaDon_DTO = new QuanLyHoaDon_DTO();
@@ -131,6 +132,98 @@ namespace DoAn_CSharp.Forms
                 HienThiChiTietPhieuNhap();
 
             }*/
+        }
+
+
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            TimKiemHoaDon();
+        }
+
+        private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TimKiemHoaDon();
+        }
+
+        private void dateTimePickerTuNgay_ValueChanged(object sender, EventArgs e)
+        {
+            TimKiemHoaDon();
+        }
+
+        private void dateTimePickerDenNgay_ValueChanged(object sender, EventArgs e)
+        {
+            TimKiemHoaDon();
+        }
+        private void TimKiemHoaDon()
+        {
+            // Lấy thông tin tìm kiếm từ ô nhập và combobox
+            string tuKhoa = txtTimKiem.Text.Trim();
+            string loaiTimKiem = cbTimKiem.SelectedItem?.ToString();
+            DateTime tuNgay = dateTimePickerTuNgay.Value;
+            DateTime denNgay = dateTimePickerDenNgay.Value;
+
+            // Kiểm tra xem đã chọn loại tìm kiếm chưa
+            if (string.IsNullOrEmpty(loaiTimKiem))
+                return;
+
+            // Thực hiện tìm kiếm và cập nhật DataGridView
+            List<QuanLyHoaDon_DTO> ketQuaTimKiem = new List<QuanLyHoaDon_DTO>();
+
+            // Xóa tất cả các cột hiện tại và dữ liệu trong DataGridView
+            dtgvDanhSachHoaDon.Columns.Clear();
+            dtgvDanhSachHoaDon.Rows.Clear();
+
+            // Thêm các cột mới vào DataGridView
+            dtgvDanhSachHoaDon.Columns.Add("MaHD", "Mã Hóa Đơn");
+            dtgvDanhSachHoaDon.Columns.Add("MaNV", "Mã Nhân Viên");
+            dtgvDanhSachHoaDon.Columns.Add("MaKH", "Mã Khách Hàng");
+            dtgvDanhSachHoaDon.Columns.Add("NgayLapHD", "Ngày Lập HD");
+
+            AdjustDataGridViewColumns();
+
+            switch (loaiTimKiem)
+            {
+                case "Tất cả":
+                    ketQuaTimKiem = hoaDon_DAO.TimKiemHoaDonTatCa(tuKhoa);
+                    break;
+                case "Mã Hóa Đơn":
+                    ketQuaTimKiem = hoaDon_DAO.TimKiemHoaDonTheoMaHD(tuKhoa);
+                    break;
+                case "Mã Nhân Viên":
+                    ketQuaTimKiem = hoaDon_DAO.TimKiemHoaDonTheoMaNV(tuKhoa);
+                    break;
+                case "Mã Khách Hàng":
+                    ketQuaTimKiem = hoaDon_DAO.TimKiemHoaDonTheoMaKH(tuKhoa);
+                    break;
+                case "Lọc Theo Ngày Lập HD":
+                    ketQuaTimKiem = hoaDon_DAO.TimKiemHoaDonTheoNgayLapHD(tuNgay, denNgay);
+                    break;
+
+
+                // Thêm các trường hợp tìm kiếm khác ở đây nếu cần
+                default:
+                    break;
+            }
+
+            // Cập nhật DataGridView với kết quả tìm kiếm
+            foreach (var item in ketQuaTimKiem)
+            {
+                dtgvDanhSachHoaDon.Rows.Add(item.MaHD, item.MaNV, item.MaKH, item.NgayLapHD);
+            }
+        }
+        private void LoadDataToComBoBoxTimKiem()
+        {
+            cbTimKiem.Items.Add("Tất cả");
+            cbTimKiem.Items.Add("Mã Hóa Đơn");
+            cbTimKiem.Items.Add("Mã Nhân Viên");
+            cbTimKiem.Items.Add("Mã Khách Hàng");
+            cbTimKiem.Items.Add("Lọc Theo Ngày Lập HD");
+
+            if (cbTimKiem.Items.Count > 0)
+            {
+                cbTimKiem.SelectedIndex = 0;
+            }
         }
 
     }

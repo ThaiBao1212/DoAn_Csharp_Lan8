@@ -560,7 +560,8 @@ namespace DoAn_CSharp.Forms
             /*f.MdiParent = this;*/
             f.Show();
         }
-       
+
+
     }
 }
 
