@@ -14,6 +14,7 @@ namespace DoAn_CSharp.DTO
         public float DonGia { get; set; }
         public string SizeSP { get; set; }
         public int SoLuongSP { get; set; }
+        public int SoLuong { get; set; }
         public float ThanhTien { get; set; }
 
     }

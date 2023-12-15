@@ -1,23 +1,23 @@
 ﻿using DoAn_CSharp.Database;
 using DoAn_CSharp.DTO;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoAn_CSharp.DAO
 {
     internal class QuanLyChiTietHoaDon_DAO
     {
         private Database.Database db;
+
         public QuanLyChiTietHoaDon_DAO()
         {
             db = new Database.Database();
-
         }
+
+        // Other methods...
+
         public DataTable LayDanhSachChiTietDH(QuanLyChiTietHoaDon_DTO quanLyChiTietHoaDon_DTO)
         {
             try
@@ -28,42 +28,43 @@ namespace DoAn_CSharp.DAO
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return null;
             }
         }
-        public bool InsertChiTietHoaDon(QuanLyChiTietHoaDon_DTO chiTietHoaDon)
+         public void InsertChiTietHoaDon(int maHD, int maSP, int soLuong, float donGia)
         {
             try
             {
-                // Assuming you have a chitiethd table with columns like MaHD, MaSP, SoLuong, DonGia, etc.
+                // Open the connection before executing the command
+                db.GetConnection().Open();
 
-                // Use parameters to avoid SQL injection
-                string strSQL = "INSERT INTO chitiethd (MaHD, MaSP, SoLuong, DonGia) " +
-                                "VALUES (@MaHD, @MaSP, @SoLuong, @DonGia)";
+                // Assume you have a stored procedure or SQL command to insert a new order
+                SqlCommand command = new SqlCommand("INSERT INTO chitiethd (MaHD, MaSP, DonGia, SoLuongSP, ThanhTien) VALUES (@MaHD, @MaSP, @DonGia, @SoLuongSP, @ThanhTien);", db.GetConnection());
 
-                // Create an array of SqlParameter objects
-                SqlParameter[] parameters =
-                {
-                    new SqlParameter("@MaHD", SqlDbType.Int) {Value = chiTietHoaDon.MaHD},
-                    new SqlParameter("@MaSP", SqlDbType.Int) {Value = chiTietHoaDon.MaSP},
-                    new SqlParameter("@SoLuong", SqlDbType.Int) {Value = chiTietHoaDon.SoLuong},
-                    new SqlParameter("@DonGia", SqlDbType.Float) {Value = chiTietHoaDon.DonGia}
-                    // Add more parameters as needed
-                };
+                // Parameters
+                command.Parameters.AddWithValue("@MaHD", maHD);
+                command.Parameters.AddWithValue("@MaSP", maSP);
+                command.Parameters.AddWithValue("@DonGia", donGia);
+                command.Parameters.AddWithValue("@SoLuongSP", soLuong);
+                command.Parameters.AddWithValue("@ThanhTien", donGia * soLuong);
 
-                // Execute the query with parameters
-                int rowsAffected = db.ExecuteNonQuery(strSQL, parameters);
-
-                // Check if the query was successful (rows affected > 0)
-                return rowsAffected > 0;
+                command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                // Handle the exception
-                return false;
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                // Close the connection in the finally block to ensure it's closed even if an exception occurs
+                if (db.GetConnection().State == ConnectionState.Open)
+                {
+                    db.GetConnection().Close();
+                }
             }
         }
+
 
     }
 }

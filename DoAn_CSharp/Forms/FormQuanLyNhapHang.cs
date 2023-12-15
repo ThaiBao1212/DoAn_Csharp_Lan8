@@ -55,17 +55,39 @@ namespace DoAn_CSharp.Forms
 
         private void btnChuyenQua_Click(object sender, EventArgs e)
         {
-            SanPhamsSize_Form sanPhamsSizeForm = new SanPhamsSize_Form();
+            if (dtgvDanhSachSanPham.SelectedRows.Count == 1)
+            {
+                // Get maSP and tenSP from the selected row
+                DataGridViewRow selectedRow = dtgvDanhSachSanPham.SelectedRows[0];
+                int maSP = Convert.ToInt32(selectedRow.Cells["MaSP"].Value);
+                string tenSP = selectedRow.Cells["TenSP"].Value?.ToString();
 
-            // Set the StartPosition to CenterScreen
-            sanPhamsSizeForm.StartPosition = FormStartPosition.CenterScreen;
+                // Open SanPhamsSize_Form and pass maSP and tenSP
+                SanPhamsSize_Form sanPhamsSizeForm = new SanPhamsSize_Form(maSP, tenSP);
 
-            // Show the form
-            sanPhamsSizeForm.Show();
+                // Set the StartPosition to CenterScreen
+                sanPhamsSizeForm.StartPosition = FormStartPosition.CenterScreen;
+
+                // Show the form
+                sanPhamsSizeForm.ShowDialog();
+
+                // Retrieve selected data
+                int selectedMaSP = sanPhamsSizeForm.SelectedMaSP;
+                string selectedTenSP = sanPhamsSizeForm.SelectedTenSP;
+                string selectedSize = sanPhamsSizeForm.SelectedSize;
+                int selectedSoLuong = sanPhamsSizeForm.SelectedSoLuong;
+  
+
+                // Add the data to your dtgvChiTietNhapHang (example)
+                dtgvChiTietNhapHang.Rows.Add(selectedMaSP, selectedTenSP, selectedSoLuong, selectedSize);
+            }
+            else
+            {
+                MessageBox.Show("Please select a row before opening the form.", "Warning");
+            }
         }
-
     }
-
-
-
 }
+    
+
+

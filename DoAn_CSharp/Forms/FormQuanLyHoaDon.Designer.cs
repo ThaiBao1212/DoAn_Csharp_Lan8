@@ -46,9 +46,6 @@
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtgvChiTietHD = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnXuatHoaDon = new FontAwesome.Sharp.IconButton();
-            this.reportViewerHoaDon = new Microsoft.Reporting.WinForms.ReportViewer();
             this.MaCTHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +53,9 @@
             this.SizeSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoLuongSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnXuatHoaDon = new FontAwesome.Sharp.IconButton();
+            this.reportViewerHoaDon = new Microsoft.Reporting.WinForms.ReportViewer();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvDanhSachHoaDon)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -248,42 +248,12 @@
             this.SoLuongSP,
             this.ThanhTien});
             this.dtgvChiTietHD.Location = new System.Drawing.Point(6, 24);
-            this.dtgvChiTietHD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtgvChiTietHD.Margin = new System.Windows.Forms.Padding(2);
             this.dtgvChiTietHD.Name = "dtgvChiTietHD";
             this.dtgvChiTietHD.RowHeadersWidth = 51;
             this.dtgvChiTietHD.RowTemplate.Height = 24;
             this.dtgvChiTietHD.Size = new System.Drawing.Size(505, 197);
             this.dtgvChiTietHD.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnXuatHoaDon);
-            this.panel1.Location = new System.Drawing.Point(524, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(460, 51);
-            this.panel1.TabIndex = 4;
-            // 
-            // btnXuatHoaDon
-            // 
-            this.btnXuatHoaDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXuatHoaDon.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXuatHoaDon.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnXuatHoaDon.IconColor = System.Drawing.Color.Black;
-            this.btnXuatHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXuatHoaDon.Location = new System.Drawing.Point(175, 13);
-            this.btnXuatHoaDon.Name = "btnXuatHoaDon";
-            this.btnXuatHoaDon.Size = new System.Drawing.Size(124, 23);
-            this.btnXuatHoaDon.TabIndex = 61;
-            this.btnXuatHoaDon.Text = "Xuất Hóa Đơn";
-            this.btnXuatHoaDon.UseVisualStyleBackColor = true;
-            // 
-            // reportViewerHoaDon
-            // 
-            this.reportViewerHoaDon.Location = new System.Drawing.Point(524, 69);
-            this.reportViewerHoaDon.Name = "reportViewerHoaDon";
-            this.reportViewerHoaDon.ServerReport.BearerToken = null;
-            this.reportViewerHoaDon.Size = new System.Drawing.Size(460, 508);
-            this.reportViewerHoaDon.TabIndex = 5;
             // 
             // MaCTHD
             // 
@@ -339,6 +309,37 @@
             this.ThanhTien.MinimumWidth = 6;
             this.ThanhTien.Name = "ThanhTien";
             this.ThanhTien.Width = 109;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnXuatHoaDon);
+            this.panel1.Location = new System.Drawing.Point(524, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(460, 51);
+            this.panel1.TabIndex = 4;
+            // 
+            // btnXuatHoaDon
+            // 
+            this.btnXuatHoaDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXuatHoaDon.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatHoaDon.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnXuatHoaDon.IconColor = System.Drawing.Color.Black;
+            this.btnXuatHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnXuatHoaDon.Location = new System.Drawing.Point(175, 13);
+            this.btnXuatHoaDon.Name = "btnXuatHoaDon";
+            this.btnXuatHoaDon.Size = new System.Drawing.Size(124, 23);
+            this.btnXuatHoaDon.TabIndex = 61;
+            this.btnXuatHoaDon.Text = "Xuất Hóa Đơn";
+            this.btnXuatHoaDon.UseVisualStyleBackColor = true;
+            this.btnXuatHoaDon.Click += new System.EventHandler(this.btnXuatHoaDon_Click);
+            // 
+            // reportViewerHoaDon
+            // 
+            this.reportViewerHoaDon.Location = new System.Drawing.Point(524, 69);
+            this.reportViewerHoaDon.Name = "reportViewerHoaDon";
+            this.reportViewerHoaDon.ServerReport.BearerToken = null;
+            this.reportViewerHoaDon.Size = new System.Drawing.Size(460, 508);
+            this.reportViewerHoaDon.TabIndex = 5;
             // 
             // FormQuanLyHoaDon
             // 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,7 @@ namespace DoAn_CSharp.Forms
                 HienThiChiTietHD();
             }
         }
+      
         private void HienThiChiTietHD()
         {
             // Xóa tất cả dữ liệu hiện tại trong dtgvChiTietHD
@@ -65,7 +67,41 @@ namespace DoAn_CSharp.Forms
                 dtgvChiTietHD.Rows.Add(row.ItemArray);
             }
         }
+        private void ExportHoaDonToPdf()
+        {
+            // Tạo đối tượng SaveFileDialog để chọn vị trí lưu file
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+            saveDialog.Title = "Chọn vị trí lưu hóa đơn";
 
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Chọn định dạng xuất file (PDF)
+                Microsoft.Reporting.WinForms.Warning[] warnings;
+                string[] streamids;
+                string mimeType;
+                string encoding;
+                string extension;
 
+                byte[] byteViewer = reportViewerHoaDon.LocalReport.Render(
+                    "PDF", null, out mimeType, out encoding, out extension,
+                    out streamids, out warnings);
+
+                // Lưu file PDF
+                using (FileStream fs = new FileStream(saveDialog.FileName, FileMode.Create))
+                {
+                    fs.Write(byteViewer, 0, byteViewer.Length);
+                    fs.Close();
+                }
+
+                MessageBox.Show("Hóa đơn đã được lưu thành công!", "Thông báo");
+            }
+        }
+
+        private void btnXuatHoaDon_Click(object sender, EventArgs e)
+        {
+            // Gọi hàm xuất hóa đơn và chọn định dạng file (PDF, Excel, Word, Image, ...)
+            ExportHoaDonToPdf();
+        }
     }
 }

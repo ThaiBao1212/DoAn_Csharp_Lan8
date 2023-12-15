@@ -3,6 +3,8 @@ using DoAn_CSharp.DTO;
 using System.Collections.Generic;
 using System.Data;
 using System;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace DoAn_CSharp.DAO
 {
@@ -36,7 +38,7 @@ namespace DoAn_CSharp.DAO
             }
             catch (Exception ex)
             {
-                // Handle exception
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }   
 
             // Return a default value or throw an exception based on your requirements
@@ -75,7 +77,7 @@ namespace DoAn_CSharp.DAO
             }
             catch (Exception ex)
             {
-                // Handle exception
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return null;
             }
         }
@@ -145,10 +147,59 @@ namespace DoAn_CSharp.DAO
             }
             catch (Exception ex)
             {
-                // Handle exception
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return null;
             }
         }
+        // Inside QuanLyBanHang_DAO class
+        public DataTable LayDanhSachSizesWithQuantityGreaterThanOne(string maSP)
+        {
+            using (SqlConnection connection = new SqlConnection("Server=LAPTOP-PEQVO1V4\\ALINSBTC;Database=QuanLyBanGiay4;uid=sa;pwd=123"))
+            {
+                connection.Open();
+
+                string query = "SELECT Sizes.MaSize, Sizes.TenSize FROM Sizes " +
+                               "INNER JOIN SanPhamSize ON Sizes.MaSize = SanPhamSize.MaSize " +
+                               "WHERE SanPhamSize.MaSP = @MaSP AND SanPhamSize.SoLuongSP > 1;";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@MaSP", maSP);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                return dt;
+            }
+        }
+
+        public int GetAvailableQuantity(int maSP, int maSize)
+        {
+            using (SqlConnection connection = new SqlConnection("Server=LAPTOP-PEQVO1V4\\ALINSBTC;Database=QuanLyBanGiay4;uid=sa;pwd=123"))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand("SELECT SoLuongSP FROM SanPhamSize WHERE MaSP = @MaSP AND MaSize = @MaSize;", connection);
+                command.Parameters.AddWithValue("@MaSP", maSP);
+                command.Parameters.AddWithValue("@MaSize", maSize);
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int availableQuantity))
+                {
+                    return availableQuantity;
+                }
+                else
+                {
+                    return 0; // Return 0 if there's an issue retrieving the quantity
+                }
+            }
+        }
+
+
+
+
+
 
     }
 }

@@ -82,12 +82,28 @@ namespace DoAn_CSharp.Database
         }
 
 
-        public void ExecuteNonQuery(string strSQL)
+        public int ExecuteNonQuery(string strSQL)
         {
-            SqlCommand sqlcmd = new SqlCommand(strSQL, sqlConn);
-            sqlConn.Open();
-            sqlcmd.ExecuteNonQuery();
-            sqlConn.Close();
+            try
+            {
+                SqlCommand sqlcmd = new SqlCommand(strSQL, sqlConn);
+                sqlConn.Open();
+                int rowsAffected = sqlcmd.ExecuteNonQuery();
+                return rowsAffected; // Return the number of rows affected
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details
+                Console.WriteLine($"Error executing SQL query: {ex.Message}");
+                throw; // Re-throw the exception to propagate it
+            }
+            finally
+            {
+                if (sqlConn.State == ConnectionState.Open)
+                {
+                    sqlConn.Close();
+                }
+            }
         }
 
         // Overloaded ExecuteNonQuery method with parameters

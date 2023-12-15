@@ -7,10 +7,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Drawing;
-
+using MessageBox = System.Windows.Forms.MessageBox;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using DoAn_CSharp.Database;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Windows;
+
 
 namespace DoAn_CSharp.Forms
 {
@@ -30,12 +34,16 @@ namespace DoAn_CSharp.Forms
 
         private DAO.GiamGia_DAO giamGia_DAO= new DAO.GiamGia_DAO();
         private DTO.GiamGia_DTO giamGia_DTO = new DTO.GiamGia_DTO();
-
+    
         private List<ShoppingCartItem_DTO> shoppingCart = new List<ShoppingCartItem_DTO>();
+
+
 
         private Account_DTO loginAccount;
 
         private string maKhachHang;
+        private QuanLyChiTietHoaDon_DAO chiTietHoaDonDAO = new QuanLyChiTietHoaDon_DAO();
+        private QuanLyHoaDon_DAO hoaDonDAO = new QuanLyHoaDon_DAO();
 
         public Account_DTO LoginAccount
         {
@@ -56,6 +64,9 @@ namespace DoAn_CSharp.Forms
 
             this.LoginAccount = acc;
             lblnhanvienbanhang.Text = " " + LoginAccount.HoTenNV;
+
+            cbGiamGia.SelectedIndexChanged += cbGiamGia_SelectedIndexChanged;
+
 
 
         }
@@ -164,7 +175,8 @@ namespace DoAn_CSharp.Forms
                 txtDonGia.Text = productDetails.DonGia.ToString("C");
 
 
-                string imageFolderPath = Path.Combine(Application.StartupPath, "Image");
+                string imageFolderPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "Image");
+
 
                 if (Directory.Exists(imageFolderPath))
                 {
@@ -179,7 +191,8 @@ namespace DoAn_CSharp.Forms
                         picAnhChiTietSanPham.SizeMode = PictureBoxSizeMode.Zoom;
 
                         // Adjust the PictureBox size to the image size
-                        picAnhChiTietSanPham.Size = new Size(212, 114);
+                        picAnhChiTietSanPham.Size = new System.Drawing.Size(212, 114);
+
                     }
                     else
                     {
@@ -230,8 +243,6 @@ namespace DoAn_CSharp.Forms
             object selectedValue = cbSizes.SelectedValue;
             string soluongproduct = txtSoLuong.Text;
 
-            
-
             // Check if a product is selected
             if (selectedValue == null)
             {
@@ -274,50 +285,58 @@ namespace DoAn_CSharp.Forms
                     1
                 );
 
-
-                cart.QuantityChanged += (s, eventArgs) => UpdateTotal();
+                cart.QuantityChanged += (s, eventArgs) =>
+                {
+                    UpdateTotal();
+                    UpdateDiscount();  // Add this line to recalculate discount when quantity changes
+                };
 
                 flowLayoutPanel_Cart.Controls.Add(cart);
             }
+            LoadDiscountCodes();
+                UpdateTotal();
+            UpdateDiscount();  // Add this line to recalculate discount when adding a new item to the cart
+                               // Calculate and display the total
+            decimal tongTien = decimal.Parse(txtTamTinh.Text.Replace("₫", ""), System.Globalization.NumberStyles.Currency);
+        }
 
-            UpdateTotal();
-            // Calculate and display the total
+        private List<GiamGia_DTO> danhSachGiamGia;
+
+        // Call this method when your form is initialized to load discount codes initially
+        private void UpdateDiscount()
+        {
+
+            decimal total = decimal.Parse(txtTamTinh.Text.Replace("₫", ""), System.Globalization.NumberStyles.Currency);
             decimal tongTien = decimal.Parse(txtTamTinh.Text.Replace("₫", ""), System.Globalization.NumberStyles.Currency);
 
-
-         
-
-          /*  // Lấy danh sách giảm giá hợp lệ
-            List<GiamGia_DTO> danhSachGiamGia = quanLyBanHang_DAO.LayDanhSachGiamGiaHieuLuc();
-
-            // Lọc danh sách giảm giá theo điều kiện và tổng tiền
-            var giamGiaHieuLuc = danhSachGiamGia
-                .Where(gg => gg.DieuKienGiamGia <= tongTien && 0 < gg.SoLuongGG && gg.NgayBatDau <= DateTime.Now && gg.NgayKetThuc >= DateTime.Now);
-            if (giamGiaHieuLuc.Any())
+            // Check if an item is selected in the cbGiamGia combo box
+            if (cbGiamGia.SelectedItem is GiamGia_DTO selectedDiscount)
             {
-                GiamGia_DTO giamGia_DTO = new GiamGia_DTO();
+                decimal phanTramGiam = selectedDiscount.PhanTramGiam;
+                decimal tienGiam = total * phanTramGiam / 100;
+                decimal tongTienSauGiam = total - tienGiam;
 
-
-                // Assign the parsed decimal value to the DieuKienGiamGia property
-                giamGia_DTO.DieuKienGiamGia = tongTien;
-
-                // Continue with the rest of your code...
-                DataTable dt = giamGia_DAO.LayDanhSachGiamGia(giamGia_DTO);
-                cbGiamGia.DisplayMember = "TenGiamGia";
-                cbGiamGia.ValueMember = "MaGiamGia";
-                cbGiamGia.DataSource = dt;
-
-
+                // Update the combo box text, and corresponding text boxes
+                cbGiamGia.Text = selectedDiscount.TenGiamGia;
+                txtTienGiam.Text = tienGiam.ToString("C");
+                txtTongTien.Text = tongTienSauGiam.ToString("C");
             }
             else
             {
-                cbGiamGia.Text = "Không Giảm Giá";
-            }*/
-
-            // Calculate and display the total
-
-
+                // If no item is selected, reset to default values
+                cbGiamGia.Text = "Không Giảm Giá 11  ";
+                txtTienGiam.Text = "₫0";
+                txtTongTien.Text = total.ToString("C");
+            }
         }
+
+        private void cbGiamGia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateDiscount();
+        }
+
+
+
         private void UpdateTotal()
         {
             decimal total = 0;
@@ -327,52 +346,48 @@ namespace DoAn_CSharp.Forms
                 decimal price = decimal.Parse(cartControl.LblGia.Text.Replace("₫", ""));
                 total += price * cartControl.Quantity;
             }
-
             txtTamTinh.Text = total.ToString("C");
+    
+            UpdateDiscount();
+         
 
+        }
+       
 
-            // Calculate and display the total
-            decimal tongTien = total;
-
-            GiamGia_DTO giamGia_DTO = new GiamGia_DTO();
-            // Assign the parsed decimal value to the DieuKienGiamGia property
-            giamGia_DTO.DieuKienGiamGia = tongTien;
-
-            // Continue with the rest of your code...
-            DataTable dt = giamGia_DAO.LayDanhSachGiamGia(giamGia_DTO);
-            cbGiamGia.DisplayMember = "TenGiamGia";
-            cbGiamGia.ValueMember = "MaGiamGia";
-            cbGiamGia.DataSource = dt;
-
-            // Lấy danh sách giảm giá hợp lệ
-            List<GiamGia_DTO> danhSachGiamGia = quanLyBanHang_DAO.LayDanhSachGiamGiaHieuLuc();
-
-            // Lọc danh sách giảm giá theo điều kiện và tổng tiền
-            var giamGiaHieuLuc = danhSachGiamGia
-                .Where(gg => gg.DieuKienGiamGia <= tongTien && 0 < gg.SoLuongGG && gg.NgayBatDau <= DateTime.Now && gg.NgayKetThuc >= DateTime.Now);
-
-            if (giamGiaHieuLuc.Any())
+        private void LoadDiscountCodes()
+        {
+            UpdateTotal();
+            try
             {
-                var giamGiaToiNhat = giamGiaHieuLuc.OrderByDescending(gg => gg.PhanTramGiam).First();
+                // Retrieve the total amount to check for applicable discounts
+                decimal tongTien = decimal.Parse(txtTamTinh.Text.Replace("₫", ""), System.Globalization.NumberStyles.Currency);
+          
 
-                // Hiển thị thông tin giảm giá
-                cbGiamGia.Text = giamGiaToiNhat.TenGiamGia;
+     
+                // Get the list of applicable discount codes
+                List<GiamGia_DTO> danhSachGiamGia = quanLyBanHang_DAO.LayDanhSachGiamGiaHieuLuc()
+                    .Where(gg => gg.DieuKienGiamGia <= tongTien && gg.SoLuongGG > 0 && gg.NgayBatDau <= DateTime.Now && gg.NgayKetThuc >= DateTime.Now)
+                    .ToList();
 
-                // Calculate and display the tiền giảm and tổng tiền
-                decimal phanTramGiam = giamGiaToiNhat.PhanTramGiam;
-                decimal tienGiam = total * phanTramGiam / 100;
-                decimal tongTienSauGiam = total - tienGiam;
-
-                txtTienGiam.Text = tienGiam.ToString("C");
-                txtTongTien.Text = tongTienSauGiam.ToString("C");
+                if (danhSachGiamGia.Any())
+                {
+                    // Bind the list of discount codes to cbGiamGia
+                    cbGiamGia.DisplayMember = "TenGiamGia";
+                    cbGiamGia.ValueMember = "MaGiamGia";
+                    cbGiamGia.DataSource = danhSachGiamGia;
+                }
+                else
+                {
+                    // No applicable discount codes, display a message
+                    cbGiamGia.Text = "Không có mã giảm giá";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                cbGiamGia.Text = "Không Giảm Giá";
-                txtTienGiam.Text = "₫0";
-                txtTongTien.Text = total.ToString("C");
+                MessageBox.Show($"Error loading discount codes: {ex.Message}");
             }
         }
+
 
         public void HandleCartItemRemoved(UserControl_Cart removedCart)
         {
@@ -393,13 +408,13 @@ namespace DoAn_CSharp.Forms
             try
             {
                 string productId = txtMaSanPham.Text;
-                int sizeId = Convert.ToInt32(cbSizes.SelectedValue);
+                int selectedSizeId = Convert.ToInt32(cbSizes.SelectedValue);  // Rename 'maSP' to 'selectedSizeId'
 
                 // Create a QuanLyBanHang_DTO object with the necessary information
                 QuanLyBanHang_DTO quanLyBanHang_DTO = new QuanLyBanHang_DTO
                 {
                     MaSP = Convert.ToInt32(productId),
-                    MaSize = sizeId
+                    MaSize = selectedSizeId  // Rename 'maSP' to 'selectedSizeId'
                 };
 
                 // Call the DAO method to get the quantity of the product for the selected size
@@ -407,23 +422,22 @@ namespace DoAn_CSharp.Forms
                 if (newQuantity > 0)
                 {
                     txtSoLuong.Text = newQuantity.ToString();
-
                 }
                 else
                 {
                     txtSoLuong.Text = "Sản phẩm Đã hết ";
                 }
-               
 
                 // Update txtSoLuong with the new quantity
-                
+
             }
             catch (Exception ex)
             {
                 // Handle exception
-                MessageBox.Show("Error:111  " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
+
         public void UpdateSelectedCustomerName(string tenKhachHang)
         {
             txtTenKhachHang.Text = tenKhachHang;
@@ -467,43 +481,137 @@ namespace DoAn_CSharp.Forms
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrEmpty(maKhachHang))
             {
-                // Handle the case where 'maKhachHang' is not selected
                 MessageBox.Show("Vui lòng chọn khách hàng trước khi thanh toán.");
                 return;
             }
-            int maKH = int.Parse(maKhachHang) ;
 
-            int maNV = int.Parse(LoginAccount.MaNV);
+            if (!int.TryParse(maKhachHang, out int maKH))
+            {
+                MessageBox.Show("Invalid customer ID format.");
+                return;
+            }
+
+            if (!int.TryParse(LoginAccount.MaNV, out int maNV))
+            {
+                MessageBox.Show("Invalid employee ID format.");
+                return;
+            }
+
+            if (!int.TryParse(txtMaSanPham.Text, out int maSP))
+            {
+                MessageBox.Show("Invalid product ID format.");
+                return;
+            }
+
+            if (!float.TryParse(txtDonGia.Text.Replace("₫", "").Trim(), out float donGia))
+            {
+                MessageBox.Show("Invalid product price format.");
+                return;
+            }
+
+            if (!int.TryParse(txtSoLuong.Text, out int soLuongSP))
+            {
+                MessageBox.Show("Invalid quantity format.");
+                return;
+            }
+
+            if (!float.TryParse(txtTongTien.Text.Replace("₫", "").Trim(), out float thanhTien))
+            {
+                MessageBox.Show("Invalid total amount format.");
+                return;
+            }
+
+            try
+            {
+                ProcessPayment(maKH, maNV, maSP, (int)donGia, soLuongSP, thanhTien);
 
 
-            DateTime ngayLapHD = DateTime.Now; // Current date and time
-            int maSP = int.Parse(txtMaSanPham.Text);
-            float donGia = float.Parse(txtDonGia.Text.Replace("₫", "").Trim()); // Remove currency symbol
-            int soLuongSP = int.Parse(txtSoLuong.Text);
-            float thanhTien = float.Parse(txtTongTien.Text.Replace("₫", "").Trim()); // Remove currency symbol
-
-            // Now, you can insert these values into your database tables (hoadon and chitiethd)
-            // Use your database access layer or an ORM framework for this purpose
-
-            // Example:
-            // 1. Insert into hoadon table
-            QuanLyHoaDon_DAO quanLyHoaDon_DAO = new QuanLyHoaDon_DAO();
-            int maHD = quanLyHoaDon_DAO.InsertHoaDon(maKH, maNV, ngayLapHD);
-
-            // 2. Insert into chitiethd table
-            InsertChiTietHoaDon(maHD, maSP, donGia, soLuongSP, thanhTien);
-
-            // Optionally, you may want to update your product quantity or perform other actions
-
-            // Display a success message or perform any additional actions
-            MessageBox.Show("Payment successful!");
-
-            // Optionally, you can clear the UI or reset the form for the next transaction
-            ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error processing payment: {ex.Message}");
+            }
         }
+
+
+        private void ProcessPayment(int maKH, int maNV, int maSP, int soLuong, float donGia, float thanhTien)
+        {
+            try
+            {
+                // Create a new order (hóa đơn)
+                int maHD = hoaDonDAO.InsertHoaDon(maKH, maNV);
+
+                // Check if the order creation was successful
+                if (maHD > 0)
+                {
+                    // Iterate through the items in the shopping cart and add order details (chi tiết hóa đơn)
+                    foreach (UserControl_Cart cartControl in flowLayoutPanel_Cart.Controls)
+                    {
+                        int selectedMaSP = Convert.ToInt32(cartControl.ProductId);
+                        int selectedMaSize = Convert.ToInt32(cartControl.SizeId); // Get the MaSize from UserControl_Cart
+                        int selectedSoLuong = cartControl.Quantity;
+                        int availableQuantity = quanLyBanHang_DAO.GetAvailableQuantity(selectedMaSP, selectedMaSize);
+
+                        // Check if the selected quantity exceeds the available quantity
+                        if (selectedSoLuong > availableQuantity)
+                        {
+                            MessageBox.Show("Số lượng sản phẩm trong giỏ hàng vượt quá số lượng tồn kho.");
+                            return;
+                        }
+                        float selectedDonGia = float.Parse(cartControl.LblGia.Text.Replace("₫", "").Trim());
+                        // Add order details for each product in the shopping cart
+                        chiTietHoaDonDAO.InsertChiTietHoaDon(maHD, selectedMaSP, selectedSoLuong, selectedDonGia);
+
+                        // Update the quantity of the product in the SanPhamSize table
+                        UpdateProductQuantity(selectedMaSP, selectedMaSize, selectedSoLuong);
+                    }
+
+                    // Display a success message
+                    MessageBox.Show("Đã thanh toán thành công!");
+
+                    // Optionally, you can clear the shopping cart and update UI
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Có lỗi khi tạo hóa đơn. Vui lòng thử lại.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error processing payment: {ex.Message}");
+            }
+        }
+        // Inside your DAO class (QuanLyBanHang_DAO.cs or similar)
+        
+
+        private void UpdateProductQuantity(int maSP, int maSize, int soLuong)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection("Server=LAPTOP-PEQVO1V4\\ALINSBTC;Database=QuanLyBanGiay4;uid=sa;pwd=123"))
+                {
+                    connection.Open();
+
+                    // Update the quantity of the product in the SanPhamSize table
+                    SqlCommand command = new SqlCommand("UPDATE SanPhamSize SET SoLuongSP = SoLuongSP - @SelectedSoLuong WHERE MaSP = @MaSP AND MaSize = @MaSize;", connection);
+                    command.Parameters.AddWithValue("@MaSP", maSP);
+                    command.Parameters.AddWithValue("@MaSize", maSize);
+                    command.Parameters.AddWithValue("@SelectedSoLuong", soLuong);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating product quantity: {ex.Message}");
+            }
+        }
+
+
+
         private void ClearForm()
         {
 
@@ -511,9 +619,6 @@ namespace DoAn_CSharp.Forms
  
         }
 
-
-        // Add methods for database operations (e.g., InsertHoaDon and InsertChiTietHoaDon)
-        // Use your database access layer or ORM framework to interact with the database
 
     }
 }

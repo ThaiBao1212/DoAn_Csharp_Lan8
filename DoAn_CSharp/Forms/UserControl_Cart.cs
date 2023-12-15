@@ -39,20 +39,17 @@ namespace DoAn_CSharp.Forms
 
             numericUpDownSoLuong.Value = quantity;
 
-
             LoadSizes();
             cbSizes.SelectedValue = idSize;
-          
-
-
         }
-   
+
 
         private void LoadSizes()
         {
             try
             {
-                DataTable dt = quanLyBanHang_DAO.LayDanhSachSizes();
+                // Assuming you have columns MaSize and SoLuongSP in your table
+                DataTable dt = quanLyBanHang_DAO.LayDanhSachSizesWithQuantityGreaterThanOne(ProductId);
 
                 if (dt != null)
                 {
@@ -71,6 +68,7 @@ namespace DoAn_CSharp.Forms
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
+
 
         public void UpdateQuantity(int newQuantity)
         {

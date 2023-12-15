@@ -113,7 +113,7 @@ namespace DoAn_CSharp.DAO
             }
             catch (Exception ex)
             {
-                // Handle exception
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return null;
             }
         }
@@ -145,7 +145,7 @@ namespace DoAn_CSharp.DAO
             }
             catch (Exception ex)
             {
-                // Handle exception
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return null;
             }
         }
@@ -230,7 +230,7 @@ namespace DoAn_CSharp.DAO
             }
             catch (Exception ex)
             {
-                // Handle exception
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return null;
             }
         }

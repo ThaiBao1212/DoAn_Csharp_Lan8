@@ -1,5 +1,6 @@
 ﻿using DoAn_CSharp.Database;
 using DoAn_CSharp.DTO;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,35 +38,41 @@ namespace DoAn_CSharp.DAO
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi
+                Console.WriteLine($"An error occurred: {ex.Message}");
                 return null;
             }
         }
-        public int InsertHoaDon(int maKH, int maNV, DateTime ngayLapHD)
+        // In the QuanLyHoaDon_DAO class
+        public int InsertHoaDon(int maKH, int maNV)
         {
             try
             {
-                // Define the SQL query for inserting a new record into the hoadon table
-                string strSQL = "INSERT INTO hoadon (MaKH, MaNV, NgayLapHD) VALUES (@MaKH, @MaNV, @NgayLapHD); SELECT SCOPE_IDENTITY();";
+                // Assume you have a stored procedure or SQL command to insert a new order
+                SqlCommand command = new SqlCommand("INSERT INTO hoadon (MaKH, MaNV, NgayLapHD) VALUES (@MaKH, @MaNV, @NgayLapHD); SELECT SCOPE_IDENTITY();", db.GetConnection());
 
-                // Set up the parameters for the query
-                SqlParameter[] parameters = new SqlParameter[]
-                {
-            new SqlParameter("@MaKH", maKH),
-            new SqlParameter("@MaNV", maNV),
-            new SqlParameter("@NgayLapHD", ngayLapHD)
-                };
+                // Parameters
+                command.Parameters.AddWithValue("@MaKH", maKH);
+                command.Parameters.AddWithValue("@MaNV", maNV);
+                command.Parameters.AddWithValue("@NgayLapHD", DateTime.Now);
 
-                // Execute the query and retrieve the newly inserted ID
-                int newHoaDonID = Convert.ToInt32(db.ExecuteScalar(strSQL, parameters));
+                // Open the connection before executing the command
+                db.GetConnection().Open();
 
-                return newHoaDonID;
+                int maHD = Convert.ToInt32(command.ExecuteScalar());
+                return maHD;
             }
             catch (Exception ex)
             {
-                // Handle the exception (log, display an error message, etc.)
-                Console.WriteLine($"Error inserting HoaDon: {ex.Message}");
-                return -1; // Or throw an exception
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return -1;
+            }
+            finally
+            {
+                // Close the connection in the finally block to ensure it's closed even if an exception occurs
+                if (db.GetConnection().State == ConnectionState.Open)
+                {
+                    db.GetConnection().Close();
+                }
             }
         }
 
