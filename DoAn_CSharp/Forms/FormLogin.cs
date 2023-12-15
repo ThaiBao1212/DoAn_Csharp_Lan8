@@ -64,8 +64,8 @@ namespace DoAn_CSharp.Forms
 
             string userName = txtUserName.Text;
             //string passWord = tripleDES.MaHoa(txtPassword.Text);
-         /*   string passWord = MD5Hash.CalculateMD5Hash(txtPassword.Text);*/
-            string passWord = txtPassword.Text;
+            string passWord = MD5Hash.CalculateMD5Hash(txtPassword.Text);
+            //string passWord = txtPassword.Text;
 
 
             if (Login(userName, passWord))
