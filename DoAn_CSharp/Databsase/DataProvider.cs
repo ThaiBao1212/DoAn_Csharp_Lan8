@@ -22,7 +22,8 @@ namespace DoAn_CSharp.Databsase
 
 
         /*       private string connectionSTR = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";*/
-        private string connectionSTR = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
+        //private string connectionSTR = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
+        private string connectionSTR = "Data Source=LAPTOP-PDE9TC1I\\SQLEXPRESS; Initial Catalog=QuanLyBanGiay2; Integrated Security=True";
         public string GetConnectionString()
         {
             return connectionSTR;

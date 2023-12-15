@@ -16,7 +16,8 @@ namespace DoAn_CSharp.Databsase
         {
             // Thay đổi chuỗi kết nối tới cơ sở dữ liệu của bạn
 /*            string connectionString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";*/
-            string connectionString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
+            //string connectionString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
+            string connectionString = "Data Source=LAPTOP-PDE9TC1I\\SQLEXPRESS; Initial Catalog=QuanLyBanGiay2; Integrated Security=True";
         sqlConn = new SqlConnection(connectionString);
         }
 

@@ -66,7 +66,9 @@ namespace DoAn_CSharp.Forms
             }
         }
 
+        private void ThemNhaCungCap_Form_Load(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

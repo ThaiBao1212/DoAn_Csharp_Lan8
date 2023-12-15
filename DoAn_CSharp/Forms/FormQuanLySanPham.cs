@@ -25,7 +25,8 @@ namespace DoAn_CSharp.Forms
         string imageUpload = "";
         /* string connString = "Data Source=LAPTOP-PDE9TC1I\\SQLEXPRESS;Initial Catalog=QuanLyBanGiay;Integrated Security=true";*/
         //string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay;Integrated Security=True";
-        string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
+        //string connString = "Data Source=DESKTOP-7R66M1N\\THAIBAOSERVER;Initial Catalog=QuanLyBanGiay1;Integrated Security=True";
+        string connString = "Data Source=LAPTOP-PDE9TC1I\\SQLEXPRESS; Initial Catalog=QuanLyBanGiay2; Integrated Security=True";
 
 
         public FormQuanLySanPham()
